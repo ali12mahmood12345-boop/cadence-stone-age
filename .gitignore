@@ -1,0 +1,8 @@
+.venv/
+.venv-*/
+__pycache__/
+*.pyc
+*.npz
+*.csv
+benchmark_output*/
+.DS_Store

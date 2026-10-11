@@ -1,0 +1,25 @@
+{
+  "runs": 0,
+  "deaths": 0,
+  "best_days": 0.0,
+  "total_days": 0.0,
+  "nights_survived": 0,
+  "food_eaten": 0,
+  "fires_built": 0,
+  "fires_when_cold": 0,
+  "spears_crafted": 0,
+  "shelters_built": 0,
+  "rabbits_hunted": 0,
+  "hunt_attempts": 0,
+  "safe_sleeps": 0,
+  "sleep_attempts": 34,
+  "recent_days": [],
+  "skills": {
+    "foraging": 0.0,
+    "fire": 0.0,
+    "hunting": 0.0,
+    "shelter": 0.0,
+    "sleep": 0.0
+  },
+  "mastery": 0.0
+}
