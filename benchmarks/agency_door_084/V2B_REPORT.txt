@@ -1,0 +1,39 @@
+CADENCE AGENCY DOOR V2B — COUNTERBALANCED REACQUISITION REPORT
+================================================================================================
+cadence-net: 0.84.0
+fresh base seeds: 24001..24050
+
+FOUNDER FIRST-ACTION DISTRIBUTION
+  PRESS=18 | PULL=19 | WAIT=13
+
+EARLY20 MEANS
+  PPP initial PRESS: 77.7%
+  PPP returned PRESS: 28.4%
+  QPQ initial PULL:  77.8%
+  QPQ returned PULL: 25.7%
+  Returned action mean: 27.1%
+  Fresh naive matched-action mean: 78.2%
+
+LATE40 CONTINGENCY CONTROL
+  Controllable returned phase: 99.0%
+  Yoked returned phase:        31.2%
+
+PRE-REGISTERED V2B TESTS
+PRIMARY — counterbalanced savings vs zero: positive=0 | negative=49 | ties=1 | mean savings=-50.7 pp | exact two-sided sign p=3.552713679e-15
+SECONDARY — returned early20 vs fresh naive matched-action early20: return higher=0 | naive higher=50 | ties=0 | mean(return-naive)=-51.1 pp | exact two-sided sign p=1.776356839e-15
+SECONDARY — controllable returned late40 vs yoked returned late40: C higher=43 | Y higher=0 | ties=7 | mean(C-Y)=+67.9 pp | exact two-sided sign p=2.273736754e-13
+
+ACTION-SPECIFIC DESCRIPTIVES
+  PRESS savings (PPP): return higher=1 | initial higher=48 | ties=1 | mean=-49.3 pp | p=1.776356839e-13
+  PULL savings (QPQ):  return higher=2 | initial higher=47 | ties=1 | mean=-52.1 pp | p=4.35562697e-12
+
+CONVENTIONAL CONTROLS — COUNTERBALANCED SAVINGS
+  random mean:  -0.2 pp
+  tabular mean: -41.9 pp
+
+INTERPRETATION BOUNDARY
+1. Positive primary savings supports faster behavioral reacquisition after an intervening contingency.
+2. Negative primary savings supports interference/no behavioral savings under this protocol.
+3. Counterbalancing prevents PRESS/action-0 founder preference from deciding the primary result.
+4. This does not identify an internal memory mechanism or prove explicit causal forecasting/counterfactual reasoning.
+5. Seeds 24001..24050 are frozen; do not tune on them and reuse them as a new confirmation population.
