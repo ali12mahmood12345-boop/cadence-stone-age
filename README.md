@@ -35,6 +35,25 @@ A final generalization test changed the structure to consecutive aliases, `A-A-B
 
 The resulting boundary is useful: the fixed fading temporal trace genuinely helps disambiguation, but it is not a general solution to sequence memory.
 
+## Cadence 0.84 Agency Door benchmark
+
+A separate controllable-vs-yoked intervention benchmark is now published here:
+
+[`benchmarks/agency_door_084/`](benchmarks/agency_door_084/)
+
+It tests contingency-sensitive action learning, reversal adaptation, and A -> B -> A reacquisition.
+
+Main results so far:
+
+- a fresh 50-seed V1R replication strongly separated CONTROLLABLE from YOKED after reversal
+- V2 found no behavioral savings when the original action contingency returned
+- V2B counterbalanced PRESS and PULL across 50 new founders and again found strongly negative return savings
+- despite the early reacquisition cost, the returned active contingency recovered to **99.0%** late performance versus **31.2%** YOKED
+
+The V2B primary result was **0 positive / 49 negative / 1 tie**, mean counterbalanced savings **-50.7 percentage points**, exact two-sided sign p ≈ `3.55e-15`.
+
+This is a bounded behavioral result, not a claim of an explicit causal world model or learned transition forecast.
+
 ## Earlier 0.81 work
 
 The original controlled 0.81 experiments remain in:
