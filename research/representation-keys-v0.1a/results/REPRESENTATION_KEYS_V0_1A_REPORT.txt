@@ -1,0 +1,38 @@
+CADENCE REPRESENTATION KEYS V0.1A — LEARNED COMPACT KEY PROOF-OF-PRINCIPLE REPORT
+================================================================================================================
+cadence-net: 0.84.3
+fresh development seeds: 45001..45024
+4 concepts/actions | input 36 = 4 stable semantic + 32 nuisance Uniform(-0.7,+0.7)
+network modules=(24,12) | learned association key width=12 | fixed sparse benchmark width=128
+training=256 balanced batches x 32 rows = 8192 presentations
+memory bank=4/concept | query=64/concept | cosine nearest-key retrieval
+Development proof-of-principle only; no core-memory change and no confirmation claim.
+
+TASK LEARNING SCREEN
+policy eligibility: held-out greedy accuracy >= 85%
+eligible founders: 22/24 (frozen minimum 12)
+median held-out policy accuracy among eligible: 99.6%
+
+MEMORY-KEY RETRIEVAL — ELIGIBLE FOUNDERS ONLY
+median RAW retrieval:               71.9%
+median FIXED_SPARSE retrieval:      77.1%
+median UNTRAINED_ASSOC retrieval:   51.6%
+median TRAINED_ASSOC retrieval:     99.0%
+
+TRAINING EFFECT / RAW COMPARISON
+TRAINED_ASSOC > UNTRAINED_ASSOC: 22/22 (need >= 15 when n>0)
+median TRAINED - UNTRAINED: +0.473 (need >= +0.10)
+TRAINED_ASSOC > RAW: 22/22 (need >= 15 when n>0)
+median TRAINED - RAW: +0.266 (need >= +0.10)
+median TRAINED - FIXED_SPARSE: +0.217 (descriptive)
+median TRAINED_ASSOC retrieval level: 99.0% (need >= 80%)
+
+FROZEN DEVELOPMENT CLASSIFICATION
+DIAGNOSTIC CLASSIFICATION: LEARNED_COMPACT_KEY_SIGNAL
+
+INTERPRETATION BOUNDARY
+1. The trained and untrained association arms are the exact same founder before vs after task learning.
+2. RAW tests direct observation keys. FIXED_SPARSE is Cadence's current non-learned observation-code benchmark and is descriptive only.
+3. A pass means task learning produced a compact association representation useful as a similarity key for held-out nuisance variants in this aligned concept/action task.
+4. Concept identity equals taught action in V0.1A, so a pass does not prove the learned key preserves details irrelevant to the policy. A collision benchmark must separate memory identity from task label next.
+5. No Cadence default change, memory implementation claim, semantic-abstraction claim, or general representation-learning claim is licensed by this development assay.
