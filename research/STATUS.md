@@ -28,42 +28,30 @@ See: [memory-keys-v0.4b](./memory-keys-v0.4b/README.md)
 ## Development boundary results
 
 ### Attention V0.5A — Conjunctive Multi-Fact Memory
-Cadence 0.88.0.
-
 Official classification: `NO_CONJUNCTIVE_MULTI_FACT_SIGNAL`.
 
-- 8/8 valid founders.
-- H2 trained median: 100%.
-- H2 held median: 31.6% vs 33.3% chance.
-- H1 held median: 33.8%.
-- H2 selected distinct relevant role records on 100% of held trials.
-- Unseen conjunctive combinations did not generalize.
-
-See: [attention-v0.5a](./attention-v0.5a/README.md)
-
 ### Stone Age V7 — 0.88 Memory / Attention Integration
-
 Official classification: `NO_STONE_AGE_MEMORY_ATTENTION_ADVANTAGE`.
 
-- 6/6 founders valid.
-- Hidden median days: DEFAULT 0.994, EPISODIC 1.385, H2 1.043, H2+EPISODIC 1.209.
-- H2+EPISODIC beat DEFAULT only 2/6 and EPISODIC only 2/6.
-- It beat H2 in 4/6 with median +0.129 days, but the strict integration gate failed.
-- EPISODIC alone had the strongest median survival in both visible and hidden panels, descriptively.
-- Critical readiness issue: median fire, spear, shelter and food-use rates were zero across all arms.
-- DEFAULT showed essentially no visible→hidden penalty, so inventory masking did not create the intended memory dependence.
+### Stone Age V7.1 — Acquisition Readiness
+Official classification: `NO_STONE_AGE_ACQUISITION_READINESS`.
 
-Interpretation: V7 is a valid negative primary result, but Stone Age must first pass a visible-world acquisition-readiness control before hidden-state memory comparisons become informative.
+- 8/8 founders valid.
+- All founders accepted 484/484 lessons with zero refusals.
+- Median trained FOOD/FIRE/HUNT/SHELTER success: 0/0/0/0%.
+- Ready founders: 0/8.
+- Failure pattern is stage-switch/shared-policy collapse rather than teacher refusal.
 
-See: [stone-age-v7](./stone-age-v7/README.md)
+See: [stone-age-v7-1](./stone-age-v7-1/README.md)
 
 ## Next direction
 
-Stone Age acquisition-readiness / curriculum control on Cadence 0.88.0:
+**Stone Age V7.2 — Acquisition Microscope**
 
-- food → eat
-- wood+stone → fire
-- spear → hunt
-- shelter → safe sleep
+Compare separate single-skill brains against one shared four-skill brain and measure:
 
-Only after these chains are reliably acquired should hidden-inventory memory comparisons reopen.
+- exact taught-prototype readback
+- fresh static-state generalization
+- closed-loop chain execution
+
+Only after basic acquisition is understood should hidden-state attention/memory comparisons reopen.
