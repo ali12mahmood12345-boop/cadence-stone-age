@@ -1,0 +1,22 @@
+{
+  "experiment": "Cadence Attention V0.5A",
+  "status": "development",
+  "cadence_net": "0.88.0",
+  "fresh_founders": "59001..59008",
+  "target_gap": "a decision in which one fact matters only together with another",
+  "task": "action=(role0+role1)%3",
+  "single_fact_accuracy_by_construction": 0.3333333333333333,
+  "taught_pairs": 18,
+  "held_pairs": 18,
+  "primary_arms": [
+    "recall_heads=2",
+    "recall_heads=1"
+  ],
+  "causal_controls": [
+    "erase role0 fact episode",
+    "erase role1 fact episode",
+    "erase distractor episodes",
+    "erase all Recall records",
+    "clone head0 address map into head1"
+  ]
+}
