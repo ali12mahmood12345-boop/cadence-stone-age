@@ -30,30 +30,33 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.4
 `PERSISTENT_FEW_LESSON_ACQUISITION_BOTTLENECK`
 
-### Stone Age V7.5 — Action Competition / Readout Capacity
+### Stone Age V7.5
 `DEEPER_REPRESENTATION_ASSOCIATION_BOTTLENECK`
 
 - 8/8 founders valid.
 - Skill-local outputs did not rescue all mappings.
-- Binary one-vs-rest improved FIRE/HUNT/SHELTER descriptively but worst classifiers stayed at 50–75%.
-- Wider `(128,64)` full-11 modules did not rescue acquisition.
-- Exact and fresh-static results remained nearly identical.
-
-Interpretation: simple action competition and network width are not the primary bottleneck. The next target is state representation / association separability.
+- Binary one-vs-rest improved some FIRE/HUNT/SHELTER distinctions, but worst classifiers stayed below gate.
+- Widening `(32,16)` to `(128,64)` did not rescue acquisition.
+- Simple action competition and network width are not the primary bottleneck.
 
 See: [stone-age-v7-5](./stone-age-v7-5/README.md)
 
-## Next direction
+## Running
 
-**Stone Age V7.6 — State Separability / Representation Microscope**
+### Stone Age V7.6 — State Separability / Representation Microscope
 
-Keep the exact V7.5 binary tasks and compare:
+Fresh founders: `66001..66008`.
 
-- raw 18-input Stone Age observations
-- threshold-contrast 18-input observations
-- task-only relevant dimensions
-- oracle prototype one-hot identity
+Frozen arms:
+- RAW18
+- CONTRAST18
+- TASK_ONLY
+- ORACLE_ONEHOT
 
-This will distinguish Stone Age sensory encoding from a deeper Cadence learner/association limitation.
+All arms keep the same balanced binary one-vs-rest tasks, teaching route and module size.
+
+Primary question: does explicit state representation rescue acquisition, and does pure prototype one-hot provide a healthy ceiling?
 
 Attention/episodic-memory comparisons remain closed until static acquisition is solved.
+
+See: [stone-age-v7-6](./stone-age-v7-6/README.md)
