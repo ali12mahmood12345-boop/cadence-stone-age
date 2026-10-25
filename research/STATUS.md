@@ -36,44 +36,29 @@ See: [memory-keys-v0.4b](./memory-keys-v0.4b/README.md)
 ### Stone Age V7.1
 `NO_STONE_AGE_ACQUISITION_READINESS`
 
-### Stone Age V7.2 — Acquisition Microscope
+### Stone Age V7.2
 `STONE_AGE_BASIC_ACQUISITION_BOTTLENECK`
 
-- 8/8 founders valid.
-- Single-skill final exact/static/loop:
-  - FOOD 54.2/50.0/0%
-  - FIRE 41.9/33.3/0%
-  - HUNT 72.7/66.7/100%
-  - SHELTER 72.7/66.7/0%
-- Shared final exact/static/loop:
-  - FOOD 50.0/50.0/0%
-  - FIRE 29.0/33.3/0%
-  - HUNT 50.8/50.0/0%
-  - SHELTER 66.7/66.7/0%
-- Prototype diagnostics show terminal-action collapse:
-  prerequisite states are often read back as the later terminal action.
-- HUNT is an important exception: the separate HUNT brain reaches 100% closed-loop, while shared HUNT stays 0%, showing secondary cross-skill interference.
-
-See: [stone-age-v7-2](./stone-age-v7-2/README.md)
-
-## Running
-
 ### Stone Age V7.3 — Balanced Teaching / State Contrast
+`PERSISTENT_STATIC_ACQUISITION_BOTTLENECK`
 
-Fresh founders: `63001..63008`.
-
-Three matched single-skill arms:
-- `LEGACY_BALANCED`: equal prototype exposure, one-row `Brain.lesson`
-- `DOC_BATCH32`: documented normalized batch-32 supervised route
-- `DOC_BATCH32_CONTRAST`: same route plus threshold-coded task state
-
-Primary evaluation uses cold `brain.predict` on exact training rows and fresh static rows.
-
-The purpose is to distinguish:
-- exposure imbalance,
-- one-row teaching-route mismatch,
-- state separability.
-
-No result claimed yet.
+- 8/8 founders valid.
+- LEGACY_BALANCED exact/fresh medians:
+  - FOOD 50/50%
+  - FIRE 33.3/33.3%
+  - HUNT 50/49.3%
+  - SHELTER 66.7/66.7%
+- DOC_BATCH32 did not rescue acquisition and was often worse.
+- DOC_BATCH32_CONTRAST also did not pass.
+- Important boundary: contrast was only tested on the weak short-budget batch route, so V7.3 does not independently rule out state contrast.
+- Cadence's teaching guide indicates the normalized batch point is intended for many-lesson imitation; with few hundred corrections, founder teaching can acquire faster.
 
 See: [stone-age-v7-3](./stone-age-v7-3/README.md)
+
+## Next direction
+
+**Stone Age V7.4 — Few-Lesson Teaching Regime Isolation**
+
+Keep the balanced single-skill static datasets fixed and compare short-budget teaching regimes, especially the founder teaching point, before revisiting state contrast or closed-loop acquisition.
+
+Attention/episodic-memory comparisons remain closed until static acquisition is solved.
