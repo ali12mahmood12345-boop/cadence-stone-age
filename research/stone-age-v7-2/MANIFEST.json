@@ -1,0 +1,25 @@
+{
+  "experiment": "Cadence Stone Age V7.2 Acquisition Microscope",
+  "status": "development",
+  "cadence_net": "0.88.0",
+  "fresh_founders": "62001..62008",
+  "branches": [
+    "single FOOD",
+    "single FIRE",
+    "single HUNT",
+    "single SHELTER",
+    "shared four-skill"
+  ],
+  "matched_per_skill_teacher_rows": true,
+  "stage_probes": [
+    "EXACT",
+    "FRESH_STATIC",
+    "CLOSED_LOOP"
+  ],
+  "thresholds": {
+    "exact": 0.9,
+    "fresh_static": 0.8,
+    "closed_loop": 0.6666666666666666,
+    "interference_gap": 0.25
+  }
+}
