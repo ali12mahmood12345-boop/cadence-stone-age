@@ -33,30 +33,34 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.5
 `DEEPER_REPRESENTATION_ASSOCIATION_BOTTLENECK`
 
-- 8/8 founders valid.
-- Skill-local outputs did not rescue all mappings.
-- Binary one-vs-rest improved some FIRE/HUNT/SHELTER distinctions, but worst classifiers stayed below gate.
-- Widening `(32,16)` to `(128,64)` did not rescue acquisition.
-- Simple action competition and network width are not the primary bottleneck.
-
-See: [stone-age-v7-5](./stone-age-v7-5/README.md)
-
-## Running
-
 ### Stone Age V7.6 — State Separability / Representation Microscope
+`STONE_AGE_SENSOR_ENCODING_BOTTLENECK`
 
-Fresh founders: `66001..66008`.
+- 8/8 founders valid.
+- ORACLE_ONEHOT passed all four skills at 100/100% median worst-classifier exact/fresh.
+- CONTRAST18 also passed the all-skill readiness gate:
+  - FOOD 100/100%
+  - FIRE 100/100%
+  - HUNT 98.0/97.9%
+  - SHELTER 100/100%
+- RAW18 failed:
+  - FOOD 50/50%
+  - FIRE 50/50%
+  - HUNT 75/75%
+  - SHELTER 75/75%
+- TASK_ONLY did not pass all skills.
+- Threshold encoding, not simple input removal, is the effective rescue.
 
-Frozen arms:
-- RAW18
-- CONTRAST18
-- TASK_ONLY
-- ORACLE_ONEHOT
-
-All arms keep the same balanced binary one-vs-rest tasks, teaching route and module size.
-
-Primary question: does explicit state representation rescue acquisition, and does pure prototype one-hot provide a healthy ceiling?
-
-Attention/episodic-memory comparisons remain closed until static acquisition is solved.
+Interpretation: the primary static acquisition bottleneck is the raw Stone Age sensory encoding of action-relevant threshold transitions.
 
 See: [stone-age-v7-6](./stone-age-v7-6/README.md)
+
+## Next direction
+
+**Stone Age V7.7 — Contrast Encoding Integration Bridge**
+
+Test contrast-encoded observations in multiclass single-skill acquisition and closed-loop chain execution, with RAW18 and skill-local controls.
+
+If contrast + full 11-action output becomes acquisition-ready, proceed to a shared four-skill contrast brain before reopening hidden-state memory.
+
+Attention/episodic-memory comparisons remain closed until the contrast representation is validated in the real multiclass chain.
