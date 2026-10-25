@@ -1,61 +1,79 @@
-# Cadence Stone Age V7.4 — Few-Lesson Teaching Regime Isolation
+# Stone Age V7.4 — Few-Lesson Teaching Regime Isolation
 
 Cadence: **0.88.0**
 
-Status: **development / frozen before run**
+Status: **development complete**
 
-V7.3 showed a persistent static acquisition bottleneck, but also exposed a protocol mismatch:
+Official classification:
 
-Cadence 0.88's teaching guide says the **founder teaching point acquires faster with a few hundred corrections**, while `teaching="normalized"` is aimed at many-lesson imitation.
+`PERSISTENT_FEW_LESSON_ACQUISITION_BOTTLENECK`
 
-Our balanced Stone Age static datasets contain only 128–192 rows per skill.
+## Question
 
-V7.4 therefore keeps the **same balanced single-skill datasets** and changes only the teaching regime.
+Does the Cadence founder teaching point solve the short-budget Stone Age static acquisition problem that normalized teaching did not?
 
-## Arms
+## Design
 
-### FOUNDER_ROW
-- `teaching="founder"`
-- one-row `Brain.lesson`
-- one pass
+Fresh founders: `64001..64008`.
 
-### FOUNDER_BATCH32
-- `teaching="founder"`
-- 32-row direct learner batches
-- one pass
+All arms used the same balanced single-skill Stone Age rows.
 
-### NORMALIZED_ROW
-- `teaching="normalized"`
-- one-row `Brain.lesson`
-- one pass
-- direct control for the V7.3 legacy-balanced route
+Arms:
 
-### NORMALIZED_BATCH32_E16
-- `teaching="normalized"`
-- batch size 32
-- 16 shuffled epochs
-- explicit dose control for the weak 4–6 update V7.3 batch arm
+- `FOUNDER_ROW`
+- `FOUNDER_BATCH32`
+- `NORMALIZED_ROW`
+- `NORMALIZED_BATCH32_E16`
 
-## Primary evaluation
+Primary evaluation used cold `brain.predict` on exact training rows and fresh static rows.
 
-Cold `brain.predict` only:
+## Result
 
-- exact balanced training rows
-- fresh held static rows
+All **8/8 founders were valid**.
 
-No state contrast, closed-loop success gate, attention, episodic memory, reward learning, hidden inventory, or shared-brain interference.
+Final median EXACT / FRESH:
 
-## Fresh founders
+| Skill | FOUNDER_ROW | FOUNDER_BATCH32 | NORMALIZED_ROW | NORMALIZED_BATCH32_E16 |
+| --- | --- | --- | --- | --- |
+| FOOD | 50.0 / 50.0% | 50.0 / 50.0% | 50.0 / 50.0% | 50.0 / 50.0% |
+| FIRE | 33.3 / 33.3% | 33.3 / 33.3% | 33.3 / 33.3% | 33.3 / 33.3% |
+| HUNT | 33.3 / 33.3% | 33.3 / 33.3% | 66.7 / 66.7% | 66.7 / 66.7% |
+| SHELTER | 66.7 / 66.7% | 43.5 / 44.4% | 66.7 / 66.7% | 66.7 / 66.7% |
 
-`64001..64008`
+No arm reached the frozen 90% exact / 80% fresh gate.
 
-## Frozen interpretation
+Founder teaching did not rescue acquisition.
 
-- founder row passes all skills → `FOUNDER_FEW_LESSON_TEACHING_RESCUE`
-- else founder batch passes all → `FOUNDER_BATCH_TEACHING_RESCUE`
-- else repeated normalized batch passes all → `NORMALIZED_BATCH_DOSE_RESCUE`
-- otherwise → `PERSISTENT_FEW_LESSON_ACQUISITION_BOTTLENECK`
+The 16-epoch normalized batch dose also did not rescue acquisition.
 
-Run:
+## Key interpretation
 
-`START_STONE_AGE_V7_4.bat`
+Exact and fresh-static accuracies are nearly identical in every arm. That makes local generalization a poor explanation for the failure.
+
+The dominant pattern is that each policy often retains only a subset of the competing prototype-to-action mappings:
+
+- FOOD commonly retains one of PICK/EAT and loses the other.
+- FIRE commonly retains only one of WOOD/STONE/CRAFT.
+- HUNT normalized arms often retain two of three.
+- SHELTER often retains two of three.
+
+This persistence across founder vs normalized teaching, row vs batch updates, and a much larger normalized dose suggests the next microscope should target **readout capacity / action competition / mapping interference**, not teaching schedule.
+
+## Next direction
+
+**Stone Age V7.5 — Action-Competition / Readout Capacity Microscope**
+
+Hold the same single-skill states fixed and vary only the action output problem:
+
+1. full 11-action Stone Age output space,
+2. skill-local output space (2 actions for FOOD, 3 for FIRE/HUNT/SHELTER),
+3. one-vs-rest binary decisions for each prototype,
+4. optionally wider module/readout capacity as a secondary control.
+
+Primary question:
+
+> Can Cadence retain all static mappings when irrelevant competing actions are removed?
+
+If skill-local outputs jump to near-perfect while the full 11-action brain stays at 33–67%, the bottleneck is action competition/readout capacity rather than state encoding.
+
+No attention/episodic-memory or hidden-state test should reopen yet.
