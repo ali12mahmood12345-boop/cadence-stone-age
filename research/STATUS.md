@@ -27,33 +27,33 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.3
 `PERSISTENT_STATIC_ACQUISITION_BOTTLENECK`
 
-### Stone Age V7.4 — Few-Lesson Teaching Regime Isolation
+### Stone Age V7.4
 `PERSISTENT_FEW_LESSON_ACQUISITION_BOTTLENECK`
 
-- 8/8 founders valid.
-- FOUNDER_ROW did not rescue static acquisition.
-- FOUNDER_BATCH32 did not rescue it.
-- NORMALIZED_ROW reproduced the same partial-map pattern.
-- NORMALIZED_BATCH32_E16 also plateaued despite much larger dose.
-- Exact and fresh-static scores were effectively identical, arguing against a simple local-generalization problem.
-- Persistent fractions were approximately:
-  - FOOD 50%
-  - FIRE 33.3%
-  - HUNT 33–66.7%
-  - SHELTER 43–66.7%
-
-Interpretation: the next target is action competition/readout capacity, not teaching regime.
+- founder teaching did not rescue static acquisition
+- founder batching did not rescue it
+- normalized one-row reproduced the same partial-map pattern
+- normalized batch x16 also plateaued
+- exact and fresh-static scores were nearly identical
 
 See: [stone-age-v7-4](./stone-age-v7-4/README.md)
 
-## Next direction
+## Running
 
-**Stone Age V7.5 — Action-Competition / Readout Capacity Microscope**
+### Stone Age V7.5 — Action Competition / Readout Capacity Microscope
 
-Compare the same states under:
-- full 11-action output
-- skill-local action output
-- one-vs-rest binary readouts
-- optional wider capacity control
+Fresh founders: `65001..65008`.
+
+Frozen arms:
+- FULL11
+- SKILL_LOCAL
+- BINARY_OVR
+- WIDE_FULL11
+
+Question: can the same Stone Age states be retained when irrelevant action outputs are removed, or when the full 11-action readout is widened?
+
+Primary evaluation: cold exact/fresh static prediction.
 
 Attention/episodic-memory comparisons remain closed until static acquisition is solved.
+
+See: [stone-age-v7-5](./stone-age-v7-5/README.md)
