@@ -61,4 +61,20 @@ See: [stone-age-v7-3](./stone-age-v7-3/README.md)
 
 Keep the balanced single-skill static datasets fixed and compare short-budget teaching regimes, especially the founder teaching point, before revisiting state contrast or closed-loop acquisition.
 
+## Running
+
+### Stone Age V7.4 — Few-Lesson Teaching Regime Isolation
+
+Fresh founders: `64001..64008`.
+
+Frozen arms:
+- FOUNDER_ROW
+- FOUNDER_BATCH32
+- NORMALIZED_ROW
+- NORMALIZED_BATCH32_E16
+
+Primary evaluation is cold exact/fresh static prediction on the same balanced single-skill datasets used by V7.3.
+
+Question: does the founder short-budget teaching regime rescue acquisition before we revisit state contrast?
+
 Attention/episodic-memory comparisons remain closed until static acquisition is solved.
