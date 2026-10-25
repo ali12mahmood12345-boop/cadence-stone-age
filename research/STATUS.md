@@ -37,15 +37,21 @@ Official classification: `NO_CONJUNCTIVE_MULTI_FACT_SIGNAL`.
 - H2 held median: 31.6% vs 33.3% chance.
 - H1 held median: 33.8%.
 - H2 selected distinct relevant role records on 100% of held trials.
-- Nevertheless the unseen conjunctive rule did not generalize.
-- Relevant-record erasure, full Recall erasure and cloned-head controls did not produce meaningful losses because intact held performance was already at chance.
-
-Interpretation: supported two-head attention learned distinct relevant addresses, but retrieving both facts was not sufficient for compositional held-pair generalization in this chamber.
-
-No fresh confirmation is opened.
+- Unseen conjunctive combinations did not generalize.
 
 See: [attention-v0.5a](./attention-v0.5a/README.md)
 
-## Next direction
+## Running
 
-Return to the continuing Stone Age environment on Cadence 0.88.0 and test whether attention and episodic memory improve useful behavior in a world where memory is naturally relevant, rather than requiring symbolic held-pair algebra.
+### Stone Age V7 — 0.88 Memory / Attention Integration
+
+Continuing-world development assay on Ali's public Stone Age mechanics.
+
+- VISIBLE and HIDDEN_INVENTORY panels
+- DEFAULT / EPISODIC / H1 / H2 / H2_EPISODIC
+- reward-trained attention explicitly uses `recall_address_reward=0.1`
+- 6 fresh founders
+- 6 training + 3 greedy evaluation episodes per cell
+- no result claimed yet
+
+See: [stone-age-v7](./stone-age-v7/README.md)
