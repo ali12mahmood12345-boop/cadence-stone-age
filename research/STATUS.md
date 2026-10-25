@@ -56,12 +56,24 @@ See: [memory-keys-v0.4b](./memory-keys-v0.4b/README.md)
 
 See: [stone-age-v7-2](./stone-age-v7-2/README.md)
 
-## Next direction
+## Running
 
-**Stone Age V7.3 — State Contrast / Balanced Acquisition**
+### Stone Age V7.3 — Balanced Teaching / State Contrast
 
-First remove terminal-action exposure imbalance and test whether adjacent Stone Age states can be retained as distinct action mappings.
+Fresh founders: `63001..63008`.
 
-Only if balanced exposure still fails should observation contrast be amplified diagnostically.
+Three matched single-skill arms:
+- `LEGACY_BALANCED`: equal prototype exposure, one-row `Brain.lesson`
+- `DOC_BATCH32`: documented normalized batch-32 supervised route
+- `DOC_BATCH32_CONTRAST`: same route plus threshold-coded task state
 
-Attention/episodic-memory comparisons remain closed until basic acquisition is solved.
+Primary evaluation uses cold `brain.predict` on exact training rows and fresh static rows.
+
+The purpose is to distinguish:
+- exposure imbalance,
+- one-row teaching-route mismatch,
+- state separability.
+
+No result claimed yet.
+
+See: [stone-age-v7-3](./stone-age-v7-3/README.md)
