@@ -1,0 +1,12 @@
+{
+  "experiment": "Cadence Stone Age V7.3 Balanced Teaching / State Contrast",
+  "status": "development",
+  "cadence_net": "0.88.0",
+  "fresh_founders": "63001..63008",
+  "arms": ["LEGACY_BALANCED","DOC_BATCH32","DOC_BATCH32_CONTRAST"],
+  "samples_per_prototype": 64,
+  "fresh_per_prototype": 24,
+  "batch_size": 32,
+  "primary_eval": ["cold predict exact","cold predict fresh static"],
+  "v72_reference_sha256": "36f0847032bfe802319c9a55d56dc47e625629f71e567e570d326f9b34d786f1"
+}
