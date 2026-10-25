@@ -33,34 +33,39 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.5
 `DEEPER_REPRESENTATION_ASSOCIATION_BOTTLENECK`
 
-### Stone Age V7.6 — State Separability / Representation Microscope
+### Stone Age V7.6
 `STONE_AGE_SENSOR_ENCODING_BOTTLENECK`
 
-- 8/8 founders valid.
-- ORACLE_ONEHOT passed all four skills at 100/100% median worst-classifier exact/fresh.
-- CONTRAST18 also passed the all-skill readiness gate:
-  - FOOD 100/100%
-  - FIRE 100/100%
-  - HUNT 98.0/97.9%
-  - SHELTER 100/100%
-- RAW18 failed:
-  - FOOD 50/50%
-  - FIRE 50/50%
-  - HUNT 75/75%
-  - SHELTER 75/75%
-- TASK_ONLY did not pass all skills.
-- Threshold encoding, not simple input removal, is the effective rescue.
-
-Interpretation: the primary static acquisition bottleneck is the raw Stone Age sensory encoding of action-relevant threshold transitions.
+- CONTRAST18 passed all four binary skills.
+- ORACLE_ONEHOT passed all four.
+- RAW18 failed.
+- Threshold encoding, not simple input removal, was the effective rescue.
 
 See: [stone-age-v7-6](./stone-age-v7-6/README.md)
 
-## Next direction
+## Running
 
-**Stone Age V7.7 — Contrast Encoding Integration Bridge**
+### Stone Age V7.7 — Contrast Encoding Integration Bridge
 
-Test contrast-encoded observations in multiclass single-skill acquisition and closed-loop chain execution, with RAW18 and skill-local controls.
+Fresh founders: `67001..67008`.
 
-If contrast + full 11-action output becomes acquisition-ready, proceed to a shared four-skill contrast brain before reopening hidden-state memory.
+Frozen arms:
+- RAW18_FULL11
+- CONTRAST18_FULL11
+- CONTRAST18_LOCAL
 
-Attention/episodic-memory comparisons remain closed until the contrast representation is validated in the real multiclass chain.
+Measurements:
+- multiclass exact readback
+- fresh multiclass generalization
+- closed-loop chain execution
+
+Frozen gates per skill:
+- exact >=90%
+- fresh >=80%
+- closed-loop >=2/3
+
+Primary pass additionally requires >=6/8 founders ready on all four skills.
+
+See: [stone-age-v7-7](./stone-age-v7-7/README.md)
+
+Attention/episodic-memory comparisons remain closed until contrast encoding is validated in the multiclass closed-loop chain.
