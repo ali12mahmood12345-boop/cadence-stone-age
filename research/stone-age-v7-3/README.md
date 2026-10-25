@@ -1,63 +1,110 @@
-# Cadence Stone Age V7.3 — Balanced Teaching / State Contrast
+# Stone Age V7.3 — Balanced Teaching / State Contrast
 
-V7.2 found a basic exact-acquisition bottleneck even in separate single-skill brains.
+Cadence: **0.88.0**
 
-Before changing Cadence architecture, V7.3 tests three protocol explanations.
+Status: **development complete**
 
-## New Cadence teaching detail
+Official classification:
 
-Cadence 0.88's teaching guide recommends `teaching="normalized"` with about **32 rows per lesson** for many-lesson imitation, and cold graph evaluation with `predict` / `accuracy`.
+`PERSISTENT_STATIC_ACQUISITION_BOTTLENECK`
 
-V7.1/V7.2 used one-row `brain.lesson()` calls.
+## Question
 
-V7.3 therefore compares three frozen arms on the **same underlying Stone Age samples**.
+Was V7.2's exact-acquisition failure caused by:
 
-## Arms
+- prototype exposure imbalance,
+- the one-row normalized teaching route,
+- or insufficient state contrast?
 
-### LEGACY_BALANCED
+## Design
 
-- equal sample count for every prototype
-- one-row `brain.lesson()`
-- normalized teaching
+Fresh founders: `63001..63008`.
 
-This tests whether the old terminal-action exposure imbalance was the main cause.
+All three arms used the same underlying single-skill Stone Age samples with equal exposure:
 
-### DOC_BATCH32
+- 64 training rows per prototype
+- 24 fresh-static rows per prototype
 
-- equal prototype exposure
-- normalized teaching
-- batches of 32
-- `brain.learner.step(brain.stimulus(x, memory=False), labels)`
+Arms:
 
-This follows the documented supervised-imitation route.
+1. `LEGACY_BALANCED`
+   - one-row `Brain.lesson`
+   - normalized teaching
+   - equal prototype exposure
 
-### DOC_BATCH32_CONTRAST
+2. `DOC_BATCH32`
+   - normalized teaching
+   - 32-row batches
+   - `brain.learner.step(brain.stimulus(x, memory=False), labels)`
 
-Same documented route, but only action-relevant inventory dimensions are threshold encoded:
+3. `DOC_BATCH32_CONTRAST`
+   - same batch route
+   - threshold-coded action-relevant inventory state
 
-- FOOD: food present / absent
-- FIRE: enough wood / enough stone
-- HUNT: enough spear materials / spear present
-- SHELTER: enough shelter materials / shelter present
+Primary evaluation was cold `brain.predict` exact + fresh-static accuracy.
 
-No new inputs are added.
+## Result
 
-## Primary metrics
+All **8/8 founders were valid**.
 
-Cold `brain.predict`:
+Final medians, EXACT / FRESH / CLOSED-LOOP(descriptive):
 
-- EXACT training rows
-- FRESH_STATIC held rows
+| Skill | LEGACY_BALANCED | DOC_BATCH32 | DOC_BATCH32_CONTRAST |
+| --- | --- | --- | --- |
+| FOOD | 50.0 / 50.0 / 0.0% | 25.0 / 25.0 / 0.0% | 0.0 / 0.0 / 0.0% |
+| FIRE | 33.3 / 33.3 / 0.0% | 33.3 / 33.3 / 0.0% | 33.3 / 33.3 / 0.0% |
+| HUNT | 50.0 / 49.3 / 0.0% | 33.3 / 33.3 / 0.0% | 33.3 / 33.3 / 0.0% |
+| SHELTER | 66.7 / 66.7 / 50.0% | 33.9 / 33.3 / 0.0% | 33.3 / 33.3 / 0.0% |
 
-Closed-loop Stone Age execution is included only as a descriptive secondary panel.
+No arm reached the frozen 90% exact / 80% fresh-static gate.
 
-## Fresh founders
+The documented batch-32 arm did not rescue acquisition; on this short dataset it was often worse than one-row normalized teaching.
 
-`63001..63008`
+Pairwise exact-readback descriptors:
 
-## Frozen interpretation
+- FOOD batch > legacy: 0/8, median gain -0.250
+- FIRE: 0/8, median gain 0
+- HUNT: 1/8, median gain -0.008
+- SHELTER: 0/8, median gain -0.328
 
-- legacy passes all skills → `BALANCED_EXPOSURE_RESCUE`
-- documented batch passes all skills → `DOCUMENTED_BATCH_TEACHING_RESCUE`
-- only contrast passes all skills → `STATE_CONTRAST_RESCUE`
-- otherwise → `PERSISTENT_STATIC_ACQUISITION_BOTTLENECK`
+## Important interpretation correction
+
+V7.3 does **not** cleanly prove that state contrast is ineffective.
+
+The contrast manipulation was only tested on top of `DOC_BATCH32`, and this batch route had only 4–6 learner updates per skill because the entire dataset contained only 128–192 rows.
+
+Cadence's 0.88 teaching guide describes normalized batch teaching as a many-lesson imitation point and explicitly notes that with only a few hundred corrections the founder teaching point can acquire faster.
+
+Therefore:
+
+- simple exposure balancing is ruled out as the sole fix;
+- this short normalized batch-32 regime did not help;
+- state contrast remains unresolved because it was confounded with the weak short-budget batch regime.
+
+## Prototype pattern
+
+The legacy-balanced arm still collapses mappings within each skill:
+
+- FOOD often retains one of PICK/EAT and loses the other.
+- FIRE tends to retain only one of CRAFT/WOOD/STONE.
+- HUNT often retains a subset of KILL/SPEAR/STONE.
+- SHELTER is strongest, often retaining two of three prototypes.
+
+This looks like a low-budget multi-mapping acquisition problem more than a simple frequency imbalance.
+
+## Next direction
+
+**Stone Age V7.4 — Few-Lesson Teaching Regime Isolation**
+
+Use the same balanced static single-skill datasets, but compare teaching regimes appropriate to the short correction budget:
+
+- FOUNDER one-row `Brain.lesson`
+- FOUNDER balanced minibatch route
+- NORMALIZED one-row control
+- optional repeated-epoch normalized batch only as a dose control
+
+Primary evaluation remains cold `predict` exact/fresh.
+
+Only after a teaching regime can reach high static acquisition should state contrast or closed-loop Stone Age be reopened.
+
+No attention or episodic-memory test yet.
