@@ -30,30 +30,30 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.4
 `PERSISTENT_FEW_LESSON_ACQUISITION_BOTTLENECK`
 
-- founder teaching did not rescue static acquisition
-- founder batching did not rescue it
-- normalized one-row reproduced the same partial-map pattern
-- normalized batch x16 also plateaued
-- exact and fresh-static scores were nearly identical
+### Stone Age V7.5 — Action Competition / Readout Capacity
+`DEEPER_REPRESENTATION_ASSOCIATION_BOTTLENECK`
 
-See: [stone-age-v7-4](./stone-age-v7-4/README.md)
+- 8/8 founders valid.
+- Skill-local outputs did not rescue all mappings.
+- Binary one-vs-rest improved FIRE/HUNT/SHELTER descriptively but worst classifiers stayed at 50–75%.
+- Wider `(128,64)` full-11 modules did not rescue acquisition.
+- Exact and fresh-static results remained nearly identical.
 
-## Running
-
-### Stone Age V7.5 — Action Competition / Readout Capacity Microscope
-
-Fresh founders: `65001..65008`.
-
-Frozen arms:
-- FULL11
-- SKILL_LOCAL
-- BINARY_OVR
-- WIDE_FULL11
-
-Question: can the same Stone Age states be retained when irrelevant action outputs are removed, or when the full 11-action readout is widened?
-
-Primary evaluation: cold exact/fresh static prediction.
-
-Attention/episodic-memory comparisons remain closed until static acquisition is solved.
+Interpretation: simple action competition and network width are not the primary bottleneck. The next target is state representation / association separability.
 
 See: [stone-age-v7-5](./stone-age-v7-5/README.md)
+
+## Next direction
+
+**Stone Age V7.6 — State Separability / Representation Microscope**
+
+Keep the exact V7.5 binary tasks and compare:
+
+- raw 18-input Stone Age observations
+- threshold-contrast 18-input observations
+- task-only relevant dimensions
+- oracle prototype one-hot identity
+
+This will distinguish Stone Age sensory encoding from a deeper Cadence learner/association limitation.
+
+Attention/episodic-memory comparisons remain closed until static acquisition is solved.
