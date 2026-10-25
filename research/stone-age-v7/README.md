@@ -1,78 +1,124 @@
-# Cadence Stone Age V7
-
-## 0.88 Memory / Attention Integration
-
-Status: **development / running**
+# Stone Age V7 — Cadence 0.88 Memory / Attention Integration
 
 Cadence: **0.88.0**
 
-V7 returns the research line to the public Stone Age environment after the V0.5A conjunctive chamber produced a clean negative result.
+Status: **development complete — negative primary gate**
 
-### Question
+Official classification:
 
-Do Cadence 0.88 memory systems improve useful behavior in a continuing survival world, especially when current observations stop exposing inventory prerequisites directly?
+`NO_STONE_AGE_MEMORY_ATTENTION_ADVANTAGE`
 
-### Source environment
+## Question
 
-Headless matched-run port of:
+Do Cadence 0.88 opt-in memory systems improve useful continuing Stone Age behavior, especially when inventory prerequisites are no longer directly visible?
 
-`stone_age_game/main.py`
+## Environment
 
-Source blob:
+V7 used a headless matched-run port of the public Stone Age game:
 
-`dd59769349e7b6e9dea4ddcc321af8fa86b4e660`
+- source: `stone_age_game/main.py`
+- source blob: `dd59769349e7b6e9dea4ddcc321af8fa86b4e660`
+- 18 original sensory dimensions
+- 11 original high-level actions
+- original resource counts, crafting prerequisites, survival rates, rewards, 150-second day and rabbit mechanics
+- rendering removed only
 
-The port retains the game's 18 inputs, 11 actions, survival rates, resource/crafting requirements, reward constants, 150-second day, rabbit mechanics and 0.55-second decision interval. Pygame rendering is removed so matched experimental arms can run quickly.
+Panels:
 
-### Panels
+- `VISIBLE`: original observation
+- `HIDDEN_INVENTORY`: wood, stone, food inventory and spear possession masked from Cadence while true body/world state remains intact
 
-**VISIBLE**
-- original observation
+Arms:
 
-**HIDDEN_INVENTORY**
-- true body/world unchanged
-- Cadence receives zero for wood, stone, carried food and spear possession
+- `DEFAULT`
+- `EPISODIC`: `memory_choice=True`
+- `H1`: learned-code attention, one Recall head
+- `H2`: learned-code attention, two Recall heads
+- `H2_EPISODIC`: H2 + episodic choice
 
-### Arms
+Because Cadence 0.88 leaves reward-address learning off at `recall_address_reward=0`, the attention arms explicitly used the opt-in `recall_address_reward=0.1`.
 
-- DEFAULT
-- EPISODIC — `memory_choice=True`
-- H1 — learned-code attention, 1 Recall head
-- H2 — learned-code attention, 2 Recall heads
-- H2_EPISODIC — H2 + episodic choice
+Fresh founders: `60001..60006`.
 
-Attention arms use:
+Lifecycle: 6 sampled training episodes + 3 fresh greedy evaluation episodes per founder / panel / arm.
 
-```python
-learned_code=16
-attention=True
-recall_address_reward=0.1
-```
+## Primary result
 
-### Important 0.88 boundary
+All **6/6 founders were valid**.
 
-The Cadence 0.88 founder uses `recall_address_reward=0`, so reward-only experience does not train Recall address maps.
+Median evaluation survival days:
 
-V7 explicitly opts into `0.1`, the value shown in the 0.88 memory-guide example. This is an experimental operating point, not a default-brain claim.
+| panel | DEFAULT | EPISODIC | H1 | H2 | H2+EPISODIC |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| VISIBLE | 0.930 | 1.356 | 0.919 | 0.991 | 0.937 |
+| HIDDEN_INVENTORY | 0.994 | 1.385 | 0.979 | 1.043 | 1.209 |
 
-### Lifecycle
+Hidden-inventory H2+episodic comparisons:
 
-Fresh founders: `60001..60006`
+- beat DEFAULT: **2/6**
+- beat EPISODIC: **2/6**
+- beat H2: **4/6**
+- median H2E−DEFAULT: **−0.034 days**
+- median H2E−EPISODIC: **−0.101 days**
+- median H2E−H2: **+0.129 days**
 
-Per founder / arm / panel:
-- 6 sampled training episodes with `brain.step`
-- persistent learned brain and memory across episodes
-- 3 fresh greedy evaluation episodes with `brain.act`
-- learned code frozen during evaluation
-- max 2.0 Stone Age days per episode
+Night-survival medians in HIDDEN_INVENTORY:
 
-### Primary development signal
+- DEFAULT: **50%**
+- EPISODIC: **100%**
+- H2: **100%**
+- H2+EPISODIC: **100%**
 
-H2_EPISODIC in HIDDEN_INVENTORY must beat:
-- DEFAULT
-- EPISODIC alone
-- H2 alone
+The strict V7 integration signal failed because H2+episodic did not beat DEFAULT or EPISODIC alone.
 
-with paired founder wins and precommitted survival-day gains, while reaching at least 50% night survival and avoiding a large visible-panel regression.
+## Important acquisition-readiness finding
 
-No result is claimed until the run completes.
+The deeper limitation is that V7 did not yet produce the intended Stone Age skill chain.
+
+Across the median evaluation summaries, all arms had:
+
+- fire rate: **0**
+- spear rate: **0**
+- shelter rate: **0**
+- food-use rate: **0**
+
+Some policies hunted rabbits, but they generally did not execute the downstream eat / craft / shelter behaviors needed for robust survival.
+
+The default brain's visible→hidden survival penalty was also essentially zero:
+
+`−0.0004 days`
+
+That means masking current inventory did not create a strong memory dependency, because the policies were not yet relying on that inventory state to execute the prerequisite chains.
+
+## Descriptive episodic result
+
+EPISODIC alone was the strongest median arm in both panels:
+
+- VISIBLE: **1.356 days**
+- HIDDEN_INVENTORY: **1.385 days**
+- hidden night survival: **100%**
+
+However this was **not the frozen primary hypothesis**, was not consistent as a paired win on all founders, and should not be promoted to a confirmed episodic advantage from V7 alone.
+
+## Interpretation
+
+V7 gives a valid negative answer to its frozen primary question:
+
+> At this operating point, H2+episodic did not provide a robust continuing-world advantage over the default or episodic-only brain.
+
+But it also shows that the environment was not yet an adequate memory-integration test, because the underlying policies had not acquired the visible food/fire/shelter prerequisite chains.
+
+The next Stone Age step should therefore be an **acquisition-readiness / curriculum control**, not parameter tuning of attention.
+
+## Next direction
+
+Before reopening hidden-state memory comparisons, require a visible-world Stone Age agent to demonstrate:
+
+1. gather food → eat when hungry
+2. gather wood + stone → craft fire when cold/evening
+3. gather wood + stone → craft spear → hunt
+4. gather enough materials → build shelter → sleep safely
+
+Only after those chains are reliably acquired should inventory be hidden and memory mechanisms compared again.
+
+No fresh V7 confirmation is warranted.
