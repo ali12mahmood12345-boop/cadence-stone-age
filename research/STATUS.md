@@ -44,14 +44,23 @@ Official classification: `NO_STONE_AGE_ACQUISITION_READINESS`.
 
 See: [stone-age-v7-1](./stone-age-v7-1/README.md)
 
-## Next direction
+## Running
 
-**Stone Age V7.2 — Acquisition Microscope**
+### Stone Age V7.2 — Acquisition Microscope
 
-Compare separate single-skill brains against one shared four-skill brain and measure:
+Fresh founders: `62001..62008`.
 
-- exact taught-prototype readback
+Matched branches:
+- four separate single-skill brains
+- one shared four-skill brain
+
+After every curriculum stage V7.2 measures:
+- exact taught-state readback
 - fresh static-state generalization
 - closed-loop chain execution
 
-Only after basic acquisition is understood should hidden-state attention/memory comparisons reopen.
+Per-skill teacher rows are exactly matched between single and shared branches.
+
+No attention or episodic-memory comparison is opened until the acquisition bottleneck is identified.
+
+See: [stone-age-v7-2](./stone-age-v7-2/README.md)
