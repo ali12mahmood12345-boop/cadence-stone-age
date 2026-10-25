@@ -25,25 +25,27 @@ Fresh confirmation on Cadence 0.85.1.
 
 See: [memory-keys-v0.4b](./memory-keys-v0.4b/README.md)
 
-## Running
+## Development boundary results
 
 ### Attention V0.5A — Conjunctive Multi-Fact Memory
-Cadence 0.88.0 development assay.
+Cadence 0.88.0.
 
-This targets the release boundary where one fact matters only together with another.
+Official classification: `NO_CONJUNCTIVE_MULTI_FACT_SIGNAL`.
 
-- H2: `attention=True, recall_heads=2`
-- H1 matched control: `recall_heads=1`
-- answer rule: `(role0_value + role1_value) % 3`
-- either relevant fact alone is exactly 33.3% chance by construction
-- 18 taught and 18 held answer-pair combinations
-- causal role-record erasures
-- distractor erasure
-- complete Recall erasure
-- cloned-head address-map lesion
+- 8/8 valid founders.
+- H2 trained median: 100%.
+- H2 held median: 31.6% vs 33.3% chance.
+- H1 held median: 33.8%.
+- H2 selected distinct relevant role records on 100% of held trials.
+- Nevertheless the unseen conjunctive rule did not generalize.
+- Relevant-record erasure, full Recall erasure and cloned-head controls did not produce meaningful losses because intact held performance was already at chance.
 
-Fresh development founders: `59001..59008`.
+Interpretation: supported two-head attention learned distinct relevant addresses, but retrieving both facts was not sufficient for compositional held-pair generalization in this chamber.
 
-Status: **running; no result claimed yet**.
+No fresh confirmation is opened.
 
 See: [attention-v0.5a](./attention-v0.5a/README.md)
+
+## Next direction
+
+Return to the continuing Stone Age environment on Cadence 0.88.0 and test whether attention and episodic memory improve useful behavior in a world where memory is naturally relevant, rather than requiring symbolic held-pair algebra.
