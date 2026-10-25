@@ -41,17 +41,29 @@ Official classification: `NO_CONJUNCTIVE_MULTI_FACT_SIGNAL`.
 
 See: [attention-v0.5a](./attention-v0.5a/README.md)
 
-## Running
-
 ### Stone Age V7 — 0.88 Memory / Attention Integration
 
-Continuing-world development assay on Ali's public Stone Age mechanics.
+Official classification: `NO_STONE_AGE_MEMORY_ATTENTION_ADVANTAGE`.
 
-- VISIBLE and HIDDEN_INVENTORY panels
-- DEFAULT / EPISODIC / H1 / H2 / H2_EPISODIC
-- reward-trained attention explicitly uses `recall_address_reward=0.1`
-- 6 fresh founders
-- 6 training + 3 greedy evaluation episodes per cell
-- no result claimed yet
+- 6/6 founders valid.
+- Hidden median days: DEFAULT 0.994, EPISODIC 1.385, H2 1.043, H2+EPISODIC 1.209.
+- H2+EPISODIC beat DEFAULT only 2/6 and EPISODIC only 2/6.
+- It beat H2 in 4/6 with median +0.129 days, but the strict integration gate failed.
+- EPISODIC alone had the strongest median survival in both visible and hidden panels, descriptively.
+- Critical readiness issue: median fire, spear, shelter and food-use rates were zero across all arms.
+- DEFAULT showed essentially no visible→hidden penalty, so inventory masking did not create the intended memory dependence.
+
+Interpretation: V7 is a valid negative primary result, but Stone Age must first pass a visible-world acquisition-readiness control before hidden-state memory comparisons become informative.
 
 See: [stone-age-v7](./stone-age-v7/README.md)
+
+## Next direction
+
+Stone Age acquisition-readiness / curriculum control on Cadence 0.88.0:
+
+- food → eat
+- wood+stone → fire
+- spear → hunt
+- shelter → safe sleep
+
+Only after these chains are reliably acquired should hidden-inventory memory comparisons reopen.
