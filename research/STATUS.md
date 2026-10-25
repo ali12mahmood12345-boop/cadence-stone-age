@@ -27,40 +27,41 @@ See: [memory-keys-v0.4b](./memory-keys-v0.4b/README.md)
 
 ## Development boundary results
 
-### Attention V0.5A — Conjunctive Multi-Fact Memory
-Official classification: `NO_CONJUNCTIVE_MULTI_FACT_SIGNAL`.
+### Attention V0.5A
+`NO_CONJUNCTIVE_MULTI_FACT_SIGNAL`
 
-### Stone Age V7 — 0.88 Memory / Attention Integration
-Official classification: `NO_STONE_AGE_MEMORY_ATTENTION_ADVANTAGE`.
+### Stone Age V7
+`NO_STONE_AGE_MEMORY_ATTENTION_ADVANTAGE`
 
-### Stone Age V7.1 — Acquisition Readiness
-Official classification: `NO_STONE_AGE_ACQUISITION_READINESS`.
-
-- 8/8 founders valid.
-- All founders accepted 484/484 lessons with zero refusals.
-- Median trained FOOD/FIRE/HUNT/SHELTER success: 0/0/0/0%.
-- Ready founders: 0/8.
-- Failure pattern is stage-switch/shared-policy collapse rather than teacher refusal.
-
-See: [stone-age-v7-1](./stone-age-v7-1/README.md)
-
-## Running
+### Stone Age V7.1
+`NO_STONE_AGE_ACQUISITION_READINESS`
 
 ### Stone Age V7.2 — Acquisition Microscope
+`STONE_AGE_BASIC_ACQUISITION_BOTTLENECK`
 
-Fresh founders: `62001..62008`.
-
-Matched branches:
-- four separate single-skill brains
-- one shared four-skill brain
-
-After every curriculum stage V7.2 measures:
-- exact taught-state readback
-- fresh static-state generalization
-- closed-loop chain execution
-
-Per-skill teacher rows are exactly matched between single and shared branches.
-
-No attention or episodic-memory comparison is opened until the acquisition bottleneck is identified.
+- 8/8 founders valid.
+- Single-skill final exact/static/loop:
+  - FOOD 54.2/50.0/0%
+  - FIRE 41.9/33.3/0%
+  - HUNT 72.7/66.7/100%
+  - SHELTER 72.7/66.7/0%
+- Shared final exact/static/loop:
+  - FOOD 50.0/50.0/0%
+  - FIRE 29.0/33.3/0%
+  - HUNT 50.8/50.0/0%
+  - SHELTER 66.7/66.7/0%
+- Prototype diagnostics show terminal-action collapse:
+  prerequisite states are often read back as the later terminal action.
+- HUNT is an important exception: the separate HUNT brain reaches 100% closed-loop, while shared HUNT stays 0%, showing secondary cross-skill interference.
 
 See: [stone-age-v7-2](./stone-age-v7-2/README.md)
+
+## Next direction
+
+**Stone Age V7.3 — State Contrast / Balanced Acquisition**
+
+First remove terminal-action exposure imbalance and test whether adjacent Stone Age states can be retained as distinct action mappings.
+
+Only if balanced exposure still fails should observation contrast be amplified diagnostically.
+
+Attention/episodic-memory comparisons remain closed until basic acquisition is solved.
