@@ -27,46 +27,55 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.10
 Frozen run suggested irrecoverability, but interpretation was reopened after replay-boundary audit.
 
-### Stone Age V7.10R — Replay Boundary Correction
+### Stone Age V7.10R
 `RESET_BOUNDARY_RECOVERY_RESCUE`
 
-- 8/8 founders valid
-- reset-matched replay restores all-skill median static readiness
-- RESET_REPLAY REPLAY_FULL exact/fresh medians are 100/100 for FOOD/FIRE/HUNT/SHELTER
-- FOOD/HUNT/SHELTER also retain 100% median loop success
-- FIRE remains 0% median loop despite 100/100 static recovery
-- current dominant boundary: FIRE dynamic trajectory invariance
-
-## Active frozen experiment
+Reset-matched replay restores the static policy. FIRE remains the dominant dynamic failure.
 
 ### Stone Age V7.11 — FIRE Dynamic Invariance Microscope
+`FIRE_DYNAMIC_INVARIANCE_UNRESOLVED`
 
-FIRE only.
+- cadence-net 0.88.1
+- 8/8 founders valid
+- caretaker oracle 48/48
+- final reset-replay static medians:
+  - CONTRAST18 100/100
+  - FIRE_MINIMAL 100/100
+  - FIRE_MINIMAL_PLUS_PROGRESS 100/100
+- final loop medians:
+  - CONTRAST18 0%
+  - FIRE_MINIMAL 0%
+  - FIRE_MINIMAL_PLUS_PROGRESS 25%
+- final-ready founders:
+  - CONTRAST18 2/8
+  - FIRE_MINIMAL 2/8
+  - FIRE_MINIMAL_PLUS_PROGRESS 0/8
+- minimal arms show no frozen median loop gain over CONTRAST18
 
-Fresh founders:
-- 74001..74008
+Trace-level interpretation:
+- failures concentrate on intermediate gather-continuation states
+- the brain often switches away from GATHER_WOOD/GATHER_STONE before the resource increment completes
+- some founders specialize by missing-resource branch
+- explicit progress state is informative but not sufficient
+- some 6/6 post-DAGGER progress policies fall to 3/6 after cold static replay
 
-Representation arms:
-- CONTRAST18
-- FIRE_MINIMAL
-- FIRE_MINIMAL_PLUS_PROGRESS
-
-Common sequence:
-- reset-per-row static bootstrap
-- DAgger64
-- reset-per-row full static replay
-- exact/fresh/6-episode loop evaluation
-
-FIRE_MINIMAL removes all nuisance dimensions and keeps only wood>=4, stone>=2 and fire_exists.
-
-FIRE_MINIMAL_PLUS_PROGRESS additionally exposes current gather/craft action and normalized action_progress.
-
-Environment sanity:
-- direct deterministic caretaker must solve all 6 held-out FIRE episodes for every founder.
-
-Primary question:
-Does nuisance-invariant task state let the FIRE policy persist across the multiple consecutive decisions required to complete gathering, or is explicit action-progress state required?
+Current dominant boundary:
+**temporal action commitment / multi-decision motor primitive persistence**, with progress-conditioned retention as a secondary interaction.
 
 See: [stone-age-v7-11](./stone-age-v7-11/README.md)
 
-Shared-brain memory/attention remains closed until the FIRE dynamic boundary is resolved.
+## Next direction
+
+**Stone Age V7.12 — FIRE Temporal Action-Commitment Control**
+
+Compare the same trained FIRE policy under:
+
+- DECISION_LEVEL: current 0.55 s re-decision cadence
+- COMMIT_TO_COMPLETION: once a gather action is chosen, execute it until the corresponding resource increment completes, then ask the brain again
+
+Primary question:
+Does FIRE succeed when high-level gather actions are treated as temporally extended motor primitives?
+
+No additional learning is required for the core commitment control.
+
+Shared-brain memory/attention remains closed until this temporal-action boundary is resolved.
