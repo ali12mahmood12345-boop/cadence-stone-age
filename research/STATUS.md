@@ -78,3 +78,18 @@ Compare:
 Measure multiclass exact/fresh plus real closed-loop chain execution.
 
 If contrast + full11 passes, proceed to shared four-skill contrast acquisition before reopening hidden-state memory or attention.
+
+## Active experiment
+
+### Stone Age V7.7R — Surprise-Corrected Contrast Integration Bridge
+
+Protocol frozen before run.
+
+- Cadence 0.88.1
+- fresh founders 69001..69008
+- learning_surprise=True from lesson 0 in every arm
+- RAW-vs-CONTRAST full11 seed matched
+- multiclass exact/fresh + real closed-loop execution
+- primary contrast full11 requires exact>=90%, fresh>=80%, loop>=2/3 and >=6/8 all-four-ready founders
+
+See: [stone-age-v7-7r](./stone-age-v7-7r/README.md)
