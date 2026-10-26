@@ -120,7 +120,7 @@ Classification precedence:
 1. `FIRE_MINIMAL` passes final criterion -> `FIRE_NUISANCE_INVARIANCE_RESCUE`
 2. only `FIRE_MINIMAL_PLUS_PROGRESS` passes -> `FIRE_PROGRESS_STATE_REQUIRED`
 3. `CONTRAST18` unexpectedly passes -> `FIRE_CONTRAST_BASELINE_PASS`
-4. minimal arms materially improve loop but miss frozen founder gate -> `PARTIAL_FIRE_INVARIANCE_SIGNAL`
+4. either minimal arm improves median final loop by >=2/6 (+33.3 percentage points) over CONTRAST18 but misses the frozen founder gate -> `PARTIAL_FIRE_INVARIANCE_SIGNAL`
 5. otherwise -> `FIRE_DYNAMIC_INVARIANCE_UNRESOLVED`
 
 No other Stone Age skill, shared brain, memory/attention, hidden inventory or reward-learning comparison is opened in V7.11.
