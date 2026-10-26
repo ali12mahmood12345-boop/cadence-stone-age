@@ -10,7 +10,42 @@ Fresh confirmation on Cadence 0.85.1.
 ### Memory Keys V0.4B
 Fresh confirmation on Cadence 0.85.1.
 
-## Development boundary results
+### Stone Age V7.13R — Fresh FIRE Boundary Confirmation
+`FIRE_STREAM_STATE_RESET_CONFIRMED`
+
+Strict fresh confirmation on Cadence 0.88.1.
+
+Fresh founders:
+- 77001..77016
+
+Frozen successful recipe:
+- FIRE_MINIMAL
+- reset-per-row static bootstrap
+- DAgger64
+- full reset static replay
+- commit gather primitive until immediate resource increment
+- brain.reset() before every semantic high-level query
+- 14-window budget
+- no alternate arms or recipe changes
+
+Results:
+- valid founders: 16/16
+- caretaker oracle: 96/96
+- median exact: 100%
+- median fresh: 100%
+- median loop: 100%
+- median ready-to-craft accuracy: 100%
+- founder readiness: 16/16
+- median high-level queries / decision windows: 2.0 / 3.5
+
+All frozen confirmation gates passed.
+
+Interpretation:
+FIRE's dynamic failure was a controller-boundary problem: mid-primitive re-decision and per-stream hysteresis across semantic action transitions. Temporally extended gather primitives plus stream reset before the next semantic query reliably resolve it on a larger untouched founder panel.
+
+See: [stone-age-v7-13r](./stone-age-v7-13r/README.md)
+
+## Prior development boundary results
 
 ### Stone Age V7.6R
 `THRESHOLD_ENCODING_RESCUE_SURVIVES_SURPRISE`
@@ -36,40 +71,23 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.13
 `FIRE_STREAM_STATE_RESET_RESCUE`
 
-Development result:
-- 8/8 founders valid
-- FIRE_MINIMAL exact/fresh medians 100/100
-- commitment + reset-before-query gives 8/8 founder readiness
-- ready-to-craft accuracy median 100%
-- mechanism: stream-state hysteresis across semantic primitive boundaries
+## Next direction
 
-## Active confirmation
+**Stone Age V7.14 — Four-Skill Semantic Integration Bridge**
 
-### Stone Age V7.13R — Fresh FIRE Boundary Confirmation
+Reopen shared-brain integration now that the FIRE controller boundary is confirmed.
 
-Strict replication only.
+Initial integration should remain conservative:
+- explicit task/goal context
+- one shared full-11-action brain
+- semantic task-state representation
+- reset before independent teaching rows
+- semantic-boundary stream resets
+- temporally extended motor primitives where actions require persistence
+- separate-brain controls retained
+- no attention or episodic-memory arm yet
 
-Fresh founders:
-- 77001..77016
+Primary question:
+Can one plain Cadence brain retain and execute FOOD, FIRE, HUNT and SHELTER policies together without catastrophic cross-skill interference?
 
-Frozen recipe:
-- FIRE_MINIMAL
-- reset-per-row static bootstrap
-- DAgger64
-- full reset static replay
-- commit gather primitive to resource increment
-- brain.reset() before every high-level semantic query
-- 14-window budget
-- no extra learning during evaluation
-
-Confirmation requires:
-- >=12/16 valid founders
-- median exact >=90%
-- median fresh >=80%
-- median loop >=4/6
-- median ready-to-craft accuracy =100%
-- >=12/16 individually ready
-
-See: [stone-age-v7-13r](./stone-age-v7-13r/README.md)
-
-No broader Stone Age integration is reopened until this confirmation is complete.
+Attention/memory should only be reopened if plain shared capacity is first characterized.
