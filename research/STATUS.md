@@ -30,48 +30,55 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.11
 `FIRE_DYNAMIC_INVARIANCE_UNRESOLVED`
 
+### Stone Age V7.12 — FIRE Temporal Action-Commitment Control
+`PARTIAL_FIRE_COMMITMENT_SIGNAL`
+
+- cadence-net 0.88.1
 - 8/8 founders valid
 - caretaker oracle 48/48
-- final static exact/fresh 100/100 medians for all three representation arms
-- final loop medians:
-  - CONTRAST18 0%
-  - FIRE_MINIMAL 0%
-  - FIRE_MINIMAL_PLUS_PROGRESS 25%
-- failure traces concentrate on mid-gather action switches
-- explicit progress state is informative but not sufficient
-- current dominant boundary: temporal action commitment / motor primitive persistence
+- same frozen final brain compared under decision-level vs commit-to-completion
+- same 14-window environment budget
+- final static exact/fresh medians 100/100 for all arms
+- FIRE_MINIMAL:
+  - decision median loop 0%
+  - commit median loop 50%
+  - commit-ready 3/8 founders
+- FIRE_MINIMAL_PLUS_PROGRESS:
+  - decision median loop 25%
+  - commit median loop 50%
+  - commit-ready 2/8
+- CONTRAST18:
+  - decision median loop 0%
+  - commit median loop 0%
+  - commit-ready 3/8
+- no arm reached the >=6/8 founder pass gate
 
-## Active frozen experiment
+Interpretation:
+Temporal commitment is a real partial mechanism, but the effect is heterogeneous. The frozen classifier used the predeclared difference-of-medians gain and returned PARTIAL_FIRE_COMMITMENT_SIGNAL; paired founder median gain was 0 because most founders tied.
 
-### Stone Age V7.12 — FIRE Temporal Action-Commitment Control
+Trace audit:
+- commitment removes mid-gather switching in rescued founders
+- remaining failed committed episodes typically acquire the required resource, then fail at the semantic transition to CRAFT_FIRE
+- FIRE_MINIMAL has the same visible ready-to-craft task key as its 100%-correct static FIRE_CRAFT mapping, yet continuing action selection often repeats a gather action
 
-FIRE only.
-
-Fresh founders:
-- 75001..75008
-
-Representations:
-- CONTRAST18
-- FIRE_MINIMAL
-- FIRE_MINIMAL_PLUS_PROGRESS
-
-Training matches V7.11.
-
-Final frozen brain is evaluated under:
-- DECISION_LEVEL
-- COMMIT_TO_COMPLETION
-
-COMMIT_TO_COMPLETION holds GATHER_WOOD or GATHER_STONE until the corresponding resource increases before querying the brain again.
-
-Fairness:
-- both modes share the same 14 decision-window episode budget
-- internal committed windows consume that same budget
-- same held-out seeds and variants
-- no extra learning
-
-Primary question:
-Does the learned FIRE policy succeed when gather actions are treated as temporally extended motor primitives rather than re-decided every 0.55 s?
+Current dominant boundary:
+**per-stream state / hysteresis across semantic action boundaries.**
 
 See: [stone-age-v7-12](./stone-age-v7-12/README.md)
 
-Shared-brain memory/attention remains closed until this temporal-action boundary is resolved.
+## Next direction
+
+**Stone Age V7.13 — FIRE Semantic Boundary Reset Control**
+
+Fresh founders, same training, primary FIRE_MINIMAL representation.
+
+Compare:
+- COMMIT_CONTINUING
+- COMMIT_RESET_QUERY
+
+COMMIT_RESET_QUERY calls `brain.reset()` immediately before each high-level query while preserving learned weights and the same 14-window budget.
+
+Primary question:
+Does clearing stream state at primitive boundaries restore the correct CRAFT_FIRE transition after gathering completes?
+
+Shared-brain memory/attention remains closed until this control is resolved.
