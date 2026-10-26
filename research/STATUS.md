@@ -46,45 +46,34 @@ Original 0.88.0/calm protocol superseded before run.
 ### Stone Age V7.7R
 `SURPRISE_CONTRAST_STATIC_RESCUE_CLOSED_LOOP_BOTTLENECK`
 
-- contrast + surprise + full11 reaches 100/100 median exact/fresh on all four skills
-- dynamic execution remains the boundary
-
-### Stone Age V7.8 — Caretaker / DAgger Dynamic-State Bridge
+### Stone Age V7.8
 `DYNAMIC_STATE_TEACHING_INSUFFICIENT`
 
-- cadence-net 0.88.1
-- 8/8 founders valid
-- matched 128 dynamic labels/skill in expert and DAgger arms
-- STATIC_ONLY preserves 100/100 median exact/fresh
-- CARETAKER_DAGGER closed-loop medians:
-  - FOOD 100%
-  - FIRE 0%
-  - HUNT 100%
-  - SHELTER 100%
-- but static retention after DAgger falls to:
-  - FOOD 50/50%
-  - FIRE 33.3/33.3%
-  - HUNT 86.5/88.9%
-  - SHELTER 66.7/66.7%
-- scripted expert trajectories show the same qualitative retention tradeoff
-- founder-level all-four readiness remains 0/8 for every arm
+- dynamic teaching rescues FOOD/HUNT/SHELTER loop behavior
+- but repeated online corrections damage static retention
+- FIRE is the strongest interference case
+- the current boundary is retention under continual supervised correction
 
-Interpretation: caretaker teaching confirms dynamic-state coverage matters, but online corrections interfere with previously learned static mappings. The next bottleneck is retention under continual supervised correction.
+## Active frozen experiment
 
-See: [stone-age-v7-8](./stone-age-v7-8/README.md)
+### Stone Age V7.9 — Retention-Protected Caretaker Bridge
 
-## Next direction
+Cadence 0.88.1, CONTRAST18, full11, surprise from lesson 0.
 
-**Stone Age V7.9 — Retention-Protected Caretaker Bridge**
-
-Proposed frozen comparison:
+Arms:
 - STATIC_ONLY
 - DAGGER128
 - DAGGER64
 - DAGGER64_STATIC_REPLAY64
 
-The replay arm interleaves 64 learner-path dynamic labels with 64 balanced static-anchor labels, keeping 128 post-bootstrap lesson calls. DAGGER64 is the dose control.
+Replay arm:
+- 64 learner-path dynamic labels
+- 64 balanced static-anchor replay calls
+- one replay call after each dynamic step
+- 128 total post-bootstrap calls, matched to DAGGER128
 
-Question: can static rehearsal preserve the V7.7R policy while retaining caretaker-driven loop gains?
+Primary question: can balanced static rehearsal preserve V7.7R's learned policy while retaining caretaker-driven closed-loop gains?
+
+See: [stone-age-v7-9](./stone-age-v7-9/README.md)
 
 Shared-brain memory/attention remains closed until retention under correction is resolved.
