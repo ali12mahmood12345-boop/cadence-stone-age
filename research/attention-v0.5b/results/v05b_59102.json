@@ -1,0 +1,97 @@
+{
+ "cadence": "0.88.0",
+ "split": {
+  "split": "V0.5B",
+  "values": 9,
+  "taught_pairs": 54,
+  "held_pairs": 27,
+  "single_fact_chance_taught": true,
+  "single_fact_chance_held": true,
+  "memorizer_held_accuracy": 0.3333333333333333,
+  "consistent_explanations": 6,
+  "held_pairs_determined": 27,
+  "determined_answers_match_rule": true,
+  "worst_consistent_held_accuracy": 1.0,
+  "tests_conjunctive_generalization": true
+ },
+ "founders": [
+  {
+   "seed": 59102,
+   "H2": {
+    "heads": 2,
+    "training": {
+     "lessons": 1024,
+     "refused": 0,
+     "calm_from": null
+    },
+    "taught": {
+     "accuracy": 0.75,
+     "distinct_top": 1.0,
+     "relevant_pair": 1.0
+    },
+    "held": {
+     "accuracy": 0.6822916666666666,
+     "distinct_top": 1.0,
+     "relevant_pair": 1.0
+    },
+    "held_controls": {
+     "role0_erased": {
+      "accuracy": 0.3072916666666667,
+      "distinct_top": 0.0,
+      "relevant_pair": 0.0
+     },
+     "role1_erased": {
+      "accuracy": 0.34375,
+      "distinct_top": 0.0,
+      "relevant_pair": 0.0
+     },
+     "distractors_erased": {
+      "accuracy": 0.53125,
+      "distinct_top": 1.0,
+      "relevant_pair": 1.0
+     },
+     "memory_off": {
+      "accuracy": 0.3125,
+      "distinct_top": 0.0,
+      "relevant_pair": 0.0
+     },
+     "clone_head": {
+      "accuracy": 0.6770833333333334,
+      "distinct_top": 0.0,
+      "relevant_pair": 0.0
+     }
+    },
+    "seconds": 239.4
+   },
+   "H1": {
+    "heads": 1,
+    "training": {
+     "lessons": 1024,
+     "refused": 0,
+     "calm_from": null
+    },
+    "taught": {
+     "accuracy": 0.6770833333333334
+    },
+    "held": {
+     "accuracy": 0.53125
+    },
+    "held_controls": {
+     "role0_erased": {
+      "accuracy": 0.3072916666666667
+     },
+     "role1_erased": {
+      "accuracy": 0.3125
+     },
+     "distractors_erased": {
+      "accuracy": 0.3958333333333333
+     },
+     "memory_off": {
+      "accuracy": 0.3125
+     }
+    },
+    "seconds": 217.8
+   }
+  }
+ ]
+}
