@@ -14,25 +14,10 @@ Fresh confirmation on Cadence 0.85.1.
 
 ### Attention V0.5A
 Original held split was underdetermined; behavioral conjunction conclusion retired.
-Retrieval evidence remains informative. V0.5B / PR #1 provides an identifiable held split.
+Retrieval evidence remains informative.
 
-### Stone Age V7
-`NO_STONE_AGE_MEMORY_ATTENTION_ADVANTAGE`
-
-### Stone Age V7.1
-`NO_STONE_AGE_ACQUISITION_READINESS`
-
-### Stone Age V7.2
-`STONE_AGE_BASIC_ACQUISITION_BOTTLENECK`
-
-### Stone Age V7.3
-`PERSISTENT_STATIC_ACQUISITION_BOTTLENECK`
-
-### Stone Age V7.4
-`PERSISTENT_FEW_LESSON_ACQUISITION_BOTTLENECK`
-
-### Stone Age V7.5
-`DEEPER_REPRESENTATION_ASSOCIATION_BOTTLENECK`
+### Stone Age V7–V7.5
+Acquisition and representation bottleneck development sequence.
 
 ### Stone Age V7.6R
 `THRESHOLD_ENCODING_RESCUE_SURVIVES_SURPRISE`
@@ -46,34 +31,46 @@ Retrieval evidence remains informative. V0.5B / PR #1 provides an identifiable h
 ### Stone Age V7.9
 `STATIC_REPLAY_NO_RETENTION_RESCUE`
 
-- one-for-one replay was active but did not stabilize retention
-- replay anchors repeatedly became surprising again
-- dynamic behavior remained strong while static mappings degraded
-- current boundary: continual supervised interference / consolidation schedule
+### Stone Age V7.10
+Frozen-run classification:
+`STATIC_POLICY_NOT_RECOVERABLE_BY_ONE_PASS`
 
-## Active frozen experiment
+Observed:
+- 8/8 founders valid
+- static bootstrap retained 100/100 medians
+- DAgger64 improved dynamic behavior while degrading static mappings
+- continuing post-DAGGER replay did not restore static accuracy
+- REPLAY_FULL retention score 0.521, loop score 0.854
+- no static-recovery checkpoint
 
-### Stone Age V7.10 — Post-DAgger Consolidation / Recoverability Microscope
+**Interpretation reopened after runner audit.**
 
-Cadence 0.88.1, CONTRAST18, full11, surprise from lesson 0.
+The original successful static bootstrap resets the brain before every teaching row. V7.10 post-DAGGER replay did not reset before replay rows. Therefore V7.10 tested continuing-stream replay, not a matched replay of the original successful static curriculum.
 
-Common history:
-- static bootstrap
-- DAgger64
-- then a separate static consolidation block
+Valid narrower conclusion:
+- continuing no-reset replay does not recover cold static mappings.
 
-Checkpoints:
-- STATIC_ONLY
-- POST_DAGGER64
+Not yet established:
+- reset-matched cold replay cannot recover them.
+
+See: [stone-age-v7-10](./stone-age-v7-10/README.md)
+
+## Next direction
+
+**Stone Age V7.10R — Replay Boundary Correction**
+
+Matched branches from the same post-DAGGER64 state:
+
+- CONTINUING_REPLAY
+- RESET_REPLAY
+
+Replay checkpoints:
 - REPLAY32
 - REPLAY64
 - REPLAY_FULL
 
-Primary questions:
-- can the original static policy be recovered after DAgger?
-- if recovered, does the acquired dynamic behavior survive?
-- was V7.9's interleaved replay schedule itself the failure mode?
+RESET_REPLAY calls `brain.reset()` before every static replay row, matching the successful bootstrap teaching boundary.
 
-See: [stone-age-v7-10](./stone-age-v7-10/README.md)
+Primary question: was V7.10's apparent irrecoverability a continuing-state teaching artifact or a real plasticity/retention boundary?
 
-Shared-brain memory/attention remains closed until this retention/consolidation boundary is resolved.
+Shared-brain memory/attention remains closed until this is resolved.
