@@ -1,110 +1,113 @@
 # Stone Age V7.13R — Fresh FIRE Boundary Confirmation
 
-Status: **confirmation protocol / frozen before run**
+Status: **fresh confirmation complete**
 
 Cadence: **0.88.1**
 
-V7.13 development established a successful FIRE controller recipe:
+Official classification:
 
-1. FIRE_MINIMAL visible task state
-2. commit GATHER_WOOD / GATHER_STONE until the immediate resource increment completes
-3. call `brain.reset()` before the next semantic high-level query
+`FIRE_STREAM_STATE_RESET_CONFIRMED`
 
-The V7.13 development panel reached 8/8 founder readiness under that recipe.
+## Purpose
 
-V7.13R is a strict fresh confirmation. No mechanism or recipe changes are allowed.
+V7.13R was a strict fresh confirmation of the successful V7.13 FIRE controller recipe.
 
-## Question
+No alternate arms and no mechanism changes were allowed.
 
-Does the exact V7.13 FIRE recipe reproduce on a larger untouched founder panel?
+Fresh founders:
+- `77001..77016`
 
-## Fresh founder panel
+Frozen recipe:
+- `FIRE_MINIMAL`
+- reset-per-row static bootstrap
+- DAgger64 learner-path teaching
+- full 192-row reset-matched static replay
+- commit gather primitive until the immediate resource increment completes
+- `brain.reset()` before every semantic high-level query
+- 14 total decision-window episode budget
+- no evaluation learning
 
-`77001..77016`
+## Result
 
-- 16 founders total
-- minimum valid: 12/16
-- confirmation readiness threshold: 12/16 individually ready
+All **16/16 founders were valid**.
 
-## Frozen representation
+Caretaker oracle:
+- **96/96**
 
-`FIRE_MINIMAL` only.
+Confirmation medians:
+- exact: **100%**
+- fresh: **100%**
+- loop: **100%**
+- ready-to-craft accuracy: **100%**
+- high-level queries / decision windows: **2.0 / 3.5**
 
-18-wide vector:
-- input 5 = `wood >= 4`
-- input 6 = `stone >= 2`
-- input 9 = `fire_exists`
-- all other inputs = 0
+Founder readiness:
+- **16/16**
+- frozen requirement: >=12/16
 
-## Frozen training
+Every frozen confirmation gate passed.
 
-Exactly the V7.13 recipe:
+## Robustness
 
-1. reset before every independent static bootstrap row
-2. DAgger64 learner-path teaching
-3. one full 192-row reset-matched static replay pass
-4. freeze final brain
-5. no learning during confirmation evaluation
+The confirmation is stronger than the minimum gate:
 
-Architecture:
-- full 11 actions
-- modules `(32,16)`
-- normalized qualified teaching
-- `learning_surprise=True` from lesson 0
+- every founder achieved 6/6 held-out FIRE loop success
+- every founder reached 100% exact static accuracy
+- every founder reached 100% fresh static accuracy
+- every founder chose `CRAFT_FIRE` correctly at every first ready-to-craft boundary
 
-## Frozen controller
+Training histories were heterogeneous:
+- DAgger accepted corrections ranged from 15 to 55
+- DAgger pre-lesson agreement ranged from 15.6% to 90.6%
+- final reset replay accepted corrections ranged from 0 to 92
 
-At every semantic high-level query:
+Despite that variability, all 16 founders converged to the same successful final behavior.
 
-1. call `brain.reset()`
-2. query the FIRE_MINIMAL brain
-3. if `GATHER_WOOD`, hold it until wood increases
-4. if `GATHER_STONE`, hold it until stone increases
-5. otherwise execute one normal decision window
-6. repeat until success/death/shared episode budget
+## Confirmed development finding
 
-Environment budget:
-- 14 total decision windows
+The FIRE dynamic boundary is now considered confirmed for this controller setup:
 
-No extra world time is introduced by commitment.
+> FIRE_MINIMAL + temporally extended gather primitives + stream reset before each semantic high-level query reliably restores the intended FIRE policy.
 
-## Evaluation
+The important mechanism is not additional visible FIRE state.
 
-For every founder:
+The critical controller boundaries are:
 
-- exact static accuracy
-- fresh static accuracy
-- 6 held-out FIRE episodes
-- ready-to-craft boundary accuracy
-- high-level query count
-- total decision windows
-- primitive lengths
-- full failure traces
+1. do not re-decide inside an unfinished gather primitive
+2. after the primitive completes, clear Cadence per-stream state before the next semantic decision
 
-Environment validity:
-- deterministic caretaker must solve 6/6 held-out FIRE episodes
+This preserves the correct cold learned mapping at the semantic transition to `CRAFT_FIRE`.
 
-## Frozen confirmation gates
+## Scientific status
 
-Run-level validity:
-- at least 12/16 valid founders
+Unlike V7.13, which was a targeted development test derived from V7.12 traces, V7.13R used a larger untouched founder panel and made no recipe changes.
 
-Median gates:
-- exact >=90%
-- fresh >=80%
-- loop >=4/6
-- ready-to-craft accuracy = 100%
+Therefore:
 
-Founder-level confirmation:
-- at least 12/16 valid founders individually satisfy:
-  - exact >=90%
-  - fresh >=80%
-  - loop >=4/6
+`FIRE_STREAM_STATE_RESET_CONFIRMED`
 
-## Frozen classification
+is now the confirmed FIRE boundary result for the current Stone Age controller architecture.
 
-1. valid founders <12 -> `INSUFFICIENT_V7_13R_RUNS`
-2. all median gates pass and >=12/16 founders individually ready -> `FIRE_STREAM_STATE_RESET_CONFIRMED`
-3. otherwise -> `FIRE_STREAM_STATE_RESET_NOT_CONFIRMED`
+## Next direction
 
-No new representation, no alternate controller mode, no new teaching schedule, and no post-hoc gate changes.
+**Stone Age V7.14 — Four-Skill Semantic Integration Bridge**
+
+The FIRE-specific mechanism is resolved strongly enough to reopen broader Stone Age integration.
+
+The next stage should test whether the successful single-skill policies can coexist in one shared controller without reopening low-level persistence failures.
+
+Recommended structure:
+
+- explicit task/goal context during the first shared-brain integration test
+- one shared full-11-action brain
+- semantic task-state representation rather than raw nuisance-heavy state
+- retain reset-before-independent-teaching
+- retain semantic-boundary stream resets
+- retain temporally extended motor primitives for actions that require persistence
+- compare against the already-established separate-brain skill controls
+
+Primary question:
+
+> Can one Cadence brain retain and execute FOOD, FIRE, HUNT and SHELTER policies together when task identity and semantic action boundaries are made explicit?
+
+Do not add attention or episodic memory in the first shared-brain bridge. First establish plain shared-capacity and interference.
