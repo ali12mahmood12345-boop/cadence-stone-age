@@ -2,11 +2,14 @@
 
 Per founder and arm (H2 ``recall_heads=2``, H1 ``recall_heads=1``): warm the learned code,
 write every pattern's bank with Recall itself (four ``neutral, role, value`` episodes), teach
-1024 lessons of 16 taught patterns with calm teaching (every row while the running share of
-wrong answers is at least 0.02, the wrong rows below it), then read taught and held accuracy,
-the heads' distinct top role records, and the held panel under each causal control.
+1024 lessons of 16 taught patterns, then read taught and held accuracy, the answers' modal
+share, the heads' distinct top role records, and the held panel under each causal control.
+``--teaching calm`` (the default, V0.5A's rule) teaches every row while the running share of
+wrong answers is at least 0.02 and the wrong rows below it; ``--teaching surprise`` teaches only
+the wrong rows from the first lesson.
 
     python run_v05b.py --seeds 59101 --out v05b_59101.json
+    python run_v05b.py --seeds 59201 --lessons 4096 --teaching surprise --arms H2 --read-every 256 --out exp72.json
 """
 
 from __future__ import annotations
@@ -107,17 +110,24 @@ def sample(rng, n: int, panel: set) -> list:
     return out
 
 
-def train(brain: cd.Brain, bank: dict, lessons: int, seed: int) -> dict:
+def train(brain: cd.Brain, bank: dict, lessons: int, seed: int, teaching: str = "calm",
+          reading=None, read_every: int = 0) -> dict:
+    """``teaching``: ``calm`` switches ``learning_surprise`` on while the running wrong share is
+    below .02 and off above it (V0.5A's rule); ``surprise`` teaches only the rows the brain got
+    wrong from the first lesson and never switches (Will Glynn, cadence-teachers EXP-72)."""
     rng = np.random.default_rng(1000 + seed)
-    level, refused, calm_from = 1.0, 0, None
+    level, refused, calm_from, switches, readings = 1.0, 0, None, 0, []
+    if teaching == "surprise":
+        brain.retune(learning_surprise=True)
     for lesson in range(lessons):
         patterns = sample(rng, 16, TAUGHT)
         try:
             wrong = answer(brain, bank, patterns) != labels(patterns)
             level = 0.95 * level + 0.05 * float(wrong.mean())
             calm = level < 0.02
-            if calm != brain.learner.config.surprise:
+            if teaching != "surprise" and calm != brain.learner.config.surprise:
                 brain.retune(learning_surprise=calm)
+                switches += 1
                 calm_from = lesson if calm and calm_from is None else calm_from
             n = len(patterns)
             install(brain, bank, patterns)
@@ -125,7 +135,10 @@ def train(brain: cd.Brain, bank: dict, lessons: int, seed: int) -> dict:
             brain.lesson(event(ASK, n), labels(patterns))
         except RuntimeError:
             refused += 1
-    return {"lessons": lessons, "refused": refused, "calm_from": calm_from}
+        if reading is not None and read_every and (lesson + 1) % read_every == 0:
+            readings.append({"lesson": lesson + 1, "level": round(level, 4), **reading(brain)})
+    return {"lessons": lessons, "refused": refused, "calm_from": calm_from,
+            "switches": switches, "teaching": teaching, "readings": readings}
 
 
 def accuracy(brain: cd.Brain, bank: dict, patterns, erase=(), clone=False) -> dict:
@@ -136,7 +149,8 @@ def accuracy(brain: cd.Brain, bank: dict, patterns, erase=(), clone=False) -> di
         choice = answer(trial, bank, patterns, erase)
     except RuntimeError as error:
         return {"refused": str(error)[:80]}
-    out = {"accuracy": float(np.mean(choice == labels(patterns)))}
+    out = {"accuracy": float(np.mean(choice == labels(patterns))),
+           "modal_share": float(np.bincount(choice, minlength=ACTIONS).max() / len(choice))}
     heads = trial.recall.attended_heads or ()
     roles = [RECORD[j][1] for j in range(ROLES)]
     tops = [np.asarray(p)[:, roles].argmax(axis=1) for p in heads if p is not None]
@@ -147,14 +161,19 @@ def accuracy(brain: cd.Brain, bank: dict, patterns, erase=(), clone=False) -> di
     return out
 
 
-def run(seed: int, heads: int, lessons: int) -> dict:
+def run(seed: int, heads: int, lessons: int, teaching: str = "calm", read_every: int = 0) -> dict:
+    """One founder and arm; ``read_every`` reads taught and held accuracy on deep copies."""
     t0 = time.time()
     brain = compose(seed, heads)
     warm(brain)
     bank = banks(brain)
-    training = train(brain, bank, lessons, seed)
     rng = np.random.default_rng(99)
     taught, held = sample(rng, 192, TAUGHT), sample(rng, 192, HELD)
+
+    def reading(current: cd.Brain) -> dict:  # on copies; the training brain is untouched
+        return {"taught": accuracy(current, bank, taught), "held": accuracy(current, bank, held)}
+
+    training = train(brain, bank, lessons, seed, teaching, reading, read_every)
     out = {"heads": heads, "training": training,
            "taught": accuracy(brain, bank, taught), "held": accuracy(brain, bank, held),
            "held_controls": {
@@ -173,18 +192,24 @@ def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--seeds", type=int, nargs="+", required=True)
     p.add_argument("--lessons", type=int, default=1024)
+    p.add_argument("--teaching", choices=("calm", "surprise"), default="calm")
+    p.add_argument("--arms", nargs="+", choices=("H2", "H1"), default=["H2", "H1"])
+    p.add_argument("--read-every", type=int, default=0,
+                   help="read taught and held accuracy on copies every this many lessons")
     p.add_argument("--out", required=True)
     a = p.parse_args()
     split = report("V0.5B", *split_v05b(), 9)
     assert split["tests_conjunctive_generalization"], split  # the admission gate
     result = {"cadence": cd.__version__, "split": split,
-              "founders": [{"seed": s, "H2": run(s, 2, a.lessons), "H1": run(s, 1, a.lessons)}
+              "teaching": a.teaching,
+              "founders": [{"seed": s, **{arm: run(s, 2 if arm == "H2" else 1, a.lessons,
+                                                      a.teaching, a.read_every) for arm in a.arms}}
                            for s in a.seeds]}
     with open(a.out, "w") as f:
         json.dump(result, f, indent=1)
     for f_ in result["founders"]:
         print(f_["seed"], {arm: (f_[arm]["taught"].get("accuracy"), f_[arm]["held"].get("accuracy"))
-                           for arm in ("H2", "H1")})
+                           for arm in a.arms})
 
 
 if __name__ == "__main__":

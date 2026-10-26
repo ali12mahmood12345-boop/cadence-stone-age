@@ -1,0 +1,336 @@
+{
+ "cadence": "0.88.0",
+ "split": {
+  "split": "V0.5B",
+  "values": 9,
+  "taught_pairs": 54,
+  "held_pairs": 27,
+  "single_fact_chance_taught": true,
+  "single_fact_chance_held": true,
+  "memorizer_held_accuracy": 0.3333333333333333,
+  "consistent_explanations": 6,
+  "held_pairs_determined": 27,
+  "determined_answers_match_rule": true,
+  "worst_consistent_held_accuracy": 1.0,
+  "tests_conjunctive_generalization": true
+ },
+ "teaching": "surprise",
+ "founders": [
+  {
+   "seed": 59201,
+   "H2": {
+    "heads": 2,
+    "training": {
+     "lessons": 4096,
+     "refused": 0,
+     "calm_from": null,
+     "switches": 0,
+     "teaching": "surprise",
+     "readings": [
+      {
+       "lesson": 256,
+       "level": 0.5332,
+       "taught": {
+        "accuracy": 0.421875,
+        "modal_share": 0.5885416666666666,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.3802083333333333,
+        "modal_share": 0.5208333333333334,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 512,
+       "level": 0.3751,
+       "taught": {
+        "accuracy": 0.7708333333333334,
+        "modal_share": 0.4270833333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.5208333333333334,
+        "modal_share": 0.4791666666666667,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 768,
+       "level": 0.0229,
+       "taught": {
+        "accuracy": 0.9947916666666666,
+        "modal_share": 0.390625,
+        "distinct_top": 1.0,
+        "relevant_pair": 1.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.3697916666666667,
+        "distinct_top": 1.0,
+        "relevant_pair": 1.0
+       }
+      },
+      {
+       "lesson": 1024,
+       "level": 0.0017,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.421875,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 1280,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 1536,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 1792,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 2048,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 2304,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 2560,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 2816,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 3072,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 3328,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 3584,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 3840,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      },
+      {
+       "lesson": 4096,
+       "level": 0.0,
+       "taught": {
+        "accuracy": 1.0,
+        "modal_share": 0.390625,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       },
+       "held": {
+        "accuracy": 0.875,
+        "modal_share": 0.4114583333333333,
+        "distinct_top": 0.0,
+        "relevant_pair": 0.0
+       }
+      }
+     ]
+    },
+    "taught": {
+     "accuracy": 1.0,
+     "modal_share": 0.390625,
+     "distinct_top": 0.0,
+     "relevant_pair": 0.0
+    },
+    "held": {
+     "accuracy": 0.875,
+     "modal_share": 0.4114583333333333,
+     "distinct_top": 0.0,
+     "relevant_pair": 0.0
+    },
+    "held_controls": {
+     "role0_erased": {
+      "accuracy": 0.3802083333333333,
+      "modal_share": 1.0,
+      "distinct_top": 0.0,
+      "relevant_pair": 0.0
+     },
+     "role1_erased": {
+      "accuracy": 0.3072916666666667,
+      "modal_share": 0.6822916666666666,
+      "distinct_top": 0.0,
+      "relevant_pair": 0.0
+     },
+     "distractors_erased": {
+      "accuracy": 0.828125,
+      "modal_share": 0.4375,
+      "distinct_top": 0.0,
+      "relevant_pair": 0.0
+     },
+     "memory_off": {
+      "accuracy": 0.3072916666666667,
+      "modal_share": 1.0,
+      "distinct_top": 0.0,
+      "relevant_pair": 0.0
+     },
+     "clone_head": {
+      "accuracy": 0.8802083333333334,
+      "modal_share": 0.4010416666666667,
+      "distinct_top": 0.0,
+      "relevant_pair": 0.0
+     }
+    },
+    "seconds": 275.9
+   }
+  }
+ ]
+}

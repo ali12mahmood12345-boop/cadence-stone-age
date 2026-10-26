@@ -29,3 +29,27 @@ Held accuracy on 192 held patterns (chance 1/3), and the held panel under each c
 Under V0.5A's split the same question read at chance for both arms, as `split_check.py`
 predicts for any learner there. With a split whose held answers the taught pairs determine, the
 conjunctive signal appears. Four founders are a pilot, not a test of V0.5A's frozen gates.
+
+## The teaching rule as an arm (26 October 2026)
+
+Will Glynn ran this runner on five founders to 4,096 lessons (cadence-teachers
+[EXP-71/EXP-72](https://github.com/WGlynn/cadence-teachers/blob/main/experiments/EXP-72.md)):
+under the calm rule three of five learned and then collapsed onto one action; with
+`learning_surprise=True` from the first lesson all five answered every taught pair from about
+1,024 lessons on, held .72 to .96 (mean .85 against .53), and erasing either relevant fact still
+dropped held to chance. `--teaching surprise` adds that arm; `--read-every N` reads taught and
+held accuracy on deep copies along the way.
+
+Founder 59201, H2, 4,096 lessons, on this machine (`results/exp72_<teaching>_59201.json`):
+
+| Teaching | Taught / held at 768 | Taught / held at 4,096 | Modal share at 4,096 | Held, role0 / role1 erased |
+| --- | --- | --- | --- | --- |
+| calm (never reached the .02 switch) | .81 / .79 | .39 / .31 | 1.00 | .31 / .38 |
+| surprise from the first lesson | .99 / .88 | 1.00 / .88 | .39 (the largest label class) | .38 / .31 |
+
+Under the calm rule this founder never reached the switch, so every lesson taught every row.
+The collapse sits in the cortex graph: putting the lesson-768 graph into the collapsed brain
+restores .81 taught, while the collapsed brain's address maps in the healthy brain change
+nothing. Lessons on rows already answered keep pushing the readout until the nudge no longer
+moves it (its movement of the motor population fell a hundredfold), and a lapse then stays.
+For the frozen V0.5B run the teaching rule belongs among the declared arms.
