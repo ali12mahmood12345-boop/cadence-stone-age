@@ -2,68 +2,17 @@
 
 Cadence: **0.88.0**
 
-Status: **development / frozen before run**
+Status: **superseded before run**
 
-V7.6 isolated the Stone Age static acquisition bottleneck to sensory encoding:
-`CONTRAST18` passed all four balanced binary skills while `RAW18` failed.
+This protocol was frozen before the Cadence 0.88.1 normalized-teaching correction was incorporated.
 
-V7.7 tests whether that fix survives real multiclass acquisition and closed-loop
-state transitions.
+The original V7.7 plan used normalized one-row teaching without `learning_surprise=True` from lesson 0. Cadence 0.88.1 now documents that this regime can continue pushing already-correct rows until the readout collapses onto one action.
 
-## Arms
+Because V7.7 depended on the V7.6 RAW18-vs-CONTRAST18 diagnosis, and that diagnosis is now being re-tested under the corrected teaching rule, **do not run this V7.7 package**.
 
-### RAW18_FULL11
-- original 18-input observation
-- original 11 actions
-- control
+Replacement sequence:
 
-### CONTRAST18_FULL11
-- V7.6 threshold-coded 18-input observation
-- original 11 actions
-- primary integration arm
+1. Stone Age V7.6R — Surprise-Corrected Representation Replication.
+2. Rebuild V7.7 only after V7.6R determines whether threshold encoding remains necessary.
 
-### CONTRAST18_LOCAL
-- same threshold-coded observation
-- only the 2–3 actions used by the current skill
-- secondary action-competition control
-
-## Training
-
-All arms:
-- separate single-skill brains
-- normalized one-row qualified teaching
-- modules `(32,16)`
-- balanced V7.4–V7.6 prototype rows
-- one pass
-
-## Measurements
-
-For every skill:
-- exact multiclass cold predict
-- fresh multiclass cold predict
-- closed-loop StoneAgeEnv execution on 3 fresh variants
-
-## Frozen gates
-
-Per skill:
-- exact >=90%
-- fresh >=80%
-- closed-loop >=2/3
-
-Primary `CONTRAST18_FULL11` integration pass also requires at least **6/8**
-founders to pass all four skills.
-
-## Fresh founders
-
-`67001..67008`
-
-## Frozen interpretation
-
-- full contrast passes all gates → `CONTRAST_FULL11_INTEGRATION_PASS`
-- only local contrast passes → `CONTRAST_LOCAL_ONLY_INTEGRATION_PASS`
-- full contrast static passes but loop fails → `CONTRAST_STATIC_RESCUE_CLOSED_LOOP_BOTTLENECK`
-- otherwise → `NO_CONTRAST_MULTICLASS_INTEGRATION_RESCUE`
-
-Run:
-
-`START_STONE_AGE_V7_7.bat`
+No result or failure classification is attached to this superseded protocol because it was not run.
