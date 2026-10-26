@@ -35,42 +35,37 @@ Acquisition and representation bottleneck development sequence.
 Frozen-run classification:
 `STATIC_POLICY_NOT_RECOVERABLE_BY_ONE_PASS`
 
-Observed:
-- 8/8 founders valid
-- static bootstrap retained 100/100 medians
-- DAgger64 improved dynamic behavior while degrading static mappings
-- continuing post-DAGGER replay did not restore static accuracy
-- REPLAY_FULL retention score 0.521, loop score 0.854
-- no static-recovery checkpoint
+Interpretation reopened after runner audit:
+- successful static bootstrap reset before every row
+- V7.10 replay did not
+- valid narrow claim: continuing no-reset replay failed
+- broader irrecoverability claim is provisional
 
-**Interpretation reopened after runner audit.**
+## Active frozen experiment
 
-The original successful static bootstrap resets the brain before every teaching row. V7.10 post-DAGGER replay did not reset before replay rows. Therefore V7.10 tested continuing-stream replay, not a matched replay of the original successful static curriculum.
+### Stone Age V7.10R — Replay Boundary Correction
 
-Valid narrower conclusion:
-- continuing no-reset replay does not recover cold static mappings.
+Cadence 0.88.1, CONTRAST18, full11, surprise from lesson 0.
 
-Not yet established:
-- reset-matched cold replay cannot recover them.
+Common path:
+- static bootstrap
+- DAgger64
+- branch exact post-DAGGER64 brain
 
-See: [stone-age-v7-10](./stone-age-v7-10/README.md)
-
-## Next direction
-
-**Stone Age V7.10R — Replay Boundary Correction**
-
-Matched branches from the same post-DAGGER64 state:
-
+Matched replay branches:
 - CONTINUING_REPLAY
 - RESET_REPLAY
 
-Replay checkpoints:
+Only branch difference:
+- RESET_REPLAY calls `brain.reset()` immediately before every replay lesson.
+
+Both branches use identical replay rows, ordering, labels and checkpoints:
 - REPLAY32
 - REPLAY64
 - REPLAY_FULL
 
-RESET_REPLAY calls `brain.reset()` before every static replay row, matching the successful bootstrap teaching boundary.
+Primary question: does matching the successful static teaching boundary restore recoverability?
 
-Primary question: was V7.10's apparent irrecoverability a continuing-state teaching artifact or a real plasticity/retention boundary?
+See: [stone-age-v7-10r](./stone-age-v7-10r/README.md)
 
-Shared-brain memory/attention remains closed until this is resolved.
+Shared-brain memory/attention remains closed until this boundary is resolved.
