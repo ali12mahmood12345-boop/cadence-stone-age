@@ -1,126 +1,146 @@
 # Stone Age V7.11 — FIRE Dynamic Invariance Microscope
 
-Status: **running protocol / frozen before run**
+Status: **development complete**
 
 Cadence: **0.88.1**
 
-V7.10R resolved the replay-boundary confound. Reset-matched replay restores the static policy to 100/100 median exact/fresh on all four skills, while FOOD/HUNT/SHELTER also retain 100% median loop success. FIRE remains the only dominant failure: 100/100 static but 0% median closed-loop.
+Official classification:
+
+`FIRE_DYNAMIC_INVARIANCE_UNRESOLVED`
 
 ## Question
 
-Is FIRE's remaining failure caused by changing nuisance state during the multiple decisions required to finish gathering, or does the policy require explicit current-action/progress state?
+Does nuisance-invariant FIRE state preserve the correct gather/craft action across multiple decisions, or is explicit action/progress state required?
 
-## Scope
+## Frozen design
 
 FIRE only.
 
 Fresh founders: `74001..74008`.
 
-All brain arms use:
-- cadence-net==0.88.1
+Representation arms:
+
+- `CONTRAST18`
+- `FIRE_MINIMAL`
+- `FIRE_MINIMAL_PLUS_PROGRESS`
+
+All arms used:
+- same graph seed per founder
 - full 11 actions
 - modules `(32,16)`
 - normalized qualified teaching
 - `learning_surprise=True` from lesson 0
-- 64 static rows per FIRE prototype
-- 24 fresh rows per FIRE prototype
-- exactly 64 learner-path DAgger labels
-- one full reset-matched static replay pass after DAgger
-- `brain.reset()` before every independent static bootstrap/replay lesson
+- reset-per-row static bootstrap
+- DAgger64
+- one full reset-per-row static replay pass
 - 6 held-out FIRE loop episodes
 
-## Representation arms
+Environment validity required the deterministic caretaker to solve all 6 held-out episodes.
 
-### CONTRAST18
-Current V7.10R representation.
+## Result
 
-All 18 raw Stone Age inputs remain visible, except:
-- input 5 = `wood >= 4`
-- input 6 = `stone >= 2`
+All **8/8 founders were valid**.
 
-This arm retains changing nuisance state such as body needs, world time and distances.
+Caretaker oracle: **48/48 held-out episodes**.
 
-### FIRE_MINIMAL
-18-wide matched input vector, but all nuisance dimensions are zeroed.
+### Final medians after reset replay — EXACT / FRESH / CLOSED-LOOP
 
-Only:
-- input 5 = `wood >= 4`
-- input 6 = `stone >= 2`
-- input 9 = `fire_exists`
+| Arm | Exact | Fresh | Loop | Final-ready founders |
+| --- | ---: | ---: | ---: | ---: |
+| CONTRAST18 | 100% | 100% | 0% | 2/8 |
+| FIRE_MINIMAL | 100% | 100% | 0% | 2/8 |
+| FIRE_MINIMAL_PLUS_PROGRESS | 100% | 100% | 25% | 0/8 |
 
-remain visible.
+No arm passed the frozen representation criterion.
 
-This representation is invariant across movement and partial gathering while the task-relevant prerequisite state is unchanged.
+Pairwise final loop improvement over CONTRAST18:
+- FIRE_MINIMAL: median gain 0.0
+- FIRE_MINIMAL_PLUS_PROGRESS: median gain 0.0
 
-### FIRE_MINIMAL_PLUS_PROGRESS
-Same minimal task state, plus explicit action-continuation state:
+Therefore neither nuisance removal nor explicit action/progress state meets the frozen rescue threshold.
 
-- input 0 = clipped `action_progress / 1.25`
-- input 1 = currently `GATHER_WOOD`
-- input 2 = currently `GATHER_STONE`
-- input 3 = currently `CRAFT_FIRE`
-- input 5 = `wood >= 4`
-- input 6 = `stone >= 2`
-- input 9 = `fire_exists`
+## What the traces add
 
-Static independent samples use no-current-action and progress 0. Dynamic DAgger/loop states use the environment's real current action and progress.
+The remaining failure is highly structured.
 
-## Common training sequence
+For `FIRE_MINIMAL_PLUS_PROGRESS`, common first failures occur exactly on action-continuation states:
 
-For each representation/founder:
+- missing stone, current action `GATHER_STONE`, progress ~0.55 -> switches to `GATHER_WOOD`
+- missing wood, current action `GATHER_WOOD`, progress ~0.55 -> switches early to `CRAFT_FIRE`
+- after a resource becomes ready, some founders continue the previous gather action rather than switching to `CRAFT_FIRE`
 
-1. static bootstrap, reset before every lesson
-2. evaluate `STATIC_ONLY`
-3. DAgger64 on learner-path FIRE states
-4. evaluate `POST_DAGGER64`
-5. one full balanced static replay pass, reset before every replay lesson
-6. evaluate `POST_RESET_REPLAY_FULL`
+Success patterns are frequently resource-branch specific:
+- some founders solve all three missing-wood variants but no missing-stone variants
+- others solve all three missing-stone variants but no missing-wood variants
 
-## Environment sanity control
+This is important because the deterministic caretaker demonstrates the required temporal structure:
 
-The deterministic caretaker is also executed directly on the same six held-out FIRE episodes.
+- wood gathering needs repeated consecutive `GATHER_WOOD` decisions
+- stone gathering needs even longer repeated consecutive `GATHER_STONE` decisions
+- only after the inventory threshold changes should the policy switch to `CRAFT_FIRE`
 
-Required validity:
-- caretaker oracle must solve 6/6 held-out episodes for every founder
+The explicit progress representation therefore contains useful state, but learner-path DAgger does not reliably stabilize the required continuation policy.
 
-This confirms that the environment/episode cap itself permits the frozen FIRE policy.
+## Replay interaction
 
-## Evaluation
+Dynamic progress mappings are also fragile under later cold static replay.
 
-At all three checkpoints:
-- exact static accuracy
-- fresh static accuracy
-- 6 held-out FIRE loop episodes
-- output dominance
+In the PLUS_PROGRESS arm:
+- founder 74005 was 6/6 post-DAGGER and fell to 3/6 after reset replay
+- founder 74006 was 6/6 post-DAGGER and fell to 3/6 after reset replay
 
-Training diagnostics:
-- DAgger accepted/agreed
-- brain/caretaker agreement
-- reset replay accepted/agreed
-- failed loop action traces
-- real `wood`, `stone`, `current_action` and `action_progress` in each trace
+So V7.11 reveals two interacting boundaries:
 
-## Frozen gates
+1. **mid-action continuation / temporal commitment**
+2. **retention of progress-conditioned dynamic mappings during static reconsolidation**
 
-Per founder/representation at final checkpoint:
-- exact >=90%
-- fresh >=80%
-- closed-loop >=4/6
+## Development claim
 
-Representation-level readiness:
-- median exact >=90%
-- median fresh >=80%
-- median loop >=4/6
-- >=6/8 valid founders individually pass all three final gates
+> FIRE is no longer primarily a static representation problem. The brain can recover perfect cold prerequisite mappings, but the decision-level controller often re-decides before a multi-decision gather action has completed.
 
-## Frozen interpretation
+The current evidence does **not** support either:
+- `FIRE_NUISANCE_INVARIANCE_RESCUE`
+- `FIRE_PROGRESS_STATE_REQUIRED`
 
-Classification precedence:
+The progress arm is informative but not sufficient.
 
-1. `FIRE_MINIMAL` passes final criterion -> `FIRE_NUISANCE_INVARIANCE_RESCUE`
-2. only `FIRE_MINIMAL_PLUS_PROGRESS` passes -> `FIRE_PROGRESS_STATE_REQUIRED`
-3. `CONTRAST18` unexpectedly passes -> `FIRE_CONTRAST_BASELINE_PASS`
-4. either minimal arm improves median final loop by >=2/6 (+33.3 percentage points) over CONTRAST18 but misses the frozen founder gate -> `PARTIAL_FIRE_INVARIANCE_SIGNAL`
-5. otherwise -> `FIRE_DYNAMIC_INVARIANCE_UNRESOLVED`
+## Next direction
 
-No other Stone Age skill, shared brain, memory/attention, hidden inventory or reward-learning comparison is opened in V7.11.
+**Stone Age V7.12 — FIRE Temporal Action-Commitment Control**
+
+Before adding more learning complexity, directly test whether the remaining FIRE failure is caused by querying the brain too often during a semantically continuing action.
+
+Use the same final FIRE brains and compare two evaluation modes:
+
+### DECISION_LEVEL
+Current evaluation:
+- brain queried every 0.55 s decision window
+- switching actions resets gather progress
+
+### COMMIT_TO_COMPLETION
+Brain chooses a high-level FIRE action once.
+
+If it chooses:
+- `GATHER_WOOD`: execute that same action until wood increases or a fixed safety cap is reached
+- `GATHER_STONE`: execute that same action until stone increases or a fixed safety cap is reached
+- `CRAFT_FIRE`: execute once
+
+Then query the brain again only after the action has completed or failed.
+
+Primary representation:
+- FIRE_MINIMAL
+
+Diagnostic representation:
+- FIRE_MINIMAL_PLUS_PROGRESS
+
+No additional learning is required for the core commitment control.
+
+Primary question:
+
+> Does the already-learned high-level FIRE policy succeed when gather actions are treated as temporally extended motor primitives rather than re-decided every 0.55 seconds?
+
+Interpretation:
+- commitment rescues FIRE -> temporal action granularity / persistence is the bottleneck
+- commitment still fails -> action selection itself remains unstable even at meaningful action boundaries
+
+Do not reopen shared-brain memory/attention until this control is resolved.
