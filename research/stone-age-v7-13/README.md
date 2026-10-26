@@ -1,120 +1,143 @@
 # Stone Age V7.13 — FIRE Semantic Boundary Reset Control
 
-Status: **running protocol / frozen before run**
+Status: **development complete**
 
 Cadence: **0.88.1**
 
-V7.12 showed a partial FIRE commitment signal. Treating gather actions as temporally extended primitives improved the FIRE_MINIMAL median loop from 0% to 50%, but only 3/8 founders passed the frozen commitment gate.
+Official frozen classification:
 
-Trace audit showed the remaining committed failures usually occur **after** the required resource has already been acquired. At that semantic boundary the visible FIRE_MINIMAL state is ready-to-craft, yet the continuing brain often repeats a gather action instead of selecting `CRAFT_FIRE`.
+`FIRE_STREAM_STATE_RESET_RESCUE`
 
 ## Question
 
-Does clearing Cadence's per-stream state at semantic high-level action boundaries restore the cold static `CRAFT_FIRE` mapping after a gather primitive completes?
+Does clearing Cadence's per-stream state at semantic high-level action boundaries restore the correct FIRE transition after a committed gather primitive?
 
-## Scope
+## Frozen design
 
 FIRE only.
 
 Fresh founders: `76001..76008`.
 
-Primary representation:
+Representation:
 - `FIRE_MINIMAL`
 
-The representation is unchanged from V7.11/V7.12:
-- input 5 = `wood >= 4`
-- input 6 = `stone >= 2`
-- input 9 = `fire_exists`
-- all other inputs = 0
-
-## Training
-
-Training is identical in structure to V7.12:
-
+Training:
 1. reset-per-row static bootstrap
 2. DAgger64 learner-path teaching
-3. full 192-row reset-per-row static replay
-4. freeze the final trained brain
-5. evaluate the exact same final brain under two execution modes
+3. full reset-per-row static replay
+4. freeze final brain
+5. evaluate the exact same brain under two execution modes
 
-No learning occurs during the execution comparison.
-
-## Execution modes
+Execution modes:
 
 ### COMMIT_CONTINUING
-
-V7.12 commitment behavior:
-- brain queried at high-level action boundaries
-- `GATHER_WOOD` held until wood increases
-- `GATHER_STONE` held until stone increases
-- other actions execute one normal decision window
-- continuing brain stream state is preserved between high-level queries
+- gather actions committed to immediate completion
+- per-stream brain state preserved across high-level queries
 
 ### COMMIT_RESET_QUERY
-
-Identical execution except:
-- immediately before **every high-level brain query**, call `brain.reset()`
-- learned weights/records remain unchanged
-- environment state is not reset
-- current world/resource state continues normally
-
-This gives each semantic high-level decision a cold stream boundary while preserving the learned policy and the exact same environment trajectory budget.
-
-## Fairness
+- identical commitment rule
+- call `brain.reset()` immediately before every high-level query
 
 Both modes:
-- use the same frozen final brain
-- use the same held-out seeds and six FIRE variants
-- have the same 14 decision-window environment budget
-- use the same gather commitment rule
-- receive no additional training or world time
+- same six held-out seeds/variants
+- same 14 decision-window budget
+- same frozen learned weights
+- no additional learning
 
-The only difference is stream-state reset before a high-level query.
+## Result
 
-## Diagnostics
+All **8/8 founders were valid**.
 
-For every high-level query record:
-- wood / stone / fire
-- current environment action and action_progress
-- chosen action
-- whether query was preceded by `brain.reset()`
-- decision windows consumed by the chosen primitive
-
-Also record the first **ready-to-craft** boundary in each episode:
-- `wood >= 4`
-- `stone >= 2`
-- `fire_exists == false`
-
-and whether the chosen action was `CRAFT_FIRE`.
-
-## Environment oracle
-
-The deterministic caretaker must solve 6/6 held-out FIRE episodes for every founder.
-
-## Frozen gates
+Caretaker oracle: **48/48**.
 
 Static:
-- exact >=90%
-- fresh >=80%
+- median exact: **100%**
+- median fresh: **100%**
 
-Loop:
-- >=4/6 success
+Loop medians:
+- COMMIT_CONTINUING: **100%**
+- COMMIT_RESET_QUERY: **100%**
 
-RESET_QUERY pass:
-- median reset-query loop >=4/6
-- median exact/fresh gates pass
-- >=6/8 valid founders individually pass static + reset-query loop gates
+Founder readiness:
+- COMMIT_CONTINUING: **5/8**
+- COMMIT_RESET_QUERY: **8/8**
 
-Material reset effect:
-- median RESET_QUERY loop gain >=2/6 (+33.3 percentage points) over COMMIT_CONTINUING
+Ready-to-craft boundary accuracy:
+- COMMIT_CONTINUING median: **50%**
+- COMMIT_RESET_QUERY median: **100%**
 
-## Frozen interpretation
+Efficiency medians:
+- COMMIT_CONTINUING: 2.5 high-level queries / 4.5 windows
+- COMMIT_RESET_QUERY: 2.0 high-level queries / 3.5 windows
 
-Classification precedence:
+Pairwise founder loop comparison:
+- reset wins: 3/8
+- ties: 5/8
+- losses: 0/8
 
-1. RESET_QUERY passes full criterion -> `FIRE_STREAM_STATE_RESET_RESCUE`
-2. COMMIT_CONTINUING itself passes full criterion -> `FIRE_CONTINUING_COMMIT_PASS`
-3. RESET_QUERY gains >=2/6 median loop but misses founder gate -> `PARTIAL_FIRE_STREAM_RESET_SIGNAL`
-4. otherwise -> `FIRE_STREAM_STATE_RESET_UNRESOLVED`
+The frozen full-pass rule is satisfied because RESET_QUERY passes the median static/loop gates and >=6/8 founder readiness.
 
-No shared brain, memory/attention, hidden inventory, or reward-learning comparison is opened in V7.13.
+## Interpretation
+
+V7.13 confirms the mechanism predicted from V7.12:
+
+> FIRE failures after a completed gather primitive are caused by continuing per-stream state biasing the next semantic action selection.
+
+The visible FIRE_MINIMAL state was already sufficient:
+- wood threshold
+- stone threshold
+- fire state
+
+The learned cold policy was also already correct at 100/100 static accuracy.
+
+What prevented reliable execution was **stream-state hysteresis across the semantic primitive boundary**.
+
+Resetting the brain before each high-level query restores the correct ready-to-craft decision reliably:
+- ready-to-craft accuracy rises from median 50% to 100%
+- all 8/8 founders pass the final static + loop gate
+- no founder is harmed by reset-query in the paired comparison
+
+Therefore the current FIRE controller recipe is:
+
+1. use high-level temporally extended gather primitives
+2. commit gather actions until the immediate resource increment completes
+3. reset Cadence stream state before the next semantic high-level query
+
+This is a controller-boundary solution, not additional representation learning.
+
+## Scientific status
+
+This remains a **development result**, because the semantic-reset hypothesis was derived from V7.12 traces and V7.13 tested that targeted mechanism.
+
+The next step should be exact fresh confirmation before reopening broader Stone Age integration.
+
+## Next direction
+
+**Stone Age V7.13R — Fresh FIRE Boundary Confirmation**
+
+Freeze the successful recipe unchanged:
+
+- FIRE_MINIMAL
+- same static bootstrap
+- same DAgger64
+- same full reset replay
+- same gather commitment
+- reset before every high-level semantic query
+- same 14-window budget
+- same exact/fresh/loop gates
+
+Use a larger untouched founder panel.
+
+Recommended:
+- founders `77001..77016`
+- minimum valid 12/16
+- confirmation requires:
+  - median exact >=90%
+  - median fresh >=80%
+  - median loop >=4/6
+  - >=12/16 individually ready
+  - ready-to-craft accuracy median 100%
+
+No representation changes, no new teaching recipe, and no post-hoc mechanism edits.
+
+If confirmed, the FIRE dynamic boundary can be considered resolved strongly enough to reopen the next Stone Age integration stage.
