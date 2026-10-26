@@ -46,32 +46,45 @@ Original 0.88.0/calm protocol superseded before run.
 ### Stone Age V7.7R
 `SURPRISE_CONTRAST_STATIC_RESCUE_CLOSED_LOOP_BOTTLENECK`
 
-- 8/8 founders valid.
-- contrast + surprise + full11 reaches 100/100 median exact/fresh on all four skills.
-- closed-loop full11 medians:
-  - FOOD 0%
-  - FIRE 0%
-  - HUNT 100%
-  - SHELTER 0%
-- local output helps some skills but does not solve the general dynamic boundary.
-
-Interpretation: tested static multiclass acquisition is solved; real intermediate-state coverage / trajectory stability is the current Stone Age boundary.
-
-## Active frozen experiment
+- contrast + surprise + full11 reaches 100/100 median exact/fresh on all four skills
+- dynamic execution remains the boundary
 
 ### Stone Age V7.8 — Caretaker / DAgger Dynamic-State Bridge
+`DYNAMIC_STATE_TEACHING_INSUFFICIENT`
 
-Cadence 0.88.1, CONTRAST18, full11, surprise from lesson 0.
+- cadence-net 0.88.1
+- 8/8 founders valid
+- matched 128 dynamic labels/skill in expert and DAgger arms
+- STATIC_ONLY preserves 100/100 median exact/fresh
+- CARETAKER_DAGGER closed-loop medians:
+  - FOOD 100%
+  - FIRE 0%
+  - HUNT 100%
+  - SHELTER 100%
+- but static retention after DAgger falls to:
+  - FOOD 50/50%
+  - FIRE 33.3/33.3%
+  - HUNT 86.5/88.9%
+  - SHELTER 66.7/66.7%
+- scripted expert trajectories show the same qualitative retention tradeoff
+- founder-level all-four readiness remains 0/8 for every arm
 
-Arms:
-- STATIC_ONLY
-- SCRIPTED_EXPERT_TRAJECTORY
-- CARETAKER_DAGGER
-
-Both dynamic arms receive exactly 128 labeled dynamic states per skill.
-
-Primary question: does correction on the states the brain itself reaches convert the V7.7R static policy into robust closed-loop chain execution while preserving static exact/fresh retention?
+Interpretation: caretaker teaching confirms dynamic-state coverage matters, but online corrections interfere with previously learned static mappings. The next bottleneck is retention under continual supervised correction.
 
 See: [stone-age-v7-8](./stone-age-v7-8/README.md)
 
-Shared-brain memory/attention remains closed until this bridge is resolved.
+## Next direction
+
+**Stone Age V7.9 — Retention-Protected Caretaker Bridge**
+
+Proposed frozen comparison:
+- STATIC_ONLY
+- DAGGER128
+- DAGGER64
+- DAGGER64_STATIC_REPLAY64
+
+The replay arm interleaves 64 learner-path dynamic labels with 64 balanced static-anchor labels, keeping 128 post-bootstrap lesson calls. DAGGER64 is the dose control.
+
+Question: can static rehearsal preserve the V7.7R policy while retaining caretaker-driven loop gains?
+
+Shared-brain memory/attention remains closed until retention under correction is resolved.
