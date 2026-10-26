@@ -1,93 +1,97 @@
 # Stone Age V7.10 — Post-DAgger Consolidation / Recoverability Microscope
 
-Status: **running protocol / frozen before run**
+Status: **development complete — interpretation reopened by replay-boundary confound**
 
 Cadence: **0.88.1**
 
-V7.9 showed that one-for-one static replay does not stabilize the joint static+dynamic policy. Static anchors are genuinely forgotten and can trigger corrective lessons, but interleaving 64 replay calls with 64 DAgger corrections still leaves poor final retention.
+Frozen run classification produced:
+
+`STATIC_POLICY_NOT_RECOVERABLE_BY_ONE_PASS`
+
+That classification describes the frozen V7.10 protocol exactly, but its broader recoverability interpretation is now **provisional**.
 
 ## Question
 
-After a fixed DAgger64 phase, can a **separate post-DAgger consolidation block** recover the original static policy, and if so, does the acquired closed-loop behavior survive?
+After a fixed DAgger64 phase, can a separate post-DAGGER static consolidation block recover the original static policy while preserving the dynamic one?
 
-## Fixed base recipe
+## Result
 
-- cadence-net==0.88.1
-- CONTRAST18
-- full 11 actions
-- modules `(32,16)`
-- normalized qualified teaching
-- `learning_surprise=True` from lesson 0
-- same static bootstrap as V7.7R–V7.9
-- fresh founders `72001..72008`
+All **8/8 founders were valid**.
 
-## Common history
+Median EXACT / FRESH / CLOSED-LOOP:
 
-Every non-control checkpoint begins from the same sequence:
+| Skill | STATIC_ONLY | POST_DAGGER64 | REPLAY32 | REPLAY64 | REPLAY_FULL |
+| --- | --- | --- | --- | --- | --- |
+| FOOD | 100 / 100 / 0% | 50 / 50 / 100% | 50 / 50 / 100% | 50 / 50 / 100% | 50 / 50 / 100% |
+| FIRE | 100 / 100 / 0% | 33.3 / 33.3 / 0% | 33.3 / 33.3 / 16.7% | 33.3 / 33.3 / 0% | 33.3 / 33.3 / 41.7% |
+| HUNT | 100 / 100 / 83.3% | 95.3 / 97.2 / 100% | 68.2 / 67.4 / 100% | 62.2 / 58.3 / 100% | 62.2 / 58.3 / 100% |
+| SHELTER | 100 / 100 / 0% | 66.7 / 66.7 / 100% | 66.7 / 66.7 / 100% | 66.7 / 66.7 / 100% | 66.7 / 66.7 / 100% |
 
-1. static bootstrap
-2. exactly 64 learner-path DAgger labels
-3. no static replay during DAgger
-4. freeze a post-DAGGER64 checkpoint
-5. begin a separate deterministic balanced static replay block
+Founder-level all-four readiness remained 0/8 at every checkpoint.
 
-The replay block is therefore consolidation **after** dynamic learning, not interleaved rehearsal.
+Mean median retention declined from:
+- STATIC_ONLY: 1.000
+- POST_DAGGER64: 0.613
+- REPLAY32: 0.543
+- REPLAY64: 0.521
+- REPLAY_FULL: 0.521
 
-## Checkpoints
+Mean median loop rose from 0.208 static-only to 0.854 at REPLAY_FULL.
 
-### STATIC_ONLY
-Immediately after static bootstrap.
+## Important protocol confound discovered after the run
 
-### POST_DAGGER64
-After 64 learner-path dynamic caretaker labels.
+The successful static bootstrap used:
 
-### REPLAY32
-After 32 post-DAGGER static replay calls.
+`brain.reset()` before **every static teaching row**.
 
-### REPLAY64
-After 64 cumulative post-DAGGER static replay calls.
+The V7.10 post-DAGGER replay loop did **not** call `brain.reset()` before replay rows.
 
-### REPLAY_FULL
-After one cumulative full pass through the original static training rows:
-- FOOD: 128 replay calls
-- FIRE: 192
-- HUNT: 192
-- SHELTER: 192
+Therefore V7.10 did not actually test a matched reapplication of the original successful static curriculum. It tested a **continuing-stream replay schedule** after DAgger.
 
-The same brain is followed through the full checkpoint sequence within each founder/skill.
+This matters because the observed replay accounting is inconsistent with the cold static errors in a way that strongly suggests the lesson's teaching boundary was not equivalent to cold static readback.
 
-## Replay order
+Example pattern:
+- FOOD POST_DAGGER64 median static accuracy = 50%
+- REPLAY32/64 medians report essentially all rows as agreed/skipped
+- static accuracy remains 50%
 
-Replay rows are generated from the original static training set, then reordered deterministically so prototype classes are balanced throughout the replay stream rather than appearing in one large block.
+So the strong claim "one full pass cannot recover the static policy" is too broad.
 
-## Evaluation at every checkpoint
+## What remains valid
 
-- static exact accuracy
-- static fresh accuracy
-- 6 held-out closed-loop episodes
-- output dominance
-- replay accepted/agreed presentations
-- cumulative replay accepted/agreed
-- founder-level all-four readiness
+V7.10 still establishes:
 
-Evaluation is read-only on deep copies.
+> Continuing no-reset post-DAGGER replay, even through one full static pass, does not restore the cold static policy and can even worsen it.
 
-## Frozen gates
+It does **not** yet establish:
 
-Per skill:
-- exact >=90%
-- fresh >=80%
-- closed-loop >=4/6
+> A matched cold/reset replay of the original successful static curriculum cannot recover the policy.
 
-A checkpoint is a full bridge pass only if:
-- all four skill median gates pass, and
-- >=6/8 founders individually pass all three gates on all four skills at that same checkpoint
+## Next direction
 
-## Frozen interpretation
+**Stone Age V7.10R — Replay Boundary Correction**
 
-- any replay checkpoint passes full criterion -> `POST_DAGGER_CONSOLIDATION_BRIDGE_PASS`
-- static all-skill readiness returns but closed-loop all-skill readiness fails -> `STATIC_RECOVERABLE_DYNAMIC_POLICY_COMPETES`
-- REPLAY_FULL still fails static all-skill readiness -> `STATIC_POLICY_NOT_RECOVERABLE_BY_ONE_PASS`
-- replay materially improves retention but misses the frozen criterion -> `PARTIAL_POST_DAGGER_RECOVERY_SIGNAL`
+Start from an identical post-DAGGER64 brain and compare:
 
-No shared four-skill brain, attention, episodic memory, hidden inventory, or reward learning is opened in V7.10.
+1. `CONTINUING_REPLAY`
+   - reproduce V7.10
+   - no reset before replay rows
+
+2. `RESET_REPLAY`
+   - call `brain.reset()` before every replay row
+   - otherwise same rows/order/doses
+
+Checkpoints:
+- POST_DAGGER64
+- REPLAY32
+- REPLAY64
+- REPLAY_FULL
+
+Primary question:
+Does the reset-matched replay recover the cold static mappings that the continuing replay failed to recover?
+
+If RESET_REPLAY restores static accuracy while CONTINUING_REPLAY does not, V7.10's apparent irrecoverability was a teaching-boundary/context artifact.
+
+If both fail, the deeper retention/plasticity interpretation survives.
+
+Do not move to shared-brain memory/attention until V7.10R resolves this.
