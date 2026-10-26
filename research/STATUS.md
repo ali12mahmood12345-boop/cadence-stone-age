@@ -19,42 +19,66 @@ Fresh confirmation:
 - exact/fresh/loop/ready-to-craft medians 100%
 - confirmed recipe: FIRE_MINIMAL + committed gather primitives + stream reset before semantic query
 
-## Active development experiment
+## Development boundary results
 
 ### Stone Age V7.14 — Four-Skill Semantic Integration Bridge
+`FOUR_SKILL_SHARED_SEMANTIC_BRIDGE_PASS`
 
-Fresh founders:
-- 78001..78008
+- cadence-net 0.88.1
+- 8/8 valid founders
+- caretaker oracle 192/192
+- final SHARED medians:
+  - FOOD 100% static / 100% loop
+  - FIRE 100% / 100%
+  - HUNT 100% / 100%
+  - SHELTER 100% / 100%
+- final CONTROL medians:
+  - all four skills 100% / 100%
+- shared all-four readiness: 7/8
+- control all-four readiness: 8/8
+- frozen bridge gate passed
 
-Question:
-Can one plain Cadence brain retain and execute FOOD, FIRE, HUNT and SHELTER together when task identity and semantic controller boundaries are explicit?
+Key training result:
+- DAgger destabilized both SHARED4 and separate controls
+- final reset-matched semantic replay restored both
+- therefore the DAgger collapse is not uniquely shared-brain interference
+- replay is an important reconsolidation stage
 
-Arms:
-- SHARED4
-- SEPARATE4_CONTROL
-
-Shared representation:
-- explicit one-hot task context
-- compact semantic prerequisite state
-- no nuisance-heavy raw state
-
-Controller:
-- reset before every semantic high-level query
-- temporally extended primitives for persistent actions
-- unchanged skill-specific window budgets
-
-Training:
-- complete 16-key semantic truth table
-- 64 presentations/key static bootstrap
-- DAgger64 per skill
-- 64 presentations/key final replay
-- reset before every independent static lesson
-
-Primary bridge gate:
-- controls stable in >=6/8 founders
-- shared medians pass all four skill static and loop gates
-- shared all-four founder readiness >=6/8
-
-No attention or episodic-memory arm in V7.14.
+Residual miss:
+- founder 78001 only
+- FIRE ready state `FIRE_W1_S1`: CRAFT_FIRE -> BUILD_SHELTER
+- FIRE loop 0/6
+- HUNT has one static miss but still loops 6/6
+- consistent with a small seed-specific cross-skill semantic collision
 
 See: [stone-age-v7-14](./stone-age-v7-14/README.md)
+
+## Next direction
+
+**Stone Age V7.14R — Fresh Four-Skill Shared Semantic Confirmation**
+
+Strict replication only.
+
+Recommended untouched founders:
+- 79001..79016
+
+Freeze:
+- SHARED4 vs SEPARATE4_CONTROL
+- explicit task context
+- 16 semantic keys
+- matched base-brain initialization
+- static bootstrap
+- DAgger64/skill
+- full reset semantic replay
+- semantic motor primitives
+- stream reset before each high-level query
+- unchanged skill budgets
+- no attention or episodic-memory arm
+
+Confirmation target:
+- >=12/16 valid
+- controls stable >=12/16
+- all shared median static/loop gates pass
+- shared all-four readiness >=12/16
+
+Do not open attention/memory or remove task context until V7.14R is complete.
