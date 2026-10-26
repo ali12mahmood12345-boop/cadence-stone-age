@@ -101,7 +101,7 @@ Classification:
 1. FIRE_MINIMAL pass -> FIRE_NUISANCE_INVARIANCE_RESCUE
 2. only FIRE_MINIMAL_PLUS_PROGRESS pass -> FIRE_PROGRESS_STATE_REQUIRED
 3. CONTRAST18 pass -> FIRE_CONTRAST_BASELINE_PASS
-4. minimal loop improves but no full pass -> PARTIAL_FIRE_INVARIANCE_SIGNAL
+4. either minimal arm gains >=2/6 (+33.3 percentage points) median final loop vs CONTRAST18 but no full pass -> PARTIAL_FIRE_INVARIANCE_SIGNAL
 5. otherwise -> FIRE_DYNAMIC_INVARIANCE_UNRESOLVED
 
 No post-hoc changes.
