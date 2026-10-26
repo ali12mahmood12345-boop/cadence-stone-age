@@ -1,105 +1,125 @@
 # Stone Age V7.8 — Caretaker / DAgger Dynamic-State Bridge
 
-Status: **running protocol / frozen before run**
+Status: **development complete**
 
 Cadence: **0.88.1**
 
-V7.7R established a clean boundary: `CONTRAST18 + learning_surprise=True + full11` reaches essentially perfect multiclass static exact/fresh accuracy, but FOOD, FIRE and SHELTER still fail in real closed-loop execution. HUNT is the positive control: the same full-11 contrast recipe already reaches 100% median closed-loop success.
+Official classification:
+
+`DYNAMIC_STATE_TEACHING_INSUFFICIENT`
 
 ## Question
 
-Can caretaker correction on the **states the brain itself reaches** convert the V7.7R static policy into robust closed-loop execution without destroying static retention?
+Can matched-budget caretaker teaching on dynamic states convert V7.7R's static contrast policy into robust closed-loop execution?
 
-## Fixed base recipe
+## Frozen design
 
-- cadence-net==0.88.1
+Fresh founders: `70001..70008`.
+
+Base recipe:
 - CONTRAST18
 - full 11 actions
 - modules `(32,16)`
 - normalized qualified teaching
 - `learning_surprise=True` from lesson 0
-- same static bootstrap as V7.7R
-- fresh founders `70001..70008`
+- same static bootstrap structure as V7.7R
 
-## Arms
+Arms:
+- `STATIC_ONLY`
+- `SCRIPTED_EXPERT_TRAJECTORY`
+- `CARETAKER_DAGGER`
 
-### STATIC_ONLY
-Static bootstrap only. No dynamic teaching.
+Both dynamic arms received exactly **128 labeled dynamic states per skill**.
 
-### SCRIPTED_EXPERT_TRAJECTORY
-After the same static bootstrap:
-- caretaker labels the current dynamic state
-- teach that label
-- execute the caretaker action
-- continue along the clean expert trajectory
+## Result
 
-### CARETAKER_DAGGER
-After the same static bootstrap:
-- brain chooses greedy action on the current state
-- caretaker labels that **same state**
-- teach the caretaker label
-- execute the brain's chosen action
-- continue from the state produced by the brain's own path
+All **8/8 founders were valid**.
 
-This is the direct test of Bernhard's caretaker / DAgger suggestion.
+Median retained EXACT / FRESH / CLOSED-LOOP:
 
-## Matched dynamic supervision
+| Skill | STATIC_ONLY | SCRIPTED_EXPERT_TRAJECTORY | CARETAKER_DAGGER |
+| --- | --- | --- | --- |
+| FOOD | 100 / 100 / 8.3% | 75 / 75 / 100% | 50 / 50 / 100% |
+| FIRE | 100 / 100 / 0% | 49.7 / 50 / 58.3% | 33.3 / 33.3 / 0% |
+| HUNT | 100 / 100 / 83.3% | 82.0 / 78.5 / 100% | 86.5 / 88.9 / 100% |
+| SHELTER | 100 / 100 / 0% | 66.7 / 66.7 / 100% | 66.7 / 66.7 / 100% |
 
-Both dynamic-training arms receive exactly **128 labeled dynamic states per skill**.
+Founder-level all-four readiness:
+- STATIC_ONLY: 0/8
+- SCRIPTED_EXPERT_TRAJECTORY: 0/8
+- CARETAKER_DAGGER: 0/8
 
-This prevents DAgger from receiving more supervision merely because its mistakes create longer episodes.
+## Interpretation
 
-## Deterministic caretaker
+V7.8 shows that dynamic teaching is powerful enough to rescue behavior on several skills, but it does so by destabilizing the static policy.
 
-FOOD:
-- food present -> EAT
-- otherwise -> PICK_BERRIES
+### Dynamic behavior rescue
 
-FIRE:
-- wood < 4 -> GATHER_WOOD
-- else stone < 2 -> GATHER_STONE
-- else -> CRAFT_FIRE
+CARETAKER_DAGGER reaches 100% median closed-loop success on:
+- FOOD
+- HUNT
+- SHELTER
 
-HUNT:
-- spear present -> HUNT_RABBIT
-- else stone < 2 -> GATHER_STONE
-- else wood < 2 -> GATHER_WOOD
-- else -> CRAFT_SPEAR
+SCRIPTED_EXPERT_TRAJECTORY also reaches 100% on FOOD/HUNT/SHELTER and partially improves FIRE.
 
-SHELTER:
-- shelter exists -> SLEEP
-- else wood < 10 -> GATHER_WOOD
-- else stone < 4 -> GATHER_STONE
-- else -> BUILD_SHELTER
+So trajectory coverage was a real missing ingredient.
 
-The caretaker is fixed before the run.
+### Retention failure
 
-## Evaluation
+That rescue is not stable continual learning.
 
-After dynamic training, each arm is evaluated on:
+Median static retention after CARETAKER_DAGGER:
+- FOOD 50 / 50%
+- FIRE 33.3 / 33.3%
+- HUNT 86.5 / 88.9%
+- SHELTER 66.7 / 66.7%
 
-1. static exact accuracy
-2. static fresh accuracy
-3. **6 fresh closed-loop episodes per skill**
-4. accepted vs agreed dynamic teaching presentations
-5. brain/caretaker agreement during dynamic training
+The accepted-correction load tracks this failure qualitatively:
+- FOOD: ~14.5 accepted dynamic corrections
+- FIRE: ~93
+- HUNT: ~8
+- SHELTER: ~14.5
 
-## Frozen gates
+FIRE is the strongest interference case: many dynamic corrections, collapse to one prototype/action family, and no reliable loop rescue.
 
-Per skill:
-- retained exact >=90%
-- retained fresh >=80%
+HUNT is the opposite positive control: very high pre-lesson agreement (~99%), very few accepted corrections, full loop success, and comparatively mild retention loss.
+
+This pattern supports a new boundary:
+
+> The caretaker can supply the missing dynamic state coverage, but repeated online supervised corrections interfere with previously acquired static mappings.
+
+The current problem is therefore no longer simply dynamic-state coverage. It is **retention under online correction / continual supervised interference**.
+
+## Next direction
+
+**Stone Age V7.9 — Retention-Protected Caretaker Bridge**
+
+Keep:
+- cadence-net 0.88.1
+- CONTRAST18
+- full 11 actions
+- normalized qualified teaching
+- `learning_surprise=True` from lesson 0
+- same static bootstrap
+- separate single-skill brains
+
+Primary question:
+
+Can interleaved rehearsal of the original static mappings preserve V7.7R's policy while keeping the dynamic gains from caretaker correction?
+
+Recommended arms:
+
+1. `STATIC_ONLY`
+2. `DAGGER128`
+3. `DAGGER64` — dynamic-dose control
+4. `DAGGER64_STATIC_REPLAY64` — 64 learner-path dynamic labels interleaved 1:1 with 64 balanced static-anchor labels
+
+This keeps the replay arm at 128 total post-bootstrap lesson calls, matched to DAgger128, while DAgger64 tells us whether any apparent rescue comes merely from reducing dynamic update dose.
+
+Primary gates remain:
+- exact >=90%
+- fresh >=80%
 - closed-loop >=4/6
+- >=6/8 founders ready on all four skills
 
-Primary DAgger integration requires:
-- all four skill median gates pass
-- >=6/8 valid founders individually pass all three gates on all four skills
-
-## Frozen interpretation
-
-- DAgger passes full criterion -> `CARETAKER_DAGGER_DYNAMIC_BRIDGE_PASS`
-- expert trajectory passes but DAgger fails -> `EXPERT_TRAJECTORY_COVERAGE_ONLY`
-- DAgger improves loop but damages static retention -> `DAGGER_RETENTION_TRADEOFF`
-- neither dynamic arm rescues loop -> `DYNAMIC_STATE_TEACHING_INSUFFICIENT`
-
-No shared four-skill brain, attention, episodic memory, hidden inventory or reward-learning comparison is opened in V7.8.
+No shared brain, attention, episodic memory, hidden inventory or reward learning should be reopened until retention under correction is resolved.
