@@ -25,57 +25,48 @@ Fresh confirmation on Cadence 0.85.1.
 `STATIC_REPLAY_NO_RETENTION_RESCUE`
 
 ### Stone Age V7.10
-Frozen-run classification:
-`STATIC_POLICY_NOT_RECOVERABLE_BY_ONE_PASS`
-
-Interpretation reopened after runner audit because replay did not reset before independent static rows.
+Frozen run suggested irrecoverability, but interpretation was reopened after replay-boundary audit.
 
 ### Stone Age V7.10R — Replay Boundary Correction
 `RESET_BOUNDARY_RECOVERY_RESCUE`
 
-- cadence-net 0.88.1
 - 8/8 founders valid
-- exact post-DAGGER branch matched before reset/no-reset replay split
-- only branch difference: `brain.reset()` before each RESET_REPLAY lesson
-- RESET_REPLAY static all-skill median readiness recovered by REPLAY64
-- RESET_REPLAY REPLAY_FULL median exact/fresh:
-  - FOOD 100/100%
-  - FIRE 100/100%
-  - HUNT 100/100%
-  - SHELTER 100/100%
-- CONTINUING_REPLAY REPLAY_FULL median exact/fresh:
-  - FOOD 95.7/93.8%
-  - FIRE 33.3/33.3%
-  - HUNT 66.7/66.7%
-  - SHELTER 66.7/66.7%
-- RESET_REPLAY mean median retention at REPLAY_FULL = 1.000
-- 7/8 founders recover all-four static exact/fresh gates under RESET_REPLAY REPLAY_FULL
-- full all-four readiness remains 0/8 because FIRE loop remains below gate in every founder
-- RESET_REPLAY REPLAY_FULL median loops:
-  - FOOD 100%
-  - FIRE 0%
-  - HUNT 100%
-  - SHELTER 100%
+- reset-matched replay restores all-skill median static readiness
+- RESET_REPLAY REPLAY_FULL exact/fresh medians are 100/100 for FOOD/FIRE/HUNT/SHELTER
+- FOOD/HUNT/SHELTER also retain 100% median loop success
+- FIRE remains 0% median loop despite 100/100 static recovery
+- current dominant boundary: FIRE dynamic trajectory invariance
 
-Interpretation:
-V7.10's apparent static irrecoverability was primarily a replay-boundary/context artifact. Static knowledge is recoverable after DAgger64 when replay uses the same reset boundary as the original cold curriculum.
+## Active frozen experiment
 
-Current dominant boundary:
-**FIRE dynamic trajectory invariance.**
+### Stone Age V7.11 — FIRE Dynamic Invariance Microscope
 
-See: [stone-age-v7-10r](./stone-age-v7-10r/README.md)
+FIRE only.
 
-## Next direction
+Fresh founders:
+- 74001..74008
 
-**Stone Age V7.11 — FIRE Dynamic Invariance Microscope**
-
-FIRE-only representation comparison:
-
+Representation arms:
 - CONTRAST18
 - FIRE_MINIMAL
 - FIRE_MINIMAL_PLUS_PROGRESS
 
-Question:
-Does removing changing nuisance state allow the learned FIRE policy to persist across the multiple consecutive gather decisions, or is explicit action-progress state required?
+Common sequence:
+- reset-per-row static bootstrap
+- DAgger64
+- reset-per-row full static replay
+- exact/fresh/6-episode loop evaluation
+
+FIRE_MINIMAL removes all nuisance dimensions and keeps only wood>=4, stone>=2 and fire_exists.
+
+FIRE_MINIMAL_PLUS_PROGRESS additionally exposes current gather/craft action and normalized action_progress.
+
+Environment sanity:
+- direct deterministic caretaker must solve all 6 held-out FIRE episodes for every founder.
+
+Primary question:
+Does nuisance-invariant task state let the FIRE policy persist across the multiple consecutive decisions required to complete gathering, or is explicit action-progress state required?
+
+See: [stone-age-v7-11](./stone-age-v7-11/README.md)
 
 Shared-brain memory/attention remains closed until the FIRE dynamic boundary is resolved.
