@@ -10,84 +10,51 @@ Fresh confirmation on Cadence 0.85.1.
 ### Memory Keys V0.4B
 Fresh confirmation on Cadence 0.85.1.
 
-### Stone Age V7.13R — Fresh FIRE Boundary Confirmation
+### Stone Age V7.13R
 `FIRE_STREAM_STATE_RESET_CONFIRMED`
 
-Strict fresh confirmation on Cadence 0.88.1.
+Fresh confirmation:
+- 16/16 valid founders
+- 16/16 founder readiness
+- exact/fresh/loop/ready-to-craft medians 100%
+- confirmed recipe: FIRE_MINIMAL + committed gather primitives + stream reset before semantic query
+
+## Active development experiment
+
+### Stone Age V7.14 — Four-Skill Semantic Integration Bridge
 
 Fresh founders:
-- 77001..77016
+- 78001..78008
 
-Frozen successful recipe:
-- FIRE_MINIMAL
-- reset-per-row static bootstrap
-- DAgger64
-- full reset static replay
-- commit gather primitive until immediate resource increment
-- brain.reset() before every semantic high-level query
-- 14-window budget
-- no alternate arms or recipe changes
+Question:
+Can one plain Cadence brain retain and execute FOOD, FIRE, HUNT and SHELTER together when task identity and semantic controller boundaries are explicit?
 
-Results:
-- valid founders: 16/16
-- caretaker oracle: 96/96
-- median exact: 100%
-- median fresh: 100%
-- median loop: 100%
-- median ready-to-craft accuracy: 100%
-- founder readiness: 16/16
-- median high-level queries / decision windows: 2.0 / 3.5
+Arms:
+- SHARED4
+- SEPARATE4_CONTROL
 
-All frozen confirmation gates passed.
+Shared representation:
+- explicit one-hot task context
+- compact semantic prerequisite state
+- no nuisance-heavy raw state
 
-Interpretation:
-FIRE's dynamic failure was a controller-boundary problem: mid-primitive re-decision and per-stream hysteresis across semantic action transitions. Temporally extended gather primitives plus stream reset before the next semantic query reliably resolve it on a larger untouched founder panel.
+Controller:
+- reset before every semantic high-level query
+- temporally extended primitives for persistent actions
+- unchanged skill-specific window budgets
 
-See: [stone-age-v7-13r](./stone-age-v7-13r/README.md)
+Training:
+- complete 16-key semantic truth table
+- 64 presentations/key static bootstrap
+- DAgger64 per skill
+- 64 presentations/key final replay
+- reset before every independent static lesson
 
-## Prior development boundary results
+Primary bridge gate:
+- controls stable in >=6/8 founders
+- shared medians pass all four skill static and loop gates
+- shared all-four founder readiness >=6/8
 
-### Stone Age V7.6R
-`THRESHOLD_ENCODING_RESCUE_SURVIVES_SURPRISE`
+No attention or episodic-memory arm in V7.14.
 
-### Stone Age V7.7R
-`SURPRISE_CONTRAST_STATIC_RESCUE_CLOSED_LOOP_BOTTLENECK`
-
-### Stone Age V7.8
-`DYNAMIC_STATE_TEACHING_INSUFFICIENT`
-
-### Stone Age V7.9
-`STATIC_REPLAY_NO_RETENTION_RESCUE`
-
-### Stone Age V7.10R
-`RESET_BOUNDARY_RECOVERY_RESCUE`
-
-### Stone Age V7.11
-`FIRE_DYNAMIC_INVARIANCE_UNRESOLVED`
-
-### Stone Age V7.12
-`PARTIAL_FIRE_COMMITMENT_SIGNAL`
-
-### Stone Age V7.13
-`FIRE_STREAM_STATE_RESET_RESCUE`
-
-## Next direction
-
-**Stone Age V7.14 — Four-Skill Semantic Integration Bridge**
-
-Reopen shared-brain integration now that the FIRE controller boundary is confirmed.
-
-Initial integration should remain conservative:
-- explicit task/goal context
-- one shared full-11-action brain
-- semantic task-state representation
-- reset before independent teaching rows
-- semantic-boundary stream resets
-- temporally extended motor primitives where actions require persistence
-- separate-brain controls retained
-- no attention or episodic-memory arm yet
-
-Primary question:
-Can one plain Cadence brain retain and execute FOOD, FIRE, HUNT and SHELTER policies together without catastrophic cross-skill interference?
-
-Attention/memory should only be reopened if plain shared capacity is first characterized.
+See: [stone-age-v7-14](./stone-age-v7-14/README.md)
