@@ -24,58 +24,54 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.9
 `STATIC_REPLAY_NO_RETENTION_RESCUE`
 
-### Stone Age V7.10
-Frozen run suggested irrecoverability, but interpretation was reopened after replay-boundary audit.
-
 ### Stone Age V7.10R
 `RESET_BOUNDARY_RECOVERY_RESCUE`
 
-Reset-matched replay restores the static policy. FIRE remains the dominant dynamic failure.
-
-### Stone Age V7.11 — FIRE Dynamic Invariance Microscope
+### Stone Age V7.11
 `FIRE_DYNAMIC_INVARIANCE_UNRESOLVED`
 
-- cadence-net 0.88.1
 - 8/8 founders valid
 - caretaker oracle 48/48
-- final reset-replay static medians:
-  - CONTRAST18 100/100
-  - FIRE_MINIMAL 100/100
-  - FIRE_MINIMAL_PLUS_PROGRESS 100/100
+- final static exact/fresh 100/100 medians for all three representation arms
 - final loop medians:
   - CONTRAST18 0%
   - FIRE_MINIMAL 0%
   - FIRE_MINIMAL_PLUS_PROGRESS 25%
-- final-ready founders:
-  - CONTRAST18 2/8
-  - FIRE_MINIMAL 2/8
-  - FIRE_MINIMAL_PLUS_PROGRESS 0/8
-- minimal arms show no frozen median loop gain over CONTRAST18
-
-Trace-level interpretation:
-- failures concentrate on intermediate gather-continuation states
-- the brain often switches away from GATHER_WOOD/GATHER_STONE before the resource increment completes
-- some founders specialize by missing-resource branch
+- failure traces concentrate on mid-gather action switches
 - explicit progress state is informative but not sufficient
-- some 6/6 post-DAGGER progress policies fall to 3/6 after cold static replay
+- current dominant boundary: temporal action commitment / motor primitive persistence
 
-Current dominant boundary:
-**temporal action commitment / multi-decision motor primitive persistence**, with progress-conditioned retention as a secondary interaction.
+## Active frozen experiment
 
-See: [stone-age-v7-11](./stone-age-v7-11/README.md)
+### Stone Age V7.12 — FIRE Temporal Action-Commitment Control
 
-## Next direction
+FIRE only.
 
-**Stone Age V7.12 — FIRE Temporal Action-Commitment Control**
+Fresh founders:
+- 75001..75008
 
-Compare the same trained FIRE policy under:
+Representations:
+- CONTRAST18
+- FIRE_MINIMAL
+- FIRE_MINIMAL_PLUS_PROGRESS
 
-- DECISION_LEVEL: current 0.55 s re-decision cadence
-- COMMIT_TO_COMPLETION: once a gather action is chosen, execute it until the corresponding resource increment completes, then ask the brain again
+Training matches V7.11.
+
+Final frozen brain is evaluated under:
+- DECISION_LEVEL
+- COMMIT_TO_COMPLETION
+
+COMMIT_TO_COMPLETION holds GATHER_WOOD or GATHER_STONE until the corresponding resource increases before querying the brain again.
+
+Fairness:
+- both modes share the same 14 decision-window episode budget
+- internal committed windows consume that same budget
+- same held-out seeds and variants
+- no extra learning
 
 Primary question:
-Does FIRE succeed when high-level gather actions are treated as temporally extended motor primitives?
+Does the learned FIRE policy succeed when gather actions are treated as temporally extended motor primitives rather than re-decided every 0.55 s?
 
-No additional learning is required for the core commitment control.
+See: [stone-age-v7-12](./stone-age-v7-12/README.md)
 
 Shared-brain memory/attention remains closed until this temporal-action boundary is resolved.
