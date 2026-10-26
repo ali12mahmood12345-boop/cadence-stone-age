@@ -33,46 +33,57 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.12
 `PARTIAL_FIRE_COMMITMENT_SIGNAL`
 
-- temporal commitment materially improves FIRE_MINIMAL for a subset of founders
-- median FIRE_MINIMAL loop 0% -> 50%
-- only 3/8 founders commit-ready
-- remaining failures usually occur after gather completion at the semantic transition to CRAFT_FIRE
-- cold FIRE_MINIMAL static readout remains 100/100
-
-Current dominant boundary:
-**per-stream state / hysteresis across semantic action boundaries.**
-
-## Active frozen experiment
-
 ### Stone Age V7.13 — FIRE Semantic Boundary Reset Control
+`FIRE_STREAM_STATE_RESET_RESCUE`
 
-FIRE only.
+- cadence-net 0.88.1
+- 8/8 founders valid
+- caretaker oracle 48/48
+- FIRE_MINIMAL static medians 100/100 exact/fresh
+- same frozen final brain compared under both modes
+- same 14-window environment budget
+- COMMIT_CONTINUING:
+  - median loop 100%
+  - ready founders 5/8
+  - median ready-to-craft accuracy 50%
+  - median 2.5 high-level queries / 4.5 windows
+- COMMIT_RESET_QUERY:
+  - median loop 100%
+  - ready founders 8/8
+  - median ready-to-craft accuracy 100%
+  - median 2.0 high-level queries / 3.5 windows
+- paired founder loop comparison:
+  - reset wins 3/8
+  - ties 5/8
+  - losses 0/8
 
-Fresh founders:
-- 76001..76008
+Interpretation:
+FIRE's remaining dynamic failure was per-stream hysteresis across semantic primitive boundaries. Temporally extended gather primitives plus `brain.reset()` before the next high-level query restore reliable ready-to-craft action selection.
 
-Representation:
-- FIRE_MINIMAL
-
-Training:
-- same V7.12 static bootstrap / DAgger64 / full reset replay
-
-Final frozen brain comparison:
-- COMMIT_CONTINUING
-- COMMIT_RESET_QUERY
-
-Only difference:
-- COMMIT_RESET_QUERY calls `brain.reset()` immediately before every high-level action query.
-
-Both modes:
-- same 14 decision-window budget
-- same seeds/variants
-- same gather commitment rule
-- no extra learning
-
-Primary question:
-Does clearing stream state at primitive boundaries restore the correct CRAFT_FIRE transition after gathering completes?
+Current successful FIRE controller recipe:
+- FIRE_MINIMAL visible task state
+- commit gather primitive until immediate resource increment
+- reset stream before next semantic high-level query
 
 See: [stone-age-v7-13](./stone-age-v7-13/README.md)
 
-Shared-brain memory/attention remains closed until this control is resolved.
+## Next direction
+
+**Stone Age V7.13R — Fresh FIRE Boundary Confirmation**
+
+Exact frozen replication only:
+- FIRE_MINIMAL
+- static bootstrap
+- DAgger64
+- full reset replay
+- gather commitment
+- reset before every high-level query
+- 14-window budget
+- no recipe changes
+
+Recommended untouched founder panel:
+- 77001..77016
+- minimum valid 12/16
+- confirmation >=12/16 individually ready
+
+If V7.13R confirms, reopen the next Stone Age integration stage. Shared-brain memory/attention remains closed until that fresh confirmation.
