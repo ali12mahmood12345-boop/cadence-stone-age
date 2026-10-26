@@ -35,63 +35,43 @@ Retrieval evidence remains informative. V0.5B / PR #1 provides an identifiable h
 `DEEPER_REPRESENTATION_ASSOCIATION_BOTTLENECK`
 
 ### Stone Age V7.6
-Original `STONE_AGE_SENSOR_ENCODING_BOTTLENECK`; reopened after 0.88.1 corrected normalized-teaching guidance.
+Original sensory-encoding diagnosis; reopened after the 0.88.1 normalized-teaching correction.
 
 ### Stone Age V7.6R
 `THRESHOLD_ENCODING_RESCUE_SURVIVES_SURPRISE`
 
-- 8/8 valid.
-- RAW18_SURPRISE failed all-skill readiness.
-- CONTRAST18_SURPRISE passed.
-- Founder-level all-four readiness: CONTRAST surprise 7/8, RAW surprise 0/8.
-- The 0.88.1 surprise correction reduces some raw collapse but does not remove the representation gap.
-
 ### Stone Age V7.7
 Original 0.88.0/calm protocol superseded before run.
 
-### Stone Age V7.7R — Surprise-Corrected Contrast Integration Bridge
+### Stone Age V7.7R
 `SURPRISE_CONTRAST_STATIC_RESCUE_CLOSED_LOOP_BOTTLENECK`
 
-- cadence-net 0.88.1.
 - 8/8 founders valid.
-- learning_surprise=True from lesson 0 in every arm.
-- CONTRAST18_SURPRISE_FULL11 median static exact/fresh:
-  - FOOD 100/100%
-  - FIRE 100/100%
-  - HUNT 100/100%
-  - SHELTER 100/100%
-- Closed-loop medians for the same full-11 contrast arm:
+- contrast + surprise + full11 reaches 100/100 median exact/fresh on all four skills.
+- closed-loop full11 medians:
   - FOOD 0%
   - FIRE 0%
   - HUNT 100%
   - SHELTER 0%
-- CONTRAST18_SURPRISE_LOCAL static also passes all skills, but closed-loop remains mixed:
-  - FOOD 16.7%
-  - FIRE 33.3%
-  - HUNT 0%
-  - SHELTER 100%
-- Founder-level all-four readiness:
-  - RAW full11 0/8
-  - CONTRAST full11 0/8
-  - CONTRAST local 1/8
+- local output helps some skills but does not solve the general dynamic boundary.
 
-Interpretation: contrast encoding plus corrected teaching solves the tested multiclass static acquisition problem. The remaining boundary is dynamic intermediate-state coverage / trajectory stability, with unused-action competition as a secondary effect.
+Interpretation: tested static multiclass acquisition is solved; real intermediate-state coverage / trajectory stability is the current Stone Age boundary.
 
-See: [stone-age-v7-7r](./stone-age-v7-7r/README.md)
+## Active frozen experiment
 
-## Next direction
+### Stone Age V7.8 — Caretaker / DAgger Dynamic-State Bridge
 
-**Stone Age V7.8 — Caretaker / DAgger Dynamic-State Bridge**
+Cadence 0.88.1, CONTRAST18, full11, surprise from lesson 0.
 
-Bootstrap the successful CONTRAST18 + surprise + full11 policy, then teach on states the brain itself reaches in the real environment using a deterministic caretaker label.
-
-Primary arms:
+Arms:
 - STATIC_ONLY
+- SCRIPTED_EXPERT_TRAJECTORY
 - CARETAKER_DAGGER
 
-Optional diagnostic:
-- SCRIPTED_EXPERT_TRAJECTORY
+Both dynamic arms receive exactly 128 labeled dynamic states per skill.
 
-Primary question: can on-path corrective teaching convert V7.7R's perfect static policy into robust closed-loop chain execution while retaining static accuracy?
+Primary question: does correction on the states the brain itself reaches convert the V7.7R static policy into robust closed-loop chain execution while preserving static exact/fresh retention?
 
-Keep shared-brain memory/attention closed until this dynamic-state bridge is resolved.
+See: [stone-age-v7-8](./stone-age-v7-8/README.md)
+
+Shared-brain memory/attention remains closed until this bridge is resolved.
