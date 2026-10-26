@@ -33,57 +33,43 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.12
 `PARTIAL_FIRE_COMMITMENT_SIGNAL`
 
-### Stone Age V7.13 — FIRE Semantic Boundary Reset Control
+### Stone Age V7.13
 `FIRE_STREAM_STATE_RESET_RESCUE`
 
-- cadence-net 0.88.1
+Development result:
 - 8/8 founders valid
-- caretaker oracle 48/48
-- FIRE_MINIMAL static medians 100/100 exact/fresh
-- same frozen final brain compared under both modes
-- same 14-window environment budget
-- COMMIT_CONTINUING:
-  - median loop 100%
-  - ready founders 5/8
-  - median ready-to-craft accuracy 50%
-  - median 2.5 high-level queries / 4.5 windows
-- COMMIT_RESET_QUERY:
-  - median loop 100%
-  - ready founders 8/8
-  - median ready-to-craft accuracy 100%
-  - median 2.0 high-level queries / 3.5 windows
-- paired founder loop comparison:
-  - reset wins 3/8
-  - ties 5/8
-  - losses 0/8
+- FIRE_MINIMAL exact/fresh medians 100/100
+- commitment + reset-before-query gives 8/8 founder readiness
+- ready-to-craft accuracy median 100%
+- mechanism: stream-state hysteresis across semantic primitive boundaries
 
-Interpretation:
-FIRE's remaining dynamic failure was per-stream hysteresis across semantic primitive boundaries. Temporally extended gather primitives plus `brain.reset()` before the next high-level query restore reliable ready-to-craft action selection.
+## Active confirmation
 
-Current successful FIRE controller recipe:
-- FIRE_MINIMAL visible task state
-- commit gather primitive until immediate resource increment
-- reset stream before next semantic high-level query
+### Stone Age V7.13R — Fresh FIRE Boundary Confirmation
 
-See: [stone-age-v7-13](./stone-age-v7-13/README.md)
+Strict replication only.
 
-## Next direction
-
-**Stone Age V7.13R — Fresh FIRE Boundary Confirmation**
-
-Exact frozen replication only:
-- FIRE_MINIMAL
-- static bootstrap
-- DAgger64
-- full reset replay
-- gather commitment
-- reset before every high-level query
-- 14-window budget
-- no recipe changes
-
-Recommended untouched founder panel:
+Fresh founders:
 - 77001..77016
-- minimum valid 12/16
-- confirmation >=12/16 individually ready
 
-If V7.13R confirms, reopen the next Stone Age integration stage. Shared-brain memory/attention remains closed until that fresh confirmation.
+Frozen recipe:
+- FIRE_MINIMAL
+- reset-per-row static bootstrap
+- DAgger64
+- full reset static replay
+- commit gather primitive to resource increment
+- brain.reset() before every high-level semantic query
+- 14-window budget
+- no extra learning during evaluation
+
+Confirmation requires:
+- >=12/16 valid founders
+- median exact >=90%
+- median fresh >=80%
+- median loop >=4/6
+- median ready-to-craft accuracy =100%
+- >=12/16 individually ready
+
+See: [stone-age-v7-13r](./stone-age-v7-13r/README.md)
+
+No broader Stone Age integration is reopened until this confirmation is complete.
