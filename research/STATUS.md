@@ -24,7 +24,7 @@ Fresh confirmation on Cadence 0.85.1.
 - autonomous arm itself was 8/8 ready with 100% final static/scenario medians
 - control failed only on HUNT_THEN_SLEEP because surplus-resource HUNT-with-spear state fell outside confirmed V7.14 canonical task representation
 
-### Stone Age V7.15C — Tasked Control Canonicalization Correction
+### Stone Age V7.15C
 `AUTONOMOUS_GOAL_ROUTING_BRIDGE_PASS`
 
 Fresh founders:
@@ -48,49 +48,40 @@ Correction:
 - HUNT + has_spear canonicalized to confirmed HUNT_HAS_SPEAR key
 - SHELTER + shelter_exists canonicalized to confirmed SHELTER_EXISTS key
 - autonomous arm unchanged
-- all other protocol elements unchanged
 
-Training trajectory:
-- POST_DAGGER64 autonomous overall static median 65.4%
-- FIRE_COLD 25%
-- SHELTER_SLEEP 0%
-- HUNT_THEN_SLEEP 0%
-- ALL_NEEDS 0%
-- POST_REPLAY_FULL restores all static/scenario medians to 100%
-- replay reconsolidation again reproduced on fresh founders
+## Active confirmation
 
-Interpretation:
-The V7.15 control objection is resolved. One plain Cadence brain can autonomously route among FOOD/FIRE/HUNT/SHELTER from global semantic need/world state in this development setup.
-
-See: [stone-age-v7-15c](./stone-age-v7-15c/README.md)
-
-## Next direction
-
-**Stone Age V7.15R — Fresh Autonomous Goal Routing Confirmation**
+### Stone Age V7.15R — Fresh Autonomous Goal Routing Confirmation
 
 Strict replication of corrected V7.15C.
 
-Recommended untouched founders:
+Fresh founders:
 - 82001..82016
 
-Freeze:
-- AUTONOMOUS_GLOBAL
-- corrected TASKED_SHARED_CONTROL
-- 26 global semantic keys
-- caretaker priority
-- bootstrap
-- DAgger64/scenario
-- reset replay
-- 8 scenarios/budgets
-- semantic motor primitives
-- stream reset
+Frozen:
+- AUTONOMOUS_GLOBAL unchanged
+- corrected TASKED_SHARED_CONTROL unchanged
+- same 26 global semantic keys
+- same caretaker priority
+- same bootstrap
+- same DAgger64/scenario
+- same reset replay
+- same 8 scenarios and budgets
+- same semantic motor primitives
+- same stream reset
 - same gates
 
-Confirmation:
+Confirmation requires:
 - >=12/16 valid
 - >=12/16 autonomous-ready
-- >=12/16 tasked all-scenario ready
-- all autonomous static/scenario median gates pass
-- all tasked standard/corrected-scenario median gates pass
+- >=12/16 corrected tasked all-scenario ready
+- all autonomous static median gates pass
+- all 8 autonomous scenario median gates pass
+- all tasked standard and corrected-scenario median gates pass
 
-Do not open attention, episodic memory, reward learning, or Cadence 0.89.0 positional recall until V7.15R is complete.
+Target classification:
+`AUTONOMOUS_GOAL_ROUTING_CONFIRMED`
+
+No attention, episodic memory, reward learning, or Cadence 0.89.0 positional recall until V7.15R is complete.
+
+See: [stone-age-v7-15r](./stone-age-v7-15r/README.md)
