@@ -1,210 +1,175 @@
 # Stone Age V7.16 — Positional Recall Temporal-History Bridge
 
-Status: **development protocol / frozen before run**
+Status: **development complete**
 
 Cadence: **0.89.0**
 
-V7.15R freshly confirmed autonomous semantic goal routing when the correct decision is inferable from the current global semantic observation.
+Official frozen classification:
 
-V7.16 deliberately removes that possibility.
+`POSITIONAL_RECALL_TEMPORAL_HISTORY_BRIDGE_PASS`
 
-## Question
+## Purpose
 
-Can Cadence 0.89.0's learned recall-position term solve a Stone Age temporal-order task in which the **current query observation is identical** and the correct action depends only on whether a past event happened first or last?
+V7.16 tested Cadence 0.89.0's learned recall-position term on a deliberately temporal Stone Age component task.
+
+Each episode contained five resource events:
+- WOOD
+- STONE
+- BERRY
+- RABBIT
+
+The first and last resources were always different.
+
+The brain then received an identical `FIRST` or `LAST` query and had to return the semantic action corresponding to that endpoint resource.
+
+The query itself contained no resource identity.
 
 ## Fresh founders
 
 `83001..83008`
 
-- 8 founders total
-- minimum valid: 6/8
+Valid paired founders:
+- **7/8**
+- frozen minimum: 6/8
 
-## Stone Age temporal stream
+Founder 83007 was excluded from the paired-valid set only because RECALL_OFF emitted a finite free-phase settling warning at training lesson 1010, which the runner treated as an error.
 
-Each episode contains five resource-event moments.
+Importantly, founder 83007's POSITION32 arm itself completed training and scored:
+- overall: 100%
+- FIRST: 100%
+- LAST: 100%
+- position maps moved: yes
 
-Resource symbols:
-- `WOOD`
-- `STONE`
-- `BERRY`
-- `RABBIT`
-
-The first and last resource are always different.
-The three middle events are sampled independently.
-
-After the five resource moments, the brain receives one query:
-- `FIRST`
-- `LAST`
-
-The query observation itself contains **no resource identity**.
-
-Correct answer:
-- if the queried event was WOOD -> `GATHER_WOOD`
-- STONE -> `GATHER_STONE`
-- BERRY -> `PICK_BERRIES`
-- RABBIT -> `HUNT_RABBIT`
-
-Thus:
-- the visible query state is identical across answers
-- both endpoint resources are present in the same episode
-- current-state-only inference cannot solve the task
-- content alone cannot identify whether the requested slot is first or last
-
-## Inputs / actions
-
-Inputs: 6 one-hot symbols:
-- 0 WOOD
-- 1 STONE
-- 2 BERRY
-- 3 RABBIT
-- 4 FIRST
-- 5 LAST
-
-Actions: 4 semantic Stone Age responses:
-- GATHER_WOOD
-- GATHER_STONE
-- PICK_BERRIES
-- HUNT_RABBIT
-
-This is a bounded temporal-memory component test, not a full-game survival evaluation.
-
-## Arms
+## Result
 
 ### POSITION32
 
-```python
-Brain.compose(
-    inputs=6,
-    actions=4,
-    modules=(24,),
-    episodic=False,
-    recall=True,
-    recall_position=32,
-    recall_recency=0.0,
-    recall_temperature=0.25,
-    teaching="normalized",
-)
-```
+Median held-out accuracy across valid founders:
+- overall: **100%**
+- FIRST: **100%**
+- LAST: **100%**
 
-This is the Cadence 0.89.0 founder positional-recall term.
+Founder robustness:
+- both cues >=80%: **7/7 valid founders**
+- position maps moved: **7/7 valid founders**
+
+Diagnostic including the otherwise-invalid founder 83007:
+- all 8 POSITION32 arms individually reached 100% overall/FIRST/LAST
 
 ### POSITION0
 
-Identical recipe except:
-
-`recall_position=0`
-
-This keeps Recall but removes learned positional slot-age terms.
+Median held-out:
+- overall: **47.9%**
+- FIRST: **29.1%**
+- LAST: **69.7%**
 
 ### RECALL_OFF
 
-Identical inputs/actions/modules/seed and teaching, but:
-- `recall=False`
+Median held-out:
+- overall: **55.0%**
+- FIRST: **23.6%**
+- LAST: **83.2%**
 
-This is the current-query-only baseline.
+## Paired positional advantage
 
-## Pairing
+POSITION32 vs POSITION0:
+- median gain: **+52.1 percentage points**
+- founders with >=15-point gain: **7/7 valid**
 
-For each founder:
-- all arms use the same seed
-- all arms receive exactly the same training episodes
-- all arms receive exactly the same held-out test episodes
+POSITION32 vs RECALL_OFF:
+- median gain: **+45.0 percentage points**
 
-No founder/arm sees another arm's test labels during training.
+All frozen gates passed.
 
-## Episode boundary
+## Important baseline interpretation correction
 
-Every episode starts with:
+The frozen protocol described RECALL_OFF as a "current-query-only" baseline.
 
-`brain.reset()`
+That wording is too strong.
 
-The five resource events are then presented with greedy `brain.act()`.
+`recall=False` removes Recall, but Cadence's default working trace remains active unless explicitly silenced. Therefore RECALL_OFF is correctly interpreted as:
 
-At the query:
-1. call `brain.lesson(query, correct_action)`
-2. then call `brain.act(query, greedy=True)`
+> **no-Recall baseline with the default working trace still present**
 
-Teaching therefore occurs **before** the query act writes that same moment into Recall, matching the released 0.89.0 look-back benchmark and avoiding act-then-lesson self-read contamination.
+This explains the strong LAST bias:
+- RECALL_OFF median LAST: 83.2%
+- RECALL_OFF median FIRST: 23.6%
 
-## Training
+The default working trace can carry recent information, so the no-Recall arm is not a pure present-only system.
 
-Per founder / arm:
-- 1200 training episodes
-- FIRST/LAST sampled approximately 50/50
-- endpoint symbols sampled uniformly with first != last
-- middle three resource events sampled uniformly
-- only the query moment is taught
+This does **not** undermine the main positional-recall result.
 
-No reward learning.
-No episodic memory.
-No attention/multi-head option.
-No recency bias.
+The causal comparison is POSITION32 vs POSITION0:
+- same Recall mechanism
+- same seed
+- same training episodes
+- same held-out episodes
+- same working trace/default brain machinery
+- same recency setting
+- only `recall_position` differs: 32 vs 0
 
-## Held-out evaluation
+That paired comparison shows a +52.1-point median advantage and 7/7 valid founder wins by at least 15 points.
 
-Per founder / arm:
-- 240 fresh episodes
-- same paired test episodes across arms
-- no teaching during test
-- 120-ish FIRST and 120-ish LAST queries by RNG
+## Scientific interpretation
 
-Metrics:
-- FIRST accuracy
-- LAST accuracy
-- overall accuracy
-- per-resource accuracy
-- confusion counts
-- POSITION32 position maps moved
-- pairwise POSITION32 minus POSITION0
-- pairwise POSITION32 minus RECALL_OFF
+The result supports the bounded claim:
 
-Chance baseline:
-- 25%
+> Cadence 0.89.0's learned recall-position term can teach a cue to retrieve a past Stone Age resource event by temporal position, distinguishing FIRST from LAST when resource content alone does not identify the requested endpoint.
 
-## Frozen gates
+The asymmetry in the controls is itself informative:
+- without learned position, LAST remains much easier than FIRST
+- with POSITION32, both cues reach 100%
 
-Run validity:
-- >=6/8 valid founders
-
-POSITION32 median performance:
-- overall >=90%
-- FIRST >=90%
-- LAST >=90%
-
-Founder robustness:
-- >=6/8 valid founders have FIRST >=80% and LAST >=80%
-
-Position-learning evidence:
-- position maps moved in >=6/8 valid founders
-
-Paired advantage:
-- median POSITION32 - POSITION0 overall >=20 percentage points
-- >=6/8 founders POSITION32 beats POSITION0 overall by >=15 points
-- median POSITION32 - RECALL_OFF overall >=40 percentage points
-
-## Frozen classification
-
-1. valid founders <6 -> `INSUFFICIENT_V7_16_RUNS`
-2. position maps fail to move -> `POSITION_TERM_NOT_TAUGHT`
-3. POSITION32 passes performance and paired-advantage gates -> `POSITIONAL_RECALL_TEMPORAL_HISTORY_BRIDGE_PASS`
-4. POSITION32 solves the task but lacks POSITION0 advantage -> `TEMPORAL_TASK_SOLVED_WITHOUT_POSITION_ADVANTAGE`
-5. POSITION32 fails temporal performance gates -> `POSITIONAL_RECALL_ACQUISITION_BOTTLENECK`
-6. otherwise -> `PARTIAL_POSITIONAL_RECALL_SIGNAL`
+This is consistent with recent-state information remaining available through non-positional stream dynamics, while the learned slot-age term supplies the missing ability to deliberately address older versus newer events.
 
 ## Boundaries
 
-This experiment tests only:
-- learned slot-age positional recall
-- FIRST versus LAST retrieval
-- a bounded five-event stream
-- four Stone Age resource event meanings
+This is a bounded component result.
 
-It does **not** yet test:
-- full Stone Age autonomous survival with Recall enabled
-- long-horizon memory
-- arbitrary natural-language order questions
-- attention heads
-- episodic memory
-- reward-only learning
+It does not yet establish:
+- arbitrary temporal reasoning
+- long-horizon recall
+- full Stone Age survival with Recall
+- attention-head benefits
+- episodic-memory benefits
+- reward-trained positional recall
 
-No post-hoc changes.
+No post-hoc gates or recipe changes were made.
+
+## Next direction
+
+**Stone Age V7.16R — Fresh Positional Recall Temporal-History Confirmation**
+
+Strict replication of V7.16 on a larger untouched founder panel.
+
+Recommended founders:
+- `84001..84016`
+
+Keep unchanged:
+- Cadence 0.89.0
+- POSITION32 / POSITION0 / RECALL_OFF
+- five-event streams
+- FIRST/LAST endpoints forced different
+- 1200 training episodes
+- 240 held-out episodes
+- lesson-before-query-act
+- recall_recency=0
+- same modules and teaching
+- same frozen gates
+
+For documentation, call RECALL_OFF a **no-Recall baseline with default working trace retained**. Do not change the actual arm.
+
+Recommended confirmation:
+- >=12/16 valid paired founders
+- POSITION32 median overall/FIRST/LAST >=90%
+- >=12 valid founders both cues >=80%
+- position maps moved in >=12 valid founders
+- median POSITION32-POSITION0 >=20 points
+- >=12 valid founders gain >=15 points vs POSITION0
+- median POSITION32-RECALL_OFF >=40 points
+
+If these pass, classify:
+
+`POSITIONAL_RECALL_TEMPORAL_HISTORY_CONFIRMED`
+
+Do not integrate Recall into full autonomous Stone Age survival until the fresh confirmation is complete.
