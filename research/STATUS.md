@@ -21,7 +21,7 @@ Fresh confirmation on Cadence 0.85.1.
 
 ## Development results
 
-### Stone Age V7.16 — Positional Recall Temporal-History Bridge
+### Stone Age V7.16
 `POSITIONAL_RECALL_TEMPORAL_HISTORY_BRIDGE_PASS`
 
 Cadence:
@@ -30,66 +30,66 @@ Cadence:
 Fresh founders:
 - 83001..83008
 - 7/8 paired-valid
-- minimum valid 6/8
 
-POSITION32 medians:
-- overall 100%
-- FIRST 100%
-- LAST 100%
-- both-cue robust founders 7/7 valid
+POSITION32:
+- median overall/FIRST/LAST 100/100/100
+- robust 7/7 valid founders
 - position maps moved 7/7 valid
 
-POSITION0 medians:
-- overall 47.9%
+POSITION0:
+- median overall 47.9%
 - FIRST 29.1%
 - LAST 69.7%
 
-RECALL_OFF medians:
-- overall 55.0%
+RECALL_OFF:
+- median overall 55.0%
 - FIRST 23.6%
 - LAST 83.2%
+- interpreted as no Recall with default working trace retained
 
 Paired advantage:
-- POSITION32 - POSITION0 median +52.1 points
+- POSITION32 - POSITION0 +52.1 points median
 - 7/7 valid founders gain >=15 points
-- POSITION32 - RECALL_OFF median +45.0 points
+- POSITION32 - RECALL_OFF +45.0 points median
 
 Founder 83007:
-- paired-invalid only because RECALL_OFF hit a finite free-phase settling warning at lesson 1010
-- POSITION32 itself completed and scored 100% overall/FIRST/LAST with position maps moved
+- paired-invalid because RECALL_OFF hit a finite free-phase warning
+- POSITION32 itself still scored 100/100/100
 
-Baseline interpretation correction:
-- RECALL_OFF is a no-Recall baseline, not truly present-only
-- default working trace remains active
-- this likely explains strong LAST / weak FIRST asymmetry
-- main causal result remains POSITION32 vs POSITION0, where only recall_position differs
+## Active confirmation
 
-All frozen V7.16 gates passed.
+### Stone Age V7.16R — Fresh Positional Recall Temporal-History Confirmation
 
-Interpretation:
-Cadence 0.89.0 learned positional Recall can retrieve a resource event by temporal endpoint in this bounded five-event task.
+Strict replication of V7.16.
 
-See: [stone-age-v7-16](./stone-age-v7-16/README.md)
-
-## Next direction
-
-**Stone Age V7.16R — Fresh Positional Recall Temporal-History Confirmation**
-
-Recommended untouched founders:
+Fresh founders:
 - 84001..84016
 
-Strict V7.16 replication:
-- same POSITION32 / POSITION0 / RECALL_OFF arms
-- same training/test episodes and pairing
-- same five-event FIRST/LAST task
-- same recency-off setting
+Frozen:
+- Cadence 0.89.0
+- POSITION32 / POSITION0 / RECALL_OFF
+- same five-event streams
+- first != last
+- same 1200 training episodes
+- same 240 held-out episodes
+- same pairing
 - same lesson-before-query-act boundary
+- same recency-off setting
+- same modules
 - same gates
 
-Documentation only:
-- describe RECALL_OFF correctly as no Recall with default working trace retained
+Confirmation requires:
+- >=12/16 paired-valid
+- POSITION32 median overall/FIRST/LAST >=90%
+- >=12 robust POSITION32 founders
+- position maps moved >=12 valid founders
+- median gain vs POSITION0 >=20 points
+- >=12 valid founders gain >=15 points vs POSITION0
+- median gain vs RECALL_OFF >=40 points
 
-Target confirmation:
+Target:
 `POSITIONAL_RECALL_TEMPORAL_HISTORY_CONFIRMED`
 
-Do not integrate Recall into full autonomous Stone Age survival until V7.16R is complete.
+Do not integrate Recall into the full autonomous Stone Age agent until V7.16R is complete.
+
+See: [stone-age-v7-16r](./stone-age-v7-16r/README.md)
