@@ -1,163 +1,164 @@
 # Stone Age V7.14R — Fresh Four-Skill Shared Semantic Confirmation
 
-Status: **confirmation protocol / frozen before run**
+Status: **fresh confirmation complete**
 
 Cadence: **0.88.1**
 
-V7.14 development established that one plain Cadence brain can retain and execute FOOD, FIRE, HUNT and SHELTER together when task identity is explicit, visible state is semantic, persistent actions are committed to their immediate semantic effects, stream state is reset before high-level queries, and a reset-matched semantic replay is used after DAgger.
+Official classification:
 
-V7.14R is a strict fresh confirmation of that exact recipe.
+`FOUR_SKILL_SHARED_SEMANTIC_BRIDGE_CONFIRMED`
 
-## Question
+## Purpose
 
-Does the V7.14 shared four-skill semantic bridge reproduce on a larger untouched founder panel without any recipe changes?
+V7.14R was a strict fresh confirmation of the successful V7.14 four-skill shared semantic bridge.
 
-## Fresh founder panel
+The exact V7.14 `run_founder()` implementation was reused unchanged.
 
-`79001..79016`
+Fresh founders:
+- `79001..79016`
 
-- 16 founders total
-- minimum valid: 12/16
-- shared confirmation threshold: 12/16 all-four ready
-- control stability threshold: 12/16 all-four ready
+No representation, training, controller, replay, or gate changes were introduced.
 
-## Frozen arms
+## Frozen recipe
 
-### SHARED4
+Arms:
+- `SHARED4`
+- `SEPARATE4_CONTROL`
 
-One shared 18-input / 11-action brain trained on all four skills.
+Matched initialization:
+- one untrained base brain per founder
+- deep-copy into the shared brain and all four single-skill controls before teaching
 
-### SEPARATE4_CONTROL
+Representation:
+- explicit FOOD/FIRE/HUNT/SHELTER one-hot task context
+- compact semantic prerequisite state
+- 16 canonical semantic policy keys
 
-Four separate brains, one per skill.
+Training:
+1. 64 reset-per-row presentations per semantic key
+2. DAgger64 per skill
+3. full 64-presentations-per-key reset-matched semantic replay
 
-For each founder, the shared brain and all four controls are deep-copied from the same untrained base brain before any teaching.
+Controller:
+- `brain.reset()` before every semantic high-level query
+- persistent actions committed to their immediate semantic effect
+- original skill-specific episode budgets
 
-## Frozen representation
+No attention, episodic memory, reward-learning arm, or task-context weakening.
 
-18-wide semantic vector.
+## Result
 
-Task context:
-- input 0 = FOOD
-- input 1 = FIRE
-- input 2 = HUNT
-- input 3 = SHELTER
+All **16/16 founders were valid**.
 
-Semantic state:
-- input 4 = prerequisite A
-- input 5 = prerequisite B
-- input 6 = terminal/tool flag
+Caretaker oracle:
+- **384/384**
 
-All remaining inputs = 0.
+Final post-replay medians:
 
-The same 16 canonical semantic policy keys from V7.14 are used unchanged:
+| Skill | SHARED static | SHARED loop | CONTROL static | CONTROL loop |
+| --- | ---: | ---: | ---: | ---: |
+| FOOD | 100% | 100% | 100% | 100% |
+| FIRE | 100% | 100% | 100% | 100% |
+| HUNT | 100% | 100% | 100% | 100% |
+| SHELTER | 100% | 100% | 100% | 100% |
 
-- FOOD: 2
-- FIRE: 4
-- HUNT: 5
-- SHELTER: 5
+Founder all-four readiness:
+- SHARED4: **16/16**
+- SEPARATE4_CONTROL: **16/16**
+- frozen requirement: >=12/16
 
-## Frozen training
+All frozen confirmation gates passed.
 
-Architecture:
-- inputs = 18
-- actions = 11
-- modules = (32,16)
-- teaching = normalized
-- learning_surprise=True from lesson 0
-- qualified teaching
+## Stronger founder-level result
 
-Static bootstrap:
-- 64 presentations per canonical key
-- brain.reset() before every independent static lesson
-- shared arm uses deterministic balanced interleaving across all 16 keys
-- controls use the same per-key dose on their skill subset
+The confirmation is stronger than the run-level median gates:
 
-DAgger:
-- exactly 64 learner-path labels per skill
-- SHARED4 receives 256 total labels, round-robin by skill
-- each separate control receives 64 labels for its own skill
-- brain.reset() before every semantic high-level query
-- learner acts before lesson
-- caretaker labels the same state
-- execute learner pre-lesson action through the frozen semantic primitive controller
+> Every final POST_REPLAY_FULL shared and control static score and loop score is 100% across all 16 founders.
 
-Final replay:
-- 64 presentations per canonical key
-- same reset-before-row boundary
-- same deterministic balanced interleaving
+Final pairwise SHARED vs CONTROL:
+- FOOD static: 16 ties
+- FOOD loop: 16 ties
+- FIRE static: 16 ties
+- FIRE loop: 16 ties
+- HUNT static: 16 ties
+- HUNT loop: 16 ties
+- SHELTER static: 16 ties
+- SHELTER loop: 16 ties
 
-## Frozen controller
+There are no final shared losses on the fresh confirmation panel.
 
-Before every high-level query:
-- call brain.reset()
+## Training trajectory
 
-Persistent semantic primitives:
-- PICK_BERRIES until food inventory increases
-- GATHER_WOOD until wood increases
-- GATHER_STONE until stone increases
-- HUNT_RABBIT until rabbits_hunted increases or budget expires
-- SLEEP until energy>=88 or budget expires
+The strict replication reproduces the same important qualitative mechanism from V7.14.
 
-Other actions execute one normal decision window.
+### STATIC_ONLY
 
-Skill budgets remain unchanged:
-- FOOD: 12
-- FIRE: 14
-- HUNT: 16
-- SHELTER: 22
+Shared and control median static/loop performance is 100/100 across all four skills.
 
-## Evaluation checkpoints
+### POST_DAGGER64
 
-Evaluate SHARED4 and SEPARATE4_CONTROL at:
+Online learner-path teaching destabilizes the policy.
 
-1. STATIC_ONLY
-2. POST_DAGGER64
-3. POST_REPLAY_FULL
+Shared medians:
+- FOOD: 50% static / 0% loop
+- FIRE: 50% / 0%
+- HUNT: 50% / 100%
+- SHELTER: 40% / 100%
 
-At every checkpoint:
-- canonical semantic static accuracy per skill
-- 6 held-out closed-loop episodes per skill
-- output dominance
-- founder all-four readiness
+Control medians:
+- FOOD: 100% / 100%
+- FIRE: 75% / 50%
+- HUNT: 60% / 100%
+- SHELTER: 60% / 100%
 
-Environment validity:
-- deterministic caretaker must solve 6/6 held-out episodes for every skill/founder
+The fresh panel therefore shows stronger transient shared interference than the original V7.14 development panel, especially for FOOD and FIRE.
 
-## Frozen gates
+### POST_REPLAY_FULL
 
-Per skill:
-- static >=90%
-- loop >=4/6
+Reset-matched semantic replay restores:
+- all shared skill medians to 100/100
+- all control skill medians to 100/100
+- all 16 shared founders to all-four readiness
+- all 16 control founders to all-four readiness
 
-Founder all-four ready:
-- all four skills pass both gates
+Thus the confirmed final bridge depends on reconsolidation after DAgger rather than on DAgger preserving the policy by itself.
 
-Run validity:
-- >=12/16 valid founders
+## Confirmed finding
 
-Control stability:
-- >=12/16 valid founders all-four ready across the four separate controls
-- all four control median static gates pass
-- all four control median loop gates pass
+> One plain Cadence brain can reliably retain and execute FOOD, FIRE, HUNT and SHELTER together when task identity is explicit, state is represented semantically, persistent actions are treated as semantic motor primitives, stream state is reset before high-level decisions, and reset-matched semantic replay reconsolidates the policy after online correction.
 
-Shared confirmation:
-- all four SHARED4 median static gates pass
-- all four SHARED4 median loop gates pass
-- >=12/16 valid SHARED4 founders all-four ready
-- controls satisfy the stability gate
+No attention or episodic memory is required for this confirmed four-skill capacity result.
 
-## Frozen classification
+## Important boundary
 
-1. valid founders <12 -> `INSUFFICIENT_V7_14R_RUNS`
-2. controls fail stability -> `CONTROL_RECIPE_NOT_STABLE_IN_CONFIRMATION`
-3. shared confirmation gates pass -> `FOUR_SKILL_SHARED_SEMANTIC_BRIDGE_CONFIRMED`
-4. controls stable but shared static medians fail -> `SHARED_STATIC_INTERFERENCE_NOT_CONFIRMED`
-5. shared static medians pass but shared all-four/dynamic gate fails -> `SHARED_DYNAMIC_INTEGRATION_NOT_CONFIRMED`
-6. otherwise -> `FOUR_SKILL_SHARED_SEMANTIC_BRIDGE_NOT_CONFIRMED`
+Explicit task identity remains part of the confirmed representation.
 
-No attention.
-No episodic-memory arm.
-No reward-learning arm.
-No task-context weakening.
-No post-hoc protocol changes.
+A naive removal of task context is not a clean next ablation because several semantic prerequisite states are intentionally identical across skills while requiring different actions. For example, the ready state `A=1, B=1, C=0` can mean:
+- FIRE -> CRAFT_FIRE
+- HUNT -> CRAFT_SPEAR
+- SHELTER -> BUILD_SHELTER
+
+Removing task identity without adding other world/goal information would create contradictory labels for the same input.
+
+## Next direction
+
+**Stone Age V7.15 — Autonomous Goal Routing Bridge**
+
+Move beyond externally supplied task identity without creating artificial label aliasing.
+
+Use a global semantic world/need state that makes the active goal inferable from the environment itself, then train one shared policy to choose the next semantic action.
+
+Candidate global state should expose only meaningful need/task variables, for example:
+- food available / hunger need
+- fire state / warmth need
+- spear state / hunting opportunity or food need
+- shelter state / energy or night need
+- prerequisite resource threshold bits
+
+Freeze a deterministic caretaker priority policy before the run.
+
+Primary question:
+
+> Can the confirmed shared semantic executor become an autonomous Stone Age policy that selects the appropriate goal from world needs rather than receiving FOOD/FIRE/HUNT/SHELTER as an external task label?
+
+Do not add attention or episodic memory in the first autonomous-goal bridge. First characterize plain semantic goal routing.
