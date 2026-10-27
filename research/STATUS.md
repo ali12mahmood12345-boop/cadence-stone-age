@@ -19,77 +19,70 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.15R
 `AUTONOMOUS_GOAL_ROUTING_CONFIRMED`
 
-## Development results
-
-### Stone Age V7.16
-`POSITIONAL_RECALL_TEMPORAL_HISTORY_BRIDGE_PASS`
+### Stone Age V7.16R
+`POSITIONAL_RECALL_TEMPORAL_HISTORY_CONFIRMED`
 
 Cadence:
 - 0.89.0
 
-Fresh founders:
-- 83001..83008
-- 7/8 paired-valid
+Strict fresh V7.16 replication:
+- exact run_founder reused unchanged
+- founders 84001..84016
+- 14/16 paired-valid
+- minimum 12/16
 
-POSITION32:
-- median overall/FIRST/LAST 100/100/100
-- robust 7/7 valid founders
-- position maps moved 7/7 valid
+POSITION32 medians:
+- overall 100%
+- FIRST 100%
+- LAST 100%
 
-POSITION0:
-- median overall 47.9%
-- FIRST 29.1%
-- LAST 69.7%
+POSITION0 medians:
+- overall 48.8%
+- FIRST 23.8%
+- LAST 70.4%
 
-RECALL_OFF:
-- median overall 55.0%
-- FIRST 23.6%
-- LAST 83.2%
-- interpreted as no Recall with default working trace retained
+RECALL_OFF medians:
+- overall 51.2%
+- FIRST 20.9%
+- LAST 82.4%
 
-Paired advantage:
-- POSITION32 - POSITION0 +52.1 points median
-- 7/7 valid founders gain >=15 points
-- POSITION32 - RECALL_OFF +45.0 points median
+Paired positional advantage:
+- POSITION32 - POSITION0 median +50.2 points
+- 14/14 paired-valid founders gain >=15 points
+- POSITION32 - RECALL_OFF median +47.3 points
 
-Founder 83007:
-- paired-invalid because RECALL_OFF hit a finite free-phase warning
-- POSITION32 itself still scored 100/100/100
+Position evidence:
+- maps moved 14/14 paired-valid founders
+- both cues >=80% in 13/14 paired-valid founders
 
-## Active confirmation
+Founder audit:
+- 84011 paired-invalid only because RECALL_OFF hit finite free-phase warning at lesson 825; POSITION32 itself 100/100/100
+- 84013 paired-invalid only because RECALL_OFF hit same warning at lesson 916; POSITION32 itself 100/100/100
+- 84016 is the only valid POSITION32 robustness miss: overall 77.9%, FIRST 59.2%, LAST 96.7%, maps moved
 
-### Stone Age V7.16R — Fresh Positional Recall Temporal-History Confirmation
+All frozen confirmation gates passed.
 
-Strict replication of V7.16.
-
-Fresh founders:
-- 84001..84016
-
-Frozen:
-- Cadence 0.89.0
-- POSITION32 / POSITION0 / RECALL_OFF
-- same five-event streams
-- first != last
-- same 1200 training episodes
-- same 240 held-out episodes
-- same pairing
-- same lesson-before-query-act boundary
-- same recency-off setting
-- same modules
-- same gates
-
-Confirmation requires:
-- >=12/16 paired-valid
-- POSITION32 median overall/FIRST/LAST >=90%
-- >=12 robust POSITION32 founders
-- position maps moved >=12 valid founders
-- median gain vs POSITION0 >=20 points
-- >=12 valid founders gain >=15 points vs POSITION0
-- median gain vs RECALL_OFF >=40 points
-
-Target:
-`POSITIONAL_RECALL_TEMPORAL_HISTORY_CONFIRMED`
-
-Do not integrate Recall into the full autonomous Stone Age agent until V7.16R is complete.
+Interpretation:
+Cadence 0.89.0 learned positional Recall is confirmed on the bounded five-event Stone Age FIRST/LAST temporal-history task.
 
 See: [stone-age-v7-16r](./stone-age-v7-16r/README.md)
+
+## Next direction
+
+**Stone Age V7.17 — Autonomous Temporal-Memory Integration Bridge**
+
+Use Cadence 0.89.0.
+
+Keep the V7.15R autonomous semantic controller as the stable base.
+
+Introduce only memory-dependent branches where:
+- current semantic observation is identical
+- correct next action depends on recent event/order
+- current-state policy is impossible by construction
+
+Compare:
+- POSITION32 autonomous memory
+- POSITION0 matched Recall control
+- CURRENT_STATE control
+
+Do not add episodic memory, multi-head attention, reward learning, or unrelated representation changes in the first integration experiment.
