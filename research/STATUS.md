@@ -19,52 +19,50 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.15R
 `AUTONOMOUS_GOAL_ROUTING_CONFIRMED`
 
-Strict fresh confirmation on Cadence 0.88.1.
+- 16/16 valid
+- caretaker oracle 768/768
+- autonomous-ready 16/16
+- corrected tasked scenario-ready 16/16
+- all final autonomous static/scenario medians 100%
+- replay reconsolidation confirmed again after DAgger destabilization
+
+## Active development experiment
+
+### Stone Age V7.16 — Positional Recall Temporal-History Bridge
+
+Cadence:
+- 0.89.0
 
 Fresh founders:
-- 82001..82016
+- 83001..83008
 
-Results:
-- valid founders: 16/16
-- caretaker oracle: 768/768
-- autonomous final static medians: 100% overall and all routed groups
-- all 8 autonomous scenario medians: 100%
-- all final autonomous caretaker-agreement medians: 100%
-- autonomous-ready founders: 16/16
-- corrected tasked all-scenario ready founders: 16/16
-- tasked standard medians: 100/100 on all four skills
+Arms:
+- POSITION32
+- POSITION0
+- RECALL_OFF
 
-Minor diagnostic:
-- tasked standard all-four readiness 15/16
-- founder 82011 has one HUNT static miss but HUNT loop remains 6/6
-- this does not affect frozen control confirmation gates
+Task:
+- stream five Stone Age resource events
+- first and last forced different
+- identical FIRST/LAST query observations
+- answer with the semantic action matching the queried endpoint resource
 
-Training trajectory:
-- DAgger64 reduces autonomous overall static median to 55.8%
-- FIRE_COLD, FOOD_THEN_FIRE, HUNT_THEN_SLEEP and ALL_NEEDS fall to 0% median loop
-- full reset semantic replay restores all final static/scenario medians to 100%
-- replay reconsolidation is therefore freshly confirmed on the autonomous policy
+Purpose:
+- make current-state inference impossible by construction
+- isolate learned slot-age positional recall
+- compare Cadence 0.89.0 founder position term against the same Recall memory with position disabled
 
-Confirmed boundary:
-A plain Cadence brain can autonomously route among FOOD/FIRE/HUNT/SHELTER from current global semantic need/world state without external task identity.
+Training:
+- 1200 episodes/founder/arm
+- only query moment taught
+- lesson before query act
+- recency off
+- no episodic memory or reward learning
 
-See: [stone-age-v7-15r](./stone-age-v7-15r/README.md)
+Testing:
+- 240 held-out episodes/founder/arm
 
-## Next direction
+Primary pass:
+`POSITIONAL_RECALL_TEMPORAL_HISTORY_BRIDGE_PASS`
 
-**Stone Age V7.16 — Positional Recall Temporal-History Bridge**
-
-Move to Cadence 0.89.0.
-
-Primary comparison:
-- recall_position=0
-- recall_position=32
-
-Keep the confirmed autonomous semantic executor as the stable base.
-
-Construct tasks where:
-- current visible semantic state is identical across conditions
-- correct action depends only on temporal history / event order
-- a current-state-only policy cannot solve the task by construction
-
-First positional-recall experiment should not add attention, reward learning, or unrelated representation changes.
+See: [stone-age-v7-16](./stone-age-v7-16/README.md)
