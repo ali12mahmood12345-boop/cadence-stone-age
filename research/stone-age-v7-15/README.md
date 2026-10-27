@@ -1,321 +1,173 @@
 # Stone Age V7.15 — Autonomous Goal Routing Bridge
 
-Status: **development protocol / frozen before run**
+Status: **development complete**
 
 Cadence: **0.88.1**
 
-V7.14R freshly confirmed that one plain Cadence brain can retain and execute FOOD, FIRE, HUNT and SHELTER together when an external task one-hot tells it which skill is active.
+Official frozen classification:
 
-V7.15 removes that external task label.
+`TASKED_EXECUTOR_CONTROL_NOT_STABLE`
 
-## Question
+## Result summary
 
-Can one shared Cadence brain infer the appropriate goal from global semantic world/need state and directly choose the next Stone Age action?
+Fresh founders:
+- `80001..80008`
+- valid: **8/8**
 
-## Fresh founders
-
-`80001..80008`
-
-- 8 founders total
-- minimum valid: 6/8
-
-## Arms
+Autonomous caretaker oracle:
+- **384/384**
 
 ### AUTONOMOUS_GLOBAL
 
-One 18-input / 11-action brain.
+Final post-replay static medians:
+- overall: **100%**
+- FOOD route: **100%**
+- HUNT route: **100%**
+- FIRE route: **100%**
+- SHELTER route: **100%**
+- NEUTRAL: **100%**
 
-It receives no FOOD/FIRE/HUNT/SHELTER task bit.
+Final autonomous scenario medians:
+- FORAGE: **100%**
+- HUNT_EAT: **100%**
+- FIRE_COLD: **100%**
+- FIRE_EVENING: **100%**
+- SHELTER_SLEEP: **100%**
+- FOOD_THEN_FIRE: **100%**
+- HUNT_THEN_SLEEP: **100%**
+- ALL_NEEDS: **100%**
 
-It directly maps global semantic state to the next action.
+Caretaker agreement is also 100% median in every final autonomous scenario.
+
+Founder autonomous readiness:
+- **8/8**
+
+This is a strong positive autonomous-arm development result.
 
 ### TASKED_SHARED_CONTROL
 
-A second brain starts from the exact same untrained base brain.
+Standard confirmed V7.14 skill exam:
+- FOOD: 100% static / 100% loop
+- FIRE: 100% / 100%
+- HUNT: 100% / 100%
+- SHELTER: 100% / 100%
+- standard all-four readiness: **8/8**
 
-It uses the exact confirmed V7.14 shared-brain recipe:
-- explicit task one-hot
-- same 16 semantic skill keys
-- 64 presentations/key bootstrap
-- DAgger64/skill
-- full reset semantic replay
-- semantic motor primitives
-- stream reset before each high-level query
+Oracle-routed autonomous scenarios:
+- FORAGE: 100%
+- HUNT_EAT: 100%
+- FIRE_COLD: 100%
+- FIRE_EVENING: 100%
+- SHELTER_SLEEP: 100%
+- FOOD_THEN_FIRE: 100%
+- HUNT_THEN_SLEEP: **0% median**
+- ALL_NEEDS: 100%
 
-During the autonomous scenario exam, a frozen oracle supplies the active goal to this control. The control therefore tests whether the confirmed executor can solve the same world sequence when goal routing is supplied externally.
+Tasked all-scenario readiness:
+- **1/8**
 
-If TASKED_SHARED_CONTROL succeeds and AUTONOMOUS_GLOBAL fails, the new bottleneck is goal routing/global representation rather than four-skill execution.
+Therefore the frozen V7.15 classifier correctly returns:
 
-## Global semantic representation
+`TASKED_EXECUTOR_CONTROL_NOT_STABLE`
 
-18-wide input.
+The official autonomous bridge cannot be declared passed because the predeclared control-stability gate failed.
 
-Meaningful indices:
+## Control audit
 
-- 0 = hunger low (`hunger < 45`)
-- 1 = warmth low (`warmth < 55`)
-- 2 = energy low (`energy < 45`)
-- 3 = evening or night
-- 4 = food inventory available
-- 5 = berry opportunity near
-- 6 = rabbit opportunity near
-- 7 = has spear
-- 8 = fire exists
-- 9 = shelter exists
-- 10 = wood >= 2
-- 11 = wood >= 4
-- 12 = wood >= 10
-- 13 = stone >= 2
-- 14 = stone >= 4
-- 15..17 = 0
+The failure is highly localized.
 
-No task identity is encoded.
+In HUNT_THEN_SLEEP:
 
-## Frozen autonomous caretaker priority
+1. the control correctly begins with `CRAFT_SPEAR`
+2. spear crafting consumes 2 wood and 2 stone
+3. the scenario intentionally starts with surplus resources: wood=12, stone=6
+4. after crafting, the state is:
+   - has_spear = 1
+   - wood = 10
+   - stone = 4
+5. the oracle route remains HUNT and the correct next action is `HUNT_RABBIT`
 
-The deterministic caretaker is frozen before the run.
+However, 7/8 tasked founders usually choose `CRAFT_SPEAR` again at this state. One founder (80004) generalizes successfully.
 
-Priority:
+This exposes a control-representation mismatch.
 
-1. **Hunger**
-   - food available -> `EAT`
-   - else berry near -> `PICK_BERRIES`
-   - else rabbit near:
-     - spear -> `HUNT_RABBIT`
-     - stone <2 -> `GATHER_STONE`
-     - wood <2 -> `GATHER_WOOD`
-     - otherwise -> `CRAFT_SPEAR`
-   - else -> `EXPLORE`
+The confirmed V7.14 HUNT semantic policy uses the canonical terminal/tool state:
 
-2. **Cold/evening with no fire**
-   - wood <4 -> `GATHER_WOOD`
-   - stone <2 -> `GATHER_STONE`
-   - otherwise -> `CRAFT_FIRE`
+`HUNT_HAS_SPEAR = task=HUNT, wood_ready=0, stone_ready=0, has_spear=1`
 
-3. **Low energy**
-   - shelter exists -> `SLEEP`
-   - wood <10 -> `GATHER_WOOD`
-   - stone <4 -> `GATHER_STONE`
-   - otherwise -> `BUILD_SHELTER`
+In the original V7.14 HUNT episodes, crafting the spear from the minimal prerequisites consumes the resources and naturally produces that canonical state.
 
-4. Otherwise -> `EXPLORE`
+V7.15 HUNT_THEN_SLEEP starts with excess resources so, after spear creation, the tasked control adapter exposes:
 
-Thus the frozen priority is:
+`task=HUNT, wood_ready=1, stone_ready=1, has_spear=1`
 
-**hunger > fire/warmth > sleep > explore**
+That state is outside the confirmed V7.14 semantic truth table and was not a fair test of the confirmed executor.
 
-## Frozen static curriculum
+AUTONOMOUS_GLOBAL does not have this mismatch because its frozen 26-key curriculum explicitly includes the abundant-resource `HUNT_SLEEP_WITH_SPEAR` state.
 
-AUTONOMOUS_GLOBAL uses **26 canonical global semantic keys**:
+## Training trajectory
 
-- 24 fixed semantic states taken from the frozen oracle trajectories for the eight autonomous scenario families
-- 2 explicit `EXPLORE` controls:
-  - neutral state
-  - hungry with no available food source
+AUTONOMOUS_GLOBAL is already perfect after static bootstrap.
 
-Each key is presented 64 times during static bootstrap and 64 times during final reset replay.
+DAgger64 then destabilizes the policy:
+- overall static median: ~71.2%
+- FOOD: 75%
+- HUNT: 75%
+- FIRE: 66.7%
+- SHELTER: 91.7%
+- NEUTRAL: 0%
+- FIRE_COLD loop median: 0%
+- HUNT_THEN_SLEEP loop median: 50%
+- ALL_NEEDS loop median: 0%
 
-Every independent static lesson calls `brain.reset()` before teaching.
+Final reset-matched replay restores:
+- all 26 static keys to 100% median
+- all routed groups to 100%
+- all eight scenario medians to 100%
+- all 8 founders to autonomous readiness
 
-The 26 vectors are hard-coded in the runner and do not depend on founder outcomes.
+This independently extends the V7.14R reconsolidation finding: reset-matched semantic replay can restore a more complex global autonomous policy after DAgger destabilization.
 
-## Autonomous DAgger
+## Scientific interpretation
 
-Eight frozen scenario families are used.
+V7.15 does **not** officially confirm the autonomous bridge because its predeclared tasked-control gate failed.
 
-AUTONOMOUS_GLOBAL receives:
-- exactly 64 learner-path labels per scenario family
-- 512 total dynamic labels
-- deterministic round-robin scenario interleaving
+But the autonomous arm itself gives strong development evidence:
 
-At each semantic query:
+> A plain Cadence brain can map global semantic needs/world state directly to the correct next action across single-goal and multi-goal Stone Age sequences, without an external FOOD/FIRE/HUNT/SHELTER task label.
 
-1. `brain.reset()`
-2. learner acts greedily from the global semantic vector
-3. caretaker labels the same state
-4. teach caretaker action
-5. execute the learner's pre-lesson action as a semantic primitive
-6. continue in the same world
+The failed control is not evidence against autonomous goal routing. It is a mismatch between the V7.14 task-conditioned representation and the surplus-resource HUNT_THEN_SLEEP scenario.
 
-## Autonomous scenario exam
+## Next direction
 
-Six held-out variants per scenario family.
+**Stone Age V7.15C — Tasked Control Canonicalization Correction**
 
-### FORAGE
-Hungry, berry opportunity available.
+Keep the entire autonomous recipe unchanged.
 
-Success:
-- food eaten
+Correct only the oracle-routed TASKED_SHARED_CONTROL adapter so terminal/tool semantic states are canonicalized to the exact confirmed V7.14 policy keys.
 
-Budget:
-- 12 decision windows
+For HUNT:
+- if `has_spear=True`, encode the canonical HUNT_HAS_SPEAR state regardless of leftover wood/stone
 
-### HUNT_EAT
-Hungry, no nearby berries, rabbit opportunity available, spear prerequisites available.
+For SHELTER:
+- if `shelter_exists=True`, encode the canonical SHELTER_EXISTS state regardless of leftover wood/stone
 
-Success:
-- rabbit hunted
-- food eaten
+FOOD remains keyed by food availability.
 
-Budget:
-- 20 windows
+FIRE terminates when the fire is built, so no post-terminal FIRE query is required.
 
-### FIRE_COLD
-Cold, no fire, one fire prerequisite missing.
+Recommended fresh founders:
+- `81001..81008`
 
-Success:
-- fire exists
+Freeze:
+- same AUTONOMOUS_GLOBAL 26-key representation
+- same caretaker priority
+- same bootstrap/DAgger/replay
+- same scenarios and budgets
+- same motor primitives
+- same gates
+- only the tasked-control observation adapter is corrected
 
-Budget:
-- 14 windows
+If the corrected tasked control is stable and AUTONOMOUS_GLOBAL reproduces its V7.15 performance, classify the bridge under the unchanged autonomous success gates.
 
-### FIRE_EVENING
-Warm but evening/night, no fire, fire prerequisites ready.
-
-Success:
-- fire exists
-
-Budget:
-- 14 windows
-
-### SHELTER_SLEEP
-Low energy, no shelter, shelter prerequisites ready.
-
-Success:
-- shelter exists
-- energy >=88
-
-Budget:
-- 22 windows
-
-### FOOD_THEN_FIRE
-Hungry and cold.
-
-Frozen priority must first resolve hunger, then FIRE.
-
-Success:
-- food eaten
-- fire exists
-
-Budget:
-- 28 windows
-
-### HUNT_THEN_SLEEP
-Hungry with rabbit opportunity and no berries, plus low energy.
-
-Frozen priority must complete:
-- spear/hunt
-- eat
-- shelter/sleep
-
-Success:
-- rabbit hunted
-- food eaten
-- shelter exists
-- energy >=88
-
-Budget:
-- 45 windows
-
-### ALL_NEEDS
-Hungry, cold and low-energy simultaneously.
-
-The frozen priority should produce:
-- forage/eat
-- fire
-- shelter/sleep
-
-Success:
-- food eaten
-- fire exists
-- shelter exists
-- energy >=88
-
-Budget:
-- 56 windows
-
-## Environment control
-
-Resources used by each scenario are clustered to remove navigation distance as the experimental variable.
-
-Unavailable food opportunities are moved far away rather than removed, so an incorrect action remains executable and consumes budget instead of crashing.
-
-The deterministic autonomous caretaker must solve:
-- 6/6 variants for all 8 scenario families
-- 48/48 per founder
-
-## Semantic motor primitives
-
-Same confirmed controller boundary:
-
-- `PICK_BERRIES` until food inventory increases
-- `GATHER_WOOD` until wood increases
-- `GATHER_STONE` until stone increases
-- `HUNT_RABBIT` until rabbits_hunted increases or budget expires
-- `SLEEP` until energy >=88 or budget expires
-- all other actions execute one normal decision window
-
-Before every high-level query:
-- `brain.reset()`
-
-## Checkpoints
-
-Evaluate AUTONOMOUS_GLOBAL at:
-
-1. `STATIC_ONLY`
-2. `POST_DAGGER64`
-3. `POST_REPLAY_FULL`
-
-Metrics:
-- overall 26-key static accuracy
-- static accuracy by routed goal: FOOD / HUNT / FIRE / SHELTER / NEUTRAL
-- 6 held-out loops per scenario
-- action agreement with frozen caretaker
-- founder all-scenario readiness
-
-TASKED_SHARED_CONTROL is evaluated after its final replay on:
-- standard four-skill V7.14 static/loop gates
-- the same eight autonomous scenarios with oracle goal routing
-
-## Frozen gates
-
-AUTONOMOUS static:
-- overall >=90%
-- each FOOD/HUNT/FIRE/SHELTER routed group >=90%
-- NEUTRAL reported diagnostically
-
-Per autonomous scenario:
-- loop >=4/6
-
-Founder autonomous-ready:
-- overall static gate passes
-- all four routed-goal static gates pass
-- all eight scenario loop gates pass
-
-Run validity:
-- >=6/8 valid founders
-
-TASKED_SHARED_CONTROL stability:
-- >=6/8 founders pass the standard V7.14 all-four gate
-- all eight autonomous scenario median loop gates pass under oracle routing
-- >=6/8 founders pass all eight oracle-routed scenarios
-
-AUTONOMOUS bridge pass:
-- TASKED_SHARED_CONTROL stable
-- all autonomous median static gates pass
-- all eight autonomous median scenario gates pass
-- >=6/8 AUTONOMOUS_GLOBAL founders autonomous-ready
-
-## Frozen classification
-
-1. valid founders <6 -> `INSUFFICIENT_V7_15_RUNS`
-2. tasked control unstable -> `TASKED_EXECUTOR_CONTROL_NOT_STABLE`
-3. autonomous bridge passes -> `AUTONOMOUS_GOAL_ROUTING_BRIDGE_PASS`
-4. autonomous routed static gates fail -> `AUTONOMOUS_ROUTING_ACQUISITION_BOTTLENECK`
-5. autonomous static passes but dynamic/scenario bridge fails -> `AUTONOMOUS_DYNAMIC_ROUTING_BOTTLENECK`
-6. otherwise -> `PARTIAL_AUTONOMOUS_ROUTING_SIGNAL`
-
-No attention.
-No episodic-memory arm.
-No reward-learning arm.
-No post-hoc priority or gate changes.
+No attention, episodic memory, or Cadence 0.89.0 positional recall should be introduced until this correction is resolved.
