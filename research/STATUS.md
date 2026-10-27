@@ -19,50 +19,77 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.15R
 `AUTONOMOUS_GOAL_ROUTING_CONFIRMED`
 
-- 16/16 valid
-- caretaker oracle 768/768
-- autonomous-ready 16/16
-- corrected tasked scenario-ready 16/16
-- all final autonomous static/scenario medians 100%
-- replay reconsolidation confirmed again after DAgger destabilization
-
-## Active development experiment
+## Development results
 
 ### Stone Age V7.16 — Positional Recall Temporal-History Bridge
+`POSITIONAL_RECALL_TEMPORAL_HISTORY_BRIDGE_PASS`
 
 Cadence:
 - 0.89.0
 
 Fresh founders:
 - 83001..83008
+- 7/8 paired-valid
+- minimum valid 6/8
 
-Arms:
-- POSITION32
-- POSITION0
-- RECALL_OFF
+POSITION32 medians:
+- overall 100%
+- FIRST 100%
+- LAST 100%
+- both-cue robust founders 7/7 valid
+- position maps moved 7/7 valid
 
-Task:
-- stream five Stone Age resource events
-- first and last forced different
-- identical FIRST/LAST query observations
-- answer with the semantic action matching the queried endpoint resource
+POSITION0 medians:
+- overall 47.9%
+- FIRST 29.1%
+- LAST 69.7%
 
-Purpose:
-- make current-state inference impossible by construction
-- isolate learned slot-age positional recall
-- compare Cadence 0.89.0 founder position term against the same Recall memory with position disabled
+RECALL_OFF medians:
+- overall 55.0%
+- FIRST 23.6%
+- LAST 83.2%
 
-Training:
-- 1200 episodes/founder/arm
-- only query moment taught
-- lesson before query act
-- recency off
-- no episodic memory or reward learning
+Paired advantage:
+- POSITION32 - POSITION0 median +52.1 points
+- 7/7 valid founders gain >=15 points
+- POSITION32 - RECALL_OFF median +45.0 points
 
-Testing:
-- 240 held-out episodes/founder/arm
+Founder 83007:
+- paired-invalid only because RECALL_OFF hit a finite free-phase settling warning at lesson 1010
+- POSITION32 itself completed and scored 100% overall/FIRST/LAST with position maps moved
 
-Primary pass:
-`POSITIONAL_RECALL_TEMPORAL_HISTORY_BRIDGE_PASS`
+Baseline interpretation correction:
+- RECALL_OFF is a no-Recall baseline, not truly present-only
+- default working trace remains active
+- this likely explains strong LAST / weak FIRST asymmetry
+- main causal result remains POSITION32 vs POSITION0, where only recall_position differs
+
+All frozen V7.16 gates passed.
+
+Interpretation:
+Cadence 0.89.0 learned positional Recall can retrieve a resource event by temporal endpoint in this bounded five-event task.
 
 See: [stone-age-v7-16](./stone-age-v7-16/README.md)
+
+## Next direction
+
+**Stone Age V7.16R — Fresh Positional Recall Temporal-History Confirmation**
+
+Recommended untouched founders:
+- 84001..84016
+
+Strict V7.16 replication:
+- same POSITION32 / POSITION0 / RECALL_OFF arms
+- same training/test episodes and pairing
+- same five-event FIRST/LAST task
+- same recency-off setting
+- same lesson-before-query-act boundary
+- same gates
+
+Documentation only:
+- describe RECALL_OFF correctly as no Recall with default working trace retained
+
+Target confirmation:
+`POSITIONAL_RECALL_TEMPORAL_HISTORY_CONFIRMED`
+
+Do not integrate Recall into full autonomous Stone Age survival until V7.16R is complete.
