@@ -1,107 +1,159 @@
 # Stone Age V7.15R — Fresh Autonomous Goal Routing Confirmation
 
-Status: **confirmation protocol / frozen before run**
+Status: **fresh confirmation complete**
 
 Cadence: **0.88.1**
 
-V7.15C produced a successful autonomous goal-routing bridge after correcting only the tasked-control terminal/tool observation adapter.
+Official frozen classification:
 
-V7.15R is a strict fresh confirmation of that corrected setup.
+`AUTONOMOUS_GOAL_ROUTING_CONFIRMED`
 
-## Question
+## Purpose
 
-Does the V7.15C autonomous goal-routing bridge reproduce on a larger untouched founder panel with no recipe changes?
+V7.15R was a strict fresh replication of the corrected V7.15C setup.
 
-## Fresh founders
+No representation, controller, scenario, training, replay, control-adapter, or gate changes were introduced.
 
-`82001..82016`
+Fresh founders:
+- `82001..82016`
 
-- 16 founders total
-- minimum valid: 12/16
-- autonomous confirmation threshold: 12/16 ready
-- corrected tasked-control threshold: 12/16 all-scenario ready
+## Result
 
-## Frozen arms
+Valid founders:
+- **16/16**
+
+Autonomous caretaker oracle:
+- **768/768**
 
 ### AUTONOMOUS_GLOBAL
 
-Unchanged from V7.15/V7.15C:
-- no external FOOD/FIRE/HUNT/SHELTER task label
-- same 18-wide global semantic representation
-- same 26 canonical semantic keys
-- same caretaker priority: hunger > fire/warmth > sleep > explore
-- 64 presentations/key bootstrap
-- DAgger64 per scenario family
-- full reset-matched semantic replay
-- same eight scenarios and budgets
-- same semantic motor primitives
-- brain.reset() before each high-level query
+Final static medians:
+- overall: **100%**
+- FOOD: **100%**
+- HUNT: **100%**
+- FIRE: **100%**
+- SHELTER: **100%**
+- NEUTRAL: **100%**
+
+Final scenario medians:
+- FORAGE: **100%**
+- HUNT_EAT: **100%**
+- FIRE_COLD: **100%**
+- FIRE_EVENING: **100%**
+- SHELTER_SLEEP: **100%**
+- FOOD_THEN_FIRE: **100%**
+- HUNT_THEN_SLEEP: **100%**
+- ALL_NEEDS: **100%**
+
+Final caretaker agreement:
+- **100% median on all eight scenarios**
+
+Founder autonomous readiness:
+- **16/16**
+- frozen requirement: >=12/16
 
 ### TASKED_SHARED_CONTROL
 
-Unchanged from corrected V7.15C:
-- exact V7.14 shared executor recipe
-- explicit task one-hot
-- same 16 canonical task keys
-- same bootstrap / DAgger64 / replay
-- same canonicalized oracle-routed adapter:
-  - HUNT + has_spear -> canonical HUNT_HAS_SPEAR
-  - SHELTER + shelter_exists -> canonical SHELTER_EXISTS
+Standard four-skill medians:
+- FOOD: **100% static / 100% loop**
+- FIRE: **100% / 100%**
+- HUNT: **100% / 100%**
+- SHELTER: **100% / 100%**
 
-Both arms start as deep copies of the same untrained base brain per founder.
+Corrected oracle-routed scenario medians:
+- all eight scenarios: **100%**
 
-## Evaluation
+Founder corrected all-scenario readiness:
+- **16/16**
+- frozen requirement: >=12/16
 
-AUTONOMOUS_GLOBAL:
-- STATIC_ONLY
-- POST_DAGGER64
-- POST_REPLAY_FULL
-- overall 26-key static accuracy
-- routed FOOD/HUNT/FIRE/SHELTER/NEUTRAL static accuracy
-- six held-out episodes for each of:
-  - FORAGE
-  - HUNT_EAT
-  - FIRE_COLD
-  - FIRE_EVENING
-  - SHELTER_SLEEP
-  - FOOD_THEN_FIRE
-  - HUNT_THEN_SLEEP
-  - ALL_NEEDS
-- caretaker agreement
-- founder autonomous readiness
+Tasked standard all-four readiness:
+- **15/16** diagnostic only
 
-TASKED_SHARED_CONTROL:
-- standard V7.14 four-skill static/loop exam
-- same eight autonomous scenarios with oracle routing
-- founder all-scenario readiness
+The only standard-control miss was founder **82011**:
+- HUNT static accuracy: 80%
+- missed key: `HUNT_W0_S0_NO_SPEAR`
+- target: `GATHER_STONE`
+- prediction: `GATHER_WOOD`
+- HUNT loop still: 6/6
+- corrected autonomous-scenario control remains fully ready
 
-## Frozen gates
+This does not affect the frozen confirmation because the predeclared control gate uses standard median gates plus corrected all-scenario readiness, and all those gates pass.
 
-Run validity:
-- >=12/16 valid founders
+## Training trajectory
 
-AUTONOMOUS_GLOBAL:
-- overall static median >=90%
-- FOOD/HUNT/FIRE/SHELTER static medians >=90%
-- all eight scenario medians >=4/6
-- >=12/16 founders autonomous-ready
+STATIC_ONLY:
+- autonomous static medians: 100%
+- autonomous scenario medians: 100%
 
-TASKED_SHARED_CONTROL:
-- all four standard skill median static/loop gates pass
-- all eight corrected oracle-routed scenario medians >=4/6
-- >=12/16 founders corrected all-scenario ready
+POST_DAGGER64:
+- overall static median: **55.8%**
+- FOOD: **68.8%**
+- HUNT: **75%**
+- FIRE: **50%**
+- SHELTER: **66.7%**
+- NEUTRAL: **0%**
 
-## Frozen classification
+Scenario medians after DAgger:
+- FORAGE: 100%
+- HUNT_EAT: 100%
+- FIRE_COLD: 0%
+- FIRE_EVENING: 100%
+- SHELTER_SLEEP: 100%
+- FOOD_THEN_FIRE: 0%
+- HUNT_THEN_SLEEP: 0%
+- ALL_NEEDS: 0%
 
-1. valid founders <12 -> `INSUFFICIENT_V7_15R_RUNS`
-2. corrected tasked control unstable -> `TASKED_CONTROL_NOT_CONFIRMED`
-3. all confirmation gates pass -> `AUTONOMOUS_GOAL_ROUTING_CONFIRMED`
-4. autonomous routed static gates fail -> `AUTONOMOUS_ROUTING_ACQUISITION_NOT_CONFIRMED`
-5. autonomous static passes but dynamic/scenario confirmation fails -> `AUTONOMOUS_DYNAMIC_ROUTING_NOT_CONFIRMED`
-6. otherwise -> `AUTONOMOUS_GOAL_ROUTING_NOT_CONFIRMED`
+POST_REPLAY_FULL:
+- all routed static medians restored to **100%**
+- all eight autonomous scenario medians restored to **100%**
+- all final caretaker-agreement medians restored to **100%**
+- autonomous readiness restored to **16/16**
 
-No attention.
-No episodic memory.
-No reward learning.
-No Cadence 0.89.0 positional recall.
-No post-hoc changes.
+This is now a fresh confirmation that reset-matched semantic replay acts as a robust reconsolidation stage after DAgger destabilization.
+
+## Confirmed finding
+
+> One plain Cadence brain can autonomously choose among FOOD, FIRE, HUNT and SHELTER from global semantic world/need state, including multi-goal sequences, without receiving an external task label.
+
+Confirmed recipe:
+1. global semantic need/world representation
+2. deterministic priority: hunger > fire/warmth > sleep > explore
+3. semantic motor primitives
+4. stream reset before each high-level query
+5. reset-matched semantic replay after DAgger
+
+No attention, episodic memory, reward learning, or recall memory was needed for this confirmation.
+
+## Scientific boundary
+
+This confirmation does **not** test memory-dependent temporal ambiguity.
+
+All successful decisions remain inferable from the current global semantic observation.
+
+Therefore the next meaningful frontier should require two or more situations with the **same current observation but different correct actions depending on temporal history**.
+
+## Next direction
+
+**Stone Age V7.16 — Positional Recall Temporal-History Bridge**
+
+Move to **Cadence 0.89.0** and explicitly test the new positional recall mechanism.
+
+Recommended controlled comparison:
+- `RECALL_POSITION_0`
+- `RECALL_POSITION_32`
+
+Keep the present autonomous semantic executor as the stable base.
+
+Design history-dependent tasks where:
+- visible current semantic state is intentionally identical
+- correct action depends on which event happened earlier / later
+- current-state-only policy cannot solve the task by construction
+
+Examples:
+- choose action based on whether wood or stone was gathered most recently
+- distinguish first vs last encountered resource
+- remember which need became urgent first
+- act differently after identical current states depending on recent goal sequence
+
+Do not mix attention, reward learning, or further representation changes into the first positional-recall test.
