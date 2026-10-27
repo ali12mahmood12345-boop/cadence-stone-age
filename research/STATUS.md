@@ -16,72 +16,55 @@ Fresh confirmation on Cadence 0.85.1.
 ### Stone Age V7.14R
 `FOUR_SKILL_SHARED_SEMANTIC_BRIDGE_CONFIRMED`
 
-## Development results
+### Stone Age V7.15R
+`AUTONOMOUS_GOAL_ROUTING_CONFIRMED`
 
-### Stone Age V7.15
-`TASKED_EXECUTOR_CONTROL_NOT_STABLE`
-
-- autonomous arm itself was 8/8 ready with 100% final static/scenario medians
-- control failed only on HUNT_THEN_SLEEP because surplus-resource HUNT-with-spear state fell outside confirmed V7.14 canonical task representation
-
-### Stone Age V7.15C
-`AUTONOMOUS_GOAL_ROUTING_BRIDGE_PASS`
-
-Fresh founders:
-- 81001..81008
-- 8/8 valid
-
-AUTONOMOUS_GLOBAL final:
-- overall static median 100%
-- FOOD/HUNT/FIRE/SHELTER/NEUTRAL medians 100%
-- all 8 autonomous scenario medians 100%
-- all final caretaker-agreement medians 100%
-- autonomous-ready founders 8/8
-
-TASKED_SHARED_CONTROL:
-- standard V7.14 skill medians all 100/100
-- corrected oracle-routed scenario medians all 100%
-- standard readiness 8/8
-- corrected all-scenario readiness 8/8
-
-Correction:
-- HUNT + has_spear canonicalized to confirmed HUNT_HAS_SPEAR key
-- SHELTER + shelter_exists canonicalized to confirmed SHELTER_EXISTS key
-- autonomous arm unchanged
-
-## Active confirmation
-
-### Stone Age V7.15R — Fresh Autonomous Goal Routing Confirmation
-
-Strict replication of corrected V7.15C.
+Strict fresh confirmation on Cadence 0.88.1.
 
 Fresh founders:
 - 82001..82016
 
-Frozen:
-- AUTONOMOUS_GLOBAL unchanged
-- corrected TASKED_SHARED_CONTROL unchanged
-- same 26 global semantic keys
-- same caretaker priority
-- same bootstrap
-- same DAgger64/scenario
-- same reset replay
-- same 8 scenarios and budgets
-- same semantic motor primitives
-- same stream reset
-- same gates
+Results:
+- valid founders: 16/16
+- caretaker oracle: 768/768
+- autonomous final static medians: 100% overall and all routed groups
+- all 8 autonomous scenario medians: 100%
+- all final autonomous caretaker-agreement medians: 100%
+- autonomous-ready founders: 16/16
+- corrected tasked all-scenario ready founders: 16/16
+- tasked standard medians: 100/100 on all four skills
 
-Confirmation requires:
-- >=12/16 valid
-- >=12/16 autonomous-ready
-- >=12/16 corrected tasked all-scenario ready
-- all autonomous static median gates pass
-- all 8 autonomous scenario median gates pass
-- all tasked standard and corrected-scenario median gates pass
+Minor diagnostic:
+- tasked standard all-four readiness 15/16
+- founder 82011 has one HUNT static miss but HUNT loop remains 6/6
+- this does not affect frozen control confirmation gates
 
-Target classification:
-`AUTONOMOUS_GOAL_ROUTING_CONFIRMED`
+Training trajectory:
+- DAgger64 reduces autonomous overall static median to 55.8%
+- FIRE_COLD, FOOD_THEN_FIRE, HUNT_THEN_SLEEP and ALL_NEEDS fall to 0% median loop
+- full reset semantic replay restores all final static/scenario medians to 100%
+- replay reconsolidation is therefore freshly confirmed on the autonomous policy
 
-No attention, episodic memory, reward learning, or Cadence 0.89.0 positional recall until V7.15R is complete.
+Confirmed boundary:
+A plain Cadence brain can autonomously route among FOOD/FIRE/HUNT/SHELTER from current global semantic need/world state without external task identity.
 
 See: [stone-age-v7-15r](./stone-age-v7-15r/README.md)
+
+## Next direction
+
+**Stone Age V7.16 — Positional Recall Temporal-History Bridge**
+
+Move to Cadence 0.89.0.
+
+Primary comparison:
+- recall_position=0
+- recall_position=32
+
+Keep the confirmed autonomous semantic executor as the stable base.
+
+Construct tasks where:
+- current visible semantic state is identical across conditions
+- correct action depends only on temporal history / event order
+- a current-state-only policy cannot solve the task by construction
+
+First positional-recall experiment should not add attention, reward learning, or unrelated representation changes.
