@@ -1,0 +1,208 @@
+{
+  "input_sha256": "f0df3253b97dfec0d82ab1891889c22c54574ea8a9af6d53765f73395c5b1f52",
+  "founders": [
+    {
+      "founder": 102001,
+      "valid": 0,
+      "completed_lessons": 17174,
+      "base": {
+        "D198": 0.8536363636363636,
+        "D396": 0.9145454545454546
+      },
+      "sha256": "883945fb8d10c146e30f24e3cf9e4258ffe2eda9cd8d89a5bb5889d4c6f110fb"
+    },
+    {
+      "founder": 102002,
+      "valid": 0,
+      "completed_lessons": 10436,
+      "base": {
+        "D198": 0.8281818181818181,
+        "D396": 0.9381818181818182
+      },
+      "sha256": "22ed1f4c6d3274228899054594eee0284142a2d67c78ffe3daeacbd7d0129dc2"
+    },
+    {
+      "founder": 102003,
+      "valid": 0,
+      "completed_lessons": 14804,
+      "base": {
+        "D198": 0.83,
+        "D396": 0.9618181818181818
+      },
+      "sha256": "fce80fd80cca3e7c39ff30f50caded49ee7fc5311fae355829a92f55a9f9869a"
+    },
+    {
+      "founder": 102004,
+      "valid": 0,
+      "completed_lessons": 8917,
+      "base": {
+        "D198": 0.7954545454545454,
+        "D396": 0.9363636363636364
+      },
+      "sha256": "85cd69263f6455df3284f8d6b8d419e27a94d27a96c73a2fefbd7160e0a8559b"
+    },
+    {
+      "founder": 102005,
+      "valid": 0,
+      "completed_lessons": 10439,
+      "base": {
+        "D198": 0.8163636363636364,
+        "D396": 0.9345454545454546
+      },
+      "sha256": "eb85fd3902f2a4e684f8c0e858261905e54e8be4bf40b24f19c37031c1b2cc4b"
+    },
+    {
+      "founder": 102006,
+      "valid": 1,
+      "completed_lessons": 17424,
+      "base": {
+        "D198": 0.8081818181818182,
+        "D396": 0.9045454545454545,
+        "D792": 0.9827272727272728
+      },
+      "sha256": "cb8da208e7807e80e04633731ad16774bc06ee0ad0534e93d6e3b14eda7cdff6"
+    },
+    {
+      "founder": 102007,
+      "valid": 0,
+      "completed_lessons": 7665,
+      "base": {
+        "D198": 0.759090909090909
+      },
+      "sha256": "3026c5aadd3d2df290a5871eb48e18a862dbaa90c65436f3ac3a1d50a7a03313"
+    },
+    {
+      "founder": 102008,
+      "valid": 1,
+      "completed_lessons": 17424,
+      "base": {
+        "D198": 0.7627272727272727,
+        "D396": 0.9327272727272727,
+        "D792": 0.9318181818181818
+      },
+      "sha256": "c327ec765f476e97c9fd86fb2bf60eb14296479c90fa7e142271ae51b1829bc0"
+    }
+  ],
+  "analysis": {
+    "summary": {
+      "founders": 8,
+      "valid_founders": 2,
+      "D198_BASE_median_overall": 0.7854545454545454,
+      "D198_FORCE_PREDECESSOR_median_overall": 1.0,
+      "D198_FORCE_TARGET_median_overall": 0.024090909090909093,
+      "D198_BASE_median_L3": 0.9166666666666667,
+      "D198_BASE_median_L4": 0.8025,
+      "D198_BASE_median_L5": 0.642,
+      "D198_BASE_median_L6": 0.6839999999999999,
+      "D198_BASE_median_L7": 0.938,
+      "D198_BASE_median_P1": 0.9119999999999999,
+      "D198_BASE_median_P2": 0.73,
+      "D198_BASE_median_P3": 0.738,
+      "D198_BASE_median_P4": 0.71,
+      "D198_BASE_median_P5": 0.8466666666666667,
+      "D198_clear_next_routes": 2,
+      "D198_map_top_pred_median": 0.8636363636363636,
+      "D198_map_pred_mass_median": 0.5344380584325068,
+      "D198_map_margin_median": 0.6364775316292333,
+      "D396_BASE_median_overall": 0.9186363636363637,
+      "D396_FORCE_PREDECESSOR_median_overall": 1.0,
+      "D396_FORCE_TARGET_median_overall": 0.03090909090909091,
+      "D396_BASE_median_L3": 0.98,
+      "D396_BASE_median_L4": 0.935,
+      "D396_BASE_median_L5": 0.916,
+      "D396_BASE_median_L6": 0.84,
+      "D396_BASE_median_L7": 0.95,
+      "D396_BASE_median_P1": 0.982,
+      "D396_BASE_median_P2": 0.878,
+      "D396_BASE_median_P3": 0.874,
+      "D396_BASE_median_P4": 0.9125000000000001,
+      "D396_BASE_median_P5": 0.9633333333333334,
+      "D396_clear_next_routes": 2,
+      "D396_map_top_pred_median": 0.9545454545454546,
+      "D396_map_pred_mass_median": 0.575395203719899,
+      "D396_map_margin_median": 0.7159472488243683,
+      "D792_BASE_median_overall": 0.9572727272727273,
+      "D792_FORCE_PREDECESSOR_median_overall": 1.0,
+      "D792_FORCE_TARGET_median_overall": 0.03272727272727273,
+      "D792_BASE_median_L3": 0.9633333333333334,
+      "D792_BASE_median_L4": 0.96,
+      "D792_BASE_median_L5": 0.9339999999999999,
+      "D792_BASE_median_L6": 0.96,
+      "D792_BASE_median_L7": 0.972,
+      "D792_BASE_median_P1": 0.986,
+      "D792_BASE_median_P2": 0.944,
+      "D792_BASE_median_P3": 0.94,
+      "D792_BASE_median_P4": 0.9675,
+      "D792_BASE_median_P5": 0.9466666666666667,
+      "D792_clear_next_routes": 2,
+      "D792_map_top_pred_median": 1.0,
+      "D792_map_pred_mass_median": 0.597485967199775,
+      "D792_map_margin_median": 0.7557101785611433,
+      "gain_D396_vs_D198": 0.13318181818181818,
+      "gain_D792_vs_D396": 0.038636363636363635,
+      "gain_D792_vs_D198": 0.17181818181818181,
+      "position_c_max_abs_median": 0.0,
+      "address_map_max_abs_median": 0.0,
+      "teacher_accuracy_median": 1.0
+    },
+    "attention": {
+      "D198": {
+        "n": 8800,
+        "accuracy": 0.8067045454545455,
+        "top_predecessor_rate": 0.8693181818181818,
+        "top_target_rate": 0.03977272727272727,
+        "median_top_weight": 0.5714075916382504,
+        "mean_predecessor_weight": 0.5384181453540009
+      },
+      "D396": {
+        "n": 7700,
+        "accuracy": 0.9318181818181818,
+        "top_predecessor_rate": 0.987012987012987,
+        "top_target_rate": 0.006493506493506494,
+        "median_top_weight": 0.5864262479218489,
+        "mean_predecessor_weight": 0.5741884516028932
+      },
+      "D792": {
+        "n": 2200,
+        "accuracy": 0.9572727272727273,
+        "top_predecessor_rate": 1.0,
+        "top_target_rate": 0.0,
+        "median_top_weight": 0.5900380207503573,
+        "mean_predecessor_weight": 0.597485967199775
+      }
+    },
+    "map_summary": {
+      "D198": {
+        "top_predecessor_rate_median": 0.8636363636363636,
+        "mean_predecessor_mass_median": 0.5344380584325068,
+        "median_margin_median": 0.6364775316292333
+      },
+      "D396": {
+        "top_predecessor_rate_median": 0.9545454545454546,
+        "mean_predecessor_mass_median": 0.575395203719899,
+        "median_margin_median": 0.7159472488243683
+      },
+      "D792": {
+        "top_predecessor_rate_median": 1.0,
+        "mean_predecessor_mass_median": 0.597485967199775,
+        "median_margin_median": 0.7557101785611433
+      }
+    },
+    "gates": {
+      "valid_founders": false,
+      "exact_teacher": true,
+      "pc_frozen": true,
+      "address_frozen": true,
+      "all_next_routes": false,
+      "oracle_intact_all": true,
+      "wrong_route_low_all": true,
+      "D198_reproduces_clean_ceiling": true,
+      "D396_improves": true,
+      "D792_improves_strongly": true,
+      "D792_high_behavior": true,
+      "D792_map_near_complete": true,
+      "monotonic_behavior": true
+    },
+    "diagnosis": "POSITION_CONVERGENCE_DOSE_TEST_INCONCLUSIVE"
+  }
+}
