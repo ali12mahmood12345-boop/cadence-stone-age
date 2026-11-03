@@ -1,0 +1,52 @@
+CADENCE STONE AGE V7.36 � POSITION CONVERGENCE / DOSE SCALING
+======================================================================================================================
+cadence-net: 0.91.1
+fresh founders: 102001..102008
+
+QUESTION
+With exact predecessor supervision and the clean V7.35 map (address off, P_c frozen), does more balanced training close the learned-position gap?
+
+VALID FOUNDERS: 2/8 (minimum 6)
+
+MEDIAN CHECKPOINTS
+  D198 BASE 79.6% | FORCE_PRED 100.0% | top pred 86.9% | map-top-pred 84.1% | map mass 53.5%
+  D396 BASE 94.7% | FORCE_PRED 100.0% | top pred 98.7% | map-top-pred 97.7% | map mass 57.2%
+  D792 BASE 93.6% | FORCE_PRED 100.0% | top pred 100.0% | map-top-pred 100.0% | map mass 59.3%
+
+  D396 - D198 paired BASE gain: +15.1%
+  D792 - D396 paired BASE gain: -1.1%
+  D792 - D198 paired BASE gain: +14.0%
+
+PRE-REGISTERED GATES
+- valid_founders: False
+- exact_teacher: True
+- pc_frozen: True
+- address_frozen: True
+- all_next_routes: False
+- oracle_intact_all: True
+- wrong_route_low_all: True
+- D198_reproduces_clean_ceiling: True
+- D396_improves: True
+- D792_improves_strongly: True
+- D792_high_behavior: True
+- D792_map_near_complete: True
+- monotonic_behavior: False
+
+DIAGNOSTIC CLASSIFICATION: POSITION_CONVERGENCE_DOSE_TEST_INCONCLUSIVE
+
+INTERPRETATION
+- One brain per founder trains continuously; checkpoints are cumulative, so this is a convergence curve rather than separate-arm founder noise.
+- Every lesson uses the exact predecessor position target. Content-address learning is frozen and position P_c stays zero.
+- The released 0.91.1 position update and its cortex-energy bound are otherwise unchanged; only cumulative balanced dose changes.
+- Numerical teaching free-phase budget is fixed at 4096 sweeps for every founder/checkpoint to avoid the 1024-sweep exhaustion that invalidated the first V7.36 run.
+- MAP_GEOMETRY reads the learned additive position map directly, independent of neural answer accuracy.
+- FORCE_PREDECESSOR verifies that the downstream predecessor->next route remains capable of perfect behavior.
+
+BOUNDARIES
+1. Component task only; no full-game claim.
+2. Native recall_boundary=True; no manual START.
+3. BLOCK_VALUE_TRAIN fixes predecessor->next during acquisition; values are normal at evaluation.
+4. Exact predecessor p* is training-only diagnostic supervision; BASE uses ordinary learned Recall.
+5. Doses are exact-balanced at every checkpoint: 198, 396, and 792 examples per one of 22 (length,position) pairs.
+6. learning_free_steps=4096 is a solver-budget repair only; the learning rule, tolerance, nudged budget, task, seeds, and interventions are unchanged.
+
