@@ -1,0 +1,231 @@
+{
+  "experiment": "V7.40",
+  "scope": "one saved free solve; no training updates",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.3.5",
+  "cadence_net": "0.91.1",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "snapshot_sha256": "23cab22c6e3bebe8141bbb75fed351b26d340ddf8710e4ab89ab3a13b30635b9",
+  "tolerance": 0.003,
+  "baseline": [
+    {
+      "cap": 4096,
+      "steps": 4096,
+      "residual": 1.7105146077639979
+    },
+    {
+      "cap": 16384,
+      "steps": 16384,
+      "residual": 1.7105146077639979
+    }
+  ],
+  "arms": [
+    {
+      "name": "QUALIFIED_NO_DAMPING",
+      "cap": 4096,
+      "repeat": 1,
+      "damping": 0,
+      "initial_damping": 0,
+      "steps": 4096,
+      "residual_checks": 129,
+      "stagnation_checks": 0,
+      "final_damping_halvings": 0,
+      "reported_qualified": false,
+      "independently_verified_qualified": false,
+      "residual": [
+        1.7105146077639979
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_NO_DAMPING",
+      "cap": 4096,
+      "repeat": 2,
+      "damping": 0,
+      "initial_damping": 0,
+      "steps": 4096,
+      "residual_checks": 129,
+      "stagnation_checks": 0,
+      "final_damping_halvings": 0,
+      "reported_qualified": false,
+      "independently_verified_qualified": false,
+      "residual": [
+        1.7105146077639979
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_ADAPTIVE",
+      "cap": 4096,
+      "repeat": 1,
+      "damping": 3,
+      "initial_damping": 0,
+      "steps": 384,
+      "residual_checks": 15,
+      "stagnation_checks": 11,
+      "final_damping_halvings": 1,
+      "reported_qualified": true,
+      "independently_verified_qualified": true,
+      "residual": [
+        0.0015393863773756067
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_ADAPTIVE",
+      "cap": 4096,
+      "repeat": 2,
+      "damping": 3,
+      "initial_damping": 0,
+      "steps": 384,
+      "residual_checks": 15,
+      "stagnation_checks": 11,
+      "final_damping_halvings": 1,
+      "reported_qualified": true,
+      "independently_verified_qualified": true,
+      "residual": [
+        0.0015393863773756067
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_START_HALF_DT",
+      "cap": 4096,
+      "repeat": 1,
+      "damping": 3,
+      "initial_damping": 1,
+      "steps": 96,
+      "residual_checks": 5,
+      "stagnation_checks": 2,
+      "final_damping_halvings": 1,
+      "reported_qualified": true,
+      "independently_verified_qualified": true,
+      "residual": [
+        0.0007350208659837598
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_START_HALF_DT",
+      "cap": 4096,
+      "repeat": 2,
+      "damping": 3,
+      "initial_damping": 1,
+      "steps": 96,
+      "residual_checks": 5,
+      "stagnation_checks": 2,
+      "final_damping_halvings": 1,
+      "reported_qualified": true,
+      "independently_verified_qualified": true,
+      "residual": [
+        0.0007350208659837598
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_NO_DAMPING",
+      "cap": 16384,
+      "repeat": 1,
+      "damping": 0,
+      "initial_damping": 0,
+      "steps": 16384,
+      "residual_checks": 513,
+      "stagnation_checks": 0,
+      "final_damping_halvings": 0,
+      "reported_qualified": false,
+      "independently_verified_qualified": false,
+      "residual": [
+        1.7105146077639979
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_NO_DAMPING",
+      "cap": 16384,
+      "repeat": 2,
+      "damping": 0,
+      "initial_damping": 0,
+      "steps": 16384,
+      "residual_checks": 513,
+      "stagnation_checks": 0,
+      "final_damping_halvings": 0,
+      "reported_qualified": false,
+      "independently_verified_qualified": false,
+      "residual": [
+        1.7105146077639979
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_ADAPTIVE",
+      "cap": 16384,
+      "repeat": 1,
+      "damping": 3,
+      "initial_damping": 0,
+      "steps": 384,
+      "residual_checks": 15,
+      "stagnation_checks": 11,
+      "final_damping_halvings": 1,
+      "reported_qualified": true,
+      "independently_verified_qualified": true,
+      "residual": [
+        0.0015393863773756067
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_ADAPTIVE",
+      "cap": 16384,
+      "repeat": 2,
+      "damping": 3,
+      "initial_damping": 0,
+      "steps": 384,
+      "residual_checks": 15,
+      "stagnation_checks": 11,
+      "final_damping_halvings": 1,
+      "reported_qualified": true,
+      "independently_verified_qualified": true,
+      "residual": [
+        0.0015393863773756067
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_START_HALF_DT",
+      "cap": 16384,
+      "repeat": 1,
+      "damping": 3,
+      "initial_damping": 1,
+      "steps": 96,
+      "residual_checks": 5,
+      "stagnation_checks": 2,
+      "final_damping_halvings": 1,
+      "reported_qualified": true,
+      "independently_verified_qualified": true,
+      "residual": [
+        0.0007350208659837598
+      ],
+      "finite": true
+    },
+    {
+      "name": "QUALIFIED_START_HALF_DT",
+      "cap": 16384,
+      "repeat": 2,
+      "damping": 3,
+      "initial_damping": 1,
+      "steps": 96,
+      "residual_checks": 5,
+      "stagnation_checks": 2,
+      "final_damping_halvings": 1,
+      "reported_qualified": true,
+      "independently_verified_qualified": true,
+      "residual": [
+        0.0007350208659837598
+      ],
+      "finite": true
+    }
+  ],
+  "baseline_reproduced": true,
+  "repeat_metrics_exact": true,
+  "status": "diagnostic_complete"
+}
