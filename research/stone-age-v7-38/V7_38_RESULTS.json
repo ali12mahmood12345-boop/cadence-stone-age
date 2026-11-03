@@ -1,0 +1,550 @@
+{
+  "experiment": "V7.38",
+  "founder": 102007,
+  "target_lesson": 7666,
+  "python": "3.15.2 (tags/v3.15.2:5e58eaa, Oct 25 2026, 17:27:03) [MSC v.1951 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "numpy": "2.5.4",
+  "cadence_net": "0.91.1",
+  "smoke": false,
+  "arms": [
+    {
+      "training_budget": 4096,
+      "checkpoints": {
+        "D198": {
+          "checkpoint": "D198",
+          "conditions": {
+            "BASE": {
+              "valid": 1,
+              "accuracy": 0.759090909090909,
+              "per_length": {
+                "L3": 0.9866666666666667,
+                "L4": 0.7,
+                "L5": 0.72,
+                "L6": 0.668,
+                "L7": 0.8
+              },
+              "per_position": {
+                "P1": 0.964,
+                "P2": 0.672,
+                "P3": 0.664,
+                "P4": 0.585,
+                "P5": 0.9533333333333334
+              },
+              "per_pair": {
+                "L3_P1": 1.0,
+                "L3_P2": 1.0,
+                "L3_P3": 0.96,
+                "L4_P1": 0.96,
+                "L4_P2": 0.62,
+                "L4_P3": 0.26,
+                "L4_P4": 0.96,
+                "L5_P1": 0.92,
+                "L5_P2": 0.22,
+                "L5_P3": 0.94,
+                "L5_P4": 0.64,
+                "L5_P5": 0.88,
+                "L6_P1": 1.0,
+                "L6_P2": 0.88,
+                "L6_P3": 0.16,
+                "L6_P4": 0.3,
+                "L6_P5": 1.0,
+                "L7_P1": 0.94,
+                "L7_P2": 0.64,
+                "L7_P3": 1.0,
+                "L7_P4": 0.44,
+                "L7_P5": 0.98
+              },
+              "tests": {
+                "total": 1100,
+                "pair_count": 50
+              },
+              "runtime_errors": []
+            },
+            "FORCE_PREDECESSOR": {
+              "valid": 1,
+              "accuracy": 1.0,
+              "per_length": {
+                "L3": 1.0,
+                "L4": 1.0,
+                "L5": 1.0,
+                "L6": 1.0,
+                "L7": 1.0
+              },
+              "per_position": {
+                "P1": 1.0,
+                "P2": 1.0,
+                "P3": 1.0,
+                "P4": 1.0,
+                "P5": 1.0
+              },
+              "per_pair": {
+                "L3_P1": 1.0,
+                "L3_P2": 1.0,
+                "L3_P3": 1.0,
+                "L4_P1": 1.0,
+                "L4_P2": 1.0,
+                "L4_P3": 1.0,
+                "L4_P4": 1.0,
+                "L5_P1": 1.0,
+                "L5_P2": 1.0,
+                "L5_P3": 1.0,
+                "L5_P4": 1.0,
+                "L5_P5": 1.0,
+                "L6_P1": 1.0,
+                "L6_P2": 1.0,
+                "L6_P3": 1.0,
+                "L6_P4": 1.0,
+                "L6_P5": 1.0,
+                "L7_P1": 1.0,
+                "L7_P2": 1.0,
+                "L7_P3": 1.0,
+                "L7_P4": 1.0,
+                "L7_P5": 1.0
+              },
+              "tests": {
+                "total": 1100,
+                "pair_count": 50
+              },
+              "runtime_errors": []
+            },
+            "FORCE_TARGET": {
+              "valid": 1,
+              "accuracy": 0.0,
+              "per_length": {
+                "L3": 0.0,
+                "L4": 0.0,
+                "L5": 0.0,
+                "L6": 0.0,
+                "L7": 0.0
+              },
+              "per_position": {
+                "P1": 0.0,
+                "P2": 0.0,
+                "P3": 0.0,
+                "P4": 0.0,
+                "P5": 0.0
+              },
+              "per_pair": {
+                "L3_P1": 0.0,
+                "L3_P2": 0.0,
+                "L3_P3": 0.0,
+                "L4_P1": 0.0,
+                "L4_P2": 0.0,
+                "L4_P3": 0.0,
+                "L4_P4": 0.0,
+                "L5_P1": 0.0,
+                "L5_P2": 0.0,
+                "L5_P3": 0.0,
+                "L5_P4": 0.0,
+                "L5_P5": 0.0,
+                "L6_P1": 0.0,
+                "L6_P2": 0.0,
+                "L6_P3": 0.0,
+                "L6_P4": 0.0,
+                "L6_P5": 0.0,
+                "L7_P1": 0.0,
+                "L7_P2": 0.0,
+                "L7_P3": 0.0,
+                "L7_P4": 0.0,
+                "L7_P5": 0.0
+              },
+              "tests": {
+                "total": 1100,
+                "pair_count": 50
+              },
+              "runtime_errors": []
+            }
+          },
+          "valid": 1,
+          "calibration": {
+            "valid": 1,
+            "accuracy": 0.7795454545454545,
+            "per_length": {
+              "L3": 1.0,
+              "L4": 0.7125,
+              "L5": 0.71,
+              "L6": 0.68,
+              "L7": 0.87
+            },
+            "per_position": {
+              "P1": 0.97,
+              "P2": 0.72,
+              "P3": 0.66,
+              "P4": 0.6375,
+              "P5": 0.95
+            },
+            "per_pair": {
+              "L3_P1": 1.0,
+              "L3_P2": 1.0,
+              "L3_P3": 1.0,
+              "L4_P1": 0.95,
+              "L4_P2": 0.65,
+              "L4_P3": 0.3,
+              "L4_P4": 0.95,
+              "L5_P1": 0.95,
+              "L5_P2": 0.2,
+              "L5_P3": 1.0,
+              "L5_P4": 0.55,
+              "L5_P5": 0.85,
+              "L6_P1": 1.0,
+              "L6_P2": 0.95,
+              "L6_P3": 0.0,
+              "L6_P4": 0.45,
+              "L6_P5": 1.0,
+              "L7_P1": 0.95,
+              "L7_P2": 0.8,
+              "L7_P3": 1.0,
+              "L7_P4": 0.6,
+              "L7_P5": 1.0
+            },
+            "tests": {
+              "total": 440,
+              "pair_count": 20
+            },
+            "runtime_errors": []
+          },
+          "route": {
+            "top_predecessor_rate": 0.8181818181818182,
+            "top_target_rate": 0.045454545454545456,
+            "delta": 0.7727272727272728,
+            "preferred_route": "NEXT_ROUTE",
+            "clear": 1
+          },
+          "map_geometry": {
+            "top_predecessor_rate": 0.8181818181818182,
+            "mean_predecessor_mass": 0.542408952455534,
+            "median_margin": 0.8097656623191862,
+            "min_margin": -0.753744917055422
+          }
+        }
+      },
+      "status": "pre_update_diagnostic_complete",
+      "snapshot_sha256": "23cab22c6e3bebe8141bbb75fed351b26d340ddf8710e4ab89ab3a13b30635b9",
+      "learner_config": {
+        "beta": 0.1,
+        "eta": 0.003,
+        "eta_bias": 0.0003,
+        "free_steps": 4096,
+        "nudged_steps": 12,
+        "tolerance": 0.003,
+        "nudge": "cross_entropy",
+        "temperature": 0.2,
+        "normalize": 0.99,
+        "normalize_floor": 0.0001,
+        "momentum": 0.9,
+        "scale_cap": 8.0,
+        "qualified": false,
+        "damping": 3,
+        "surprise": false,
+        "initial_damping": 0,
+        "normalize_relative": 0.0,
+        "nudged_fixed": false
+      },
+      "probes": [
+        {
+          "budget": 4096,
+          "steps": 4096,
+          "residual": [
+            1.7105146077639979
+          ],
+          "max_abs_residual": 1.7105146077639979,
+          "finite": true,
+          "budget_exhausted": true
+        },
+        {
+          "budget": 16384,
+          "steps": 16384,
+          "residual": [
+            1.7105146077639979
+          ],
+          "max_abs_residual": 1.7105146077639979,
+          "finite": true,
+          "budget_exhausted": true
+        },
+        {
+          "budget": 16384,
+          "steps": 16384,
+          "residual": [
+            1.7105146077639979
+          ],
+          "max_abs_residual": 1.7105146077639979,
+          "finite": true,
+          "budget_exhausted": true
+        }
+      ],
+      "repeat_16384_exact": true,
+      "last_attempted_lesson": 7666,
+      "D198_matches_prior": true
+    },
+    {
+      "training_budget": 16384,
+      "checkpoints": {
+        "D198": {
+          "checkpoint": "D198",
+          "conditions": {
+            "BASE": {
+              "valid": 1,
+              "accuracy": 0.759090909090909,
+              "per_length": {
+                "L3": 0.9866666666666667,
+                "L4": 0.7,
+                "L5": 0.72,
+                "L6": 0.668,
+                "L7": 0.8
+              },
+              "per_position": {
+                "P1": 0.964,
+                "P2": 0.672,
+                "P3": 0.664,
+                "P4": 0.585,
+                "P5": 0.9533333333333334
+              },
+              "per_pair": {
+                "L3_P1": 1.0,
+                "L3_P2": 1.0,
+                "L3_P3": 0.96,
+                "L4_P1": 0.96,
+                "L4_P2": 0.62,
+                "L4_P3": 0.26,
+                "L4_P4": 0.96,
+                "L5_P1": 0.92,
+                "L5_P2": 0.22,
+                "L5_P3": 0.94,
+                "L5_P4": 0.64,
+                "L5_P5": 0.88,
+                "L6_P1": 1.0,
+                "L6_P2": 0.88,
+                "L6_P3": 0.16,
+                "L6_P4": 0.3,
+                "L6_P5": 1.0,
+                "L7_P1": 0.94,
+                "L7_P2": 0.64,
+                "L7_P3": 1.0,
+                "L7_P4": 0.44,
+                "L7_P5": 0.98
+              },
+              "tests": {
+                "total": 1100,
+                "pair_count": 50
+              },
+              "runtime_errors": []
+            },
+            "FORCE_PREDECESSOR": {
+              "valid": 1,
+              "accuracy": 1.0,
+              "per_length": {
+                "L3": 1.0,
+                "L4": 1.0,
+                "L5": 1.0,
+                "L6": 1.0,
+                "L7": 1.0
+              },
+              "per_position": {
+                "P1": 1.0,
+                "P2": 1.0,
+                "P3": 1.0,
+                "P4": 1.0,
+                "P5": 1.0
+              },
+              "per_pair": {
+                "L3_P1": 1.0,
+                "L3_P2": 1.0,
+                "L3_P3": 1.0,
+                "L4_P1": 1.0,
+                "L4_P2": 1.0,
+                "L4_P3": 1.0,
+                "L4_P4": 1.0,
+                "L5_P1": 1.0,
+                "L5_P2": 1.0,
+                "L5_P3": 1.0,
+                "L5_P4": 1.0,
+                "L5_P5": 1.0,
+                "L6_P1": 1.0,
+                "L6_P2": 1.0,
+                "L6_P3": 1.0,
+                "L6_P4": 1.0,
+                "L6_P5": 1.0,
+                "L7_P1": 1.0,
+                "L7_P2": 1.0,
+                "L7_P3": 1.0,
+                "L7_P4": 1.0,
+                "L7_P5": 1.0
+              },
+              "tests": {
+                "total": 1100,
+                "pair_count": 50
+              },
+              "runtime_errors": []
+            },
+            "FORCE_TARGET": {
+              "valid": 1,
+              "accuracy": 0.0,
+              "per_length": {
+                "L3": 0.0,
+                "L4": 0.0,
+                "L5": 0.0,
+                "L6": 0.0,
+                "L7": 0.0
+              },
+              "per_position": {
+                "P1": 0.0,
+                "P2": 0.0,
+                "P3": 0.0,
+                "P4": 0.0,
+                "P5": 0.0
+              },
+              "per_pair": {
+                "L3_P1": 0.0,
+                "L3_P2": 0.0,
+                "L3_P3": 0.0,
+                "L4_P1": 0.0,
+                "L4_P2": 0.0,
+                "L4_P3": 0.0,
+                "L4_P4": 0.0,
+                "L5_P1": 0.0,
+                "L5_P2": 0.0,
+                "L5_P3": 0.0,
+                "L5_P4": 0.0,
+                "L5_P5": 0.0,
+                "L6_P1": 0.0,
+                "L6_P2": 0.0,
+                "L6_P3": 0.0,
+                "L6_P4": 0.0,
+                "L6_P5": 0.0,
+                "L7_P1": 0.0,
+                "L7_P2": 0.0,
+                "L7_P3": 0.0,
+                "L7_P4": 0.0,
+                "L7_P5": 0.0
+              },
+              "tests": {
+                "total": 1100,
+                "pair_count": 50
+              },
+              "runtime_errors": []
+            }
+          },
+          "valid": 1,
+          "calibration": {
+            "valid": 1,
+            "accuracy": 0.7795454545454545,
+            "per_length": {
+              "L3": 1.0,
+              "L4": 0.7125,
+              "L5": 0.71,
+              "L6": 0.68,
+              "L7": 0.87
+            },
+            "per_position": {
+              "P1": 0.97,
+              "P2": 0.72,
+              "P3": 0.66,
+              "P4": 0.6375,
+              "P5": 0.95
+            },
+            "per_pair": {
+              "L3_P1": 1.0,
+              "L3_P2": 1.0,
+              "L3_P3": 1.0,
+              "L4_P1": 0.95,
+              "L4_P2": 0.65,
+              "L4_P3": 0.3,
+              "L4_P4": 0.95,
+              "L5_P1": 0.95,
+              "L5_P2": 0.2,
+              "L5_P3": 1.0,
+              "L5_P4": 0.55,
+              "L5_P5": 0.85,
+              "L6_P1": 1.0,
+              "L6_P2": 0.95,
+              "L6_P3": 0.0,
+              "L6_P4": 0.45,
+              "L6_P5": 1.0,
+              "L7_P1": 0.95,
+              "L7_P2": 0.8,
+              "L7_P3": 1.0,
+              "L7_P4": 0.6,
+              "L7_P5": 1.0
+            },
+            "tests": {
+              "total": 440,
+              "pair_count": 20
+            },
+            "runtime_errors": []
+          },
+          "route": {
+            "top_predecessor_rate": 0.8181818181818182,
+            "top_target_rate": 0.045454545454545456,
+            "delta": 0.7727272727272728,
+            "preferred_route": "NEXT_ROUTE",
+            "clear": 1
+          },
+          "map_geometry": {
+            "top_predecessor_rate": 0.8181818181818182,
+            "mean_predecessor_mass": 0.542408952455534,
+            "median_margin": 0.8097656623191862,
+            "min_margin": -0.753744917055422
+          }
+        }
+      },
+      "status": "pre_update_diagnostic_complete",
+      "snapshot_sha256": "23cab22c6e3bebe8141bbb75fed351b26d340ddf8710e4ab89ab3a13b30635b9",
+      "learner_config": {
+        "beta": 0.1,
+        "eta": 0.003,
+        "eta_bias": 0.0003,
+        "free_steps": 16384,
+        "nudged_steps": 12,
+        "tolerance": 0.003,
+        "nudge": "cross_entropy",
+        "temperature": 0.2,
+        "normalize": 0.99,
+        "normalize_floor": 0.0001,
+        "momentum": 0.9,
+        "scale_cap": 8.0,
+        "qualified": false,
+        "damping": 3,
+        "surprise": false,
+        "initial_damping": 0,
+        "normalize_relative": 0.0,
+        "nudged_fixed": false
+      },
+      "probes": [
+        {
+          "budget": 4096,
+          "steps": 4096,
+          "residual": [
+            1.7105146077639979
+          ],
+          "max_abs_residual": 1.7105146077639979,
+          "finite": true,
+          "budget_exhausted": true
+        },
+        {
+          "budget": 16384,
+          "steps": 16384,
+          "residual": [
+            1.7105146077639979
+          ],
+          "max_abs_residual": 1.7105146077639979,
+          "finite": true,
+          "budget_exhausted": true
+        },
+        {
+          "budget": 16384,
+          "steps": 16384,
+          "residual": [
+            1.7105146077639979
+          ],
+          "max_abs_residual": 1.7105146077639979,
+          "finite": true,
+          "budget_exhausted": true
+        }
+      ],
+      "repeat_16384_exact": true,
+      "last_attempted_lesson": 7666,
+      "D198_matches_prior": true
+    }
+  ]
+}
