@@ -1,0 +1,2 @@
+cadence-net==0.91.1
+numpy>=2,<3
