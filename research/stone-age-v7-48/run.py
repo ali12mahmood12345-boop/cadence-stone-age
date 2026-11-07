@@ -120,7 +120,7 @@ def aggregate(out,seeds):
         gains=[p['checkpoints']['D792']['paired_base_gain'] for p in valid]
         gates['six_positive_founders']=sum(g>0 for g in gains)>=6
         gates['native020_high']=summary['checkpoints']['D792']['NATIVE_020']['base']>=.95
-    gates['replication_confirmed']=all(gates.values())
+    gates['replication_confirmed']=len(seeds)==8 and len(found)==24 and all(gates.values())
     doc={'experiment':'V7.48','run_complete':len(seeds)==8 and len(found)==24,
          'requested_founders':len(seeds),'completed_arms':len(found),'expected_arms':24,
          'cadence_net':version('cadence-net'),'python':sys.version,
