@@ -1,0 +1,898 @@
+{
+  "audited_runs": 24,
+  "valid_triplets": 8,
+  "positive_founders": 7,
+  "medians": {
+    "D198": {
+      "EXACT_010": {
+        "BASE": 0.775,
+        "FORCE_PREDECESSOR": 1.0,
+        "FORCE_TARGET": 0.031363636363636364,
+        "map_top": 0.8181818181818182,
+        "map_mass": 0.5468984357029388
+      },
+      "NATIVE_010": {
+        "BASE": 0.7445454545454545,
+        "FORCE_PREDECESSOR": 1.0,
+        "FORCE_TARGET": 0.02181818181818182,
+        "map_top": 0.75,
+        "map_mass": 0.5003586841895169
+      },
+      "NATIVE_020": {
+        "BASE": 0.8304545454545454,
+        "FORCE_PREDECESSOR": 1.0,
+        "FORCE_TARGET": 0.028636363636363633,
+        "map_top": 0.8181818181818182,
+        "map_mass": 0.6198915361765094
+      }
+    },
+    "D396": {
+      "EXACT_010": {
+        "BASE": 0.9145454545454546,
+        "FORCE_PREDECESSOR": 1.0,
+        "FORCE_TARGET": 0.03181818181818182,
+        "map_top": 1.0,
+        "map_mass": 0.6188777686303706
+      },
+      "NATIVE_010": {
+        "BASE": 0.8390909090909091,
+        "FORCE_PREDECESSOR": 1.0,
+        "FORCE_TARGET": 0.013636363636363637,
+        "map_top": 0.8181818181818182,
+        "map_mass": 0.6037854345171535
+      },
+      "NATIVE_020": {
+        "BASE": 0.9068181818181817,
+        "FORCE_PREDECESSOR": 1.0,
+        "FORCE_TARGET": 0.02409090909090909,
+        "map_top": 0.9090909090909091,
+        "map_mass": 0.6893263218506828
+      }
+    },
+    "D792": {
+      "EXACT_010": {
+        "BASE": 0.9777272727272728,
+        "FORCE_PREDECESSOR": 1.0,
+        "FORCE_TARGET": 0.03772727272727273,
+        "map_top": 1.0,
+        "map_mass": 0.6432223167106799
+      },
+      "NATIVE_010": {
+        "BASE": 0.8986363636363637,
+        "FORCE_PREDECESSOR": 1.0,
+        "FORCE_TARGET": 0.023181818181818182,
+        "map_top": 0.9090909090909091,
+        "map_mass": 0.6236712990096032
+      },
+      "NATIVE_020": {
+        "BASE": 0.94,
+        "FORCE_PREDECESSOR": 1.0,
+        "FORCE_TARGET": 0.025454545454545455,
+        "map_top": 1.0,
+        "map_mass": 0.6664077945625373
+      }
+    }
+  },
+  "paired_median_gains": {
+    "D198": {
+      "base_gain": 0.08363636363636368,
+      "map_top_gain": 0.04545454545454547
+    },
+    "D396": {
+      "base_gain": 0.06227272727272726,
+      "map_top_gain": 0.09090909090909083
+    },
+    "D792": {
+      "base_gain": 0.042727272727272725,
+      "map_top_gain": 0.06818181818181818
+    }
+  },
+  "gates": {
+    "six_valid_triplets": true,
+    "exact_control": true,
+    "native_oracle": true,
+    "rate_effect": true,
+    "six_positive_founders": true,
+    "native020_high": false,
+    "replication_confirmed": false
+  },
+  "runs": [
+    {
+      "seed": 108001,
+      "arm": "EXACT_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7463636363636363,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.031818181818181815,
+          "map_top": 0.8636363636363636,
+          "map_mass": 0.5437880340308778
+        },
+        "D396": {
+          "BASE": 0.9118181818181819,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03272727272727273,
+          "map_top": 1,
+          "map_mass": 0.6313715926031948
+        },
+        "D792": {
+          "BASE": 0.9836363636363636,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.038181818181818185,
+          "map_top": 1,
+          "map_mass": 0.6498669213537793
+        }
+      }
+    },
+    {
+      "seed": 108001,
+      "arm": "NATIVE_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7345454545454545,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03363636363636364,
+          "map_top": 0.7272727272727273,
+          "map_mass": 0.48871529166515376
+        },
+        "D396": {
+          "BASE": 0.86,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.025454545454545455,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.6045719705743426
+        },
+        "D792": {
+          "BASE": 0.8745454545454545,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.028181818181818183,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.6048511667180145
+        }
+      }
+    },
+    {
+      "seed": 108001,
+      "arm": "NATIVE_020",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.8190909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03272727272727273,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.5938214530171876
+        },
+        "D396": {
+          "BASE": 0.9272727272727272,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.016363636363636365,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.6902987889463464
+        },
+        "D792": {
+          "BASE": 0.9590909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.04090909090909091,
+          "map_top": 1,
+          "map_mass": 0.6575003268805028
+        }
+      }
+    },
+    {
+      "seed": 108002,
+      "arm": "EXACT_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7318181818181818,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.012727272727272728,
+          "map_top": 0.7272727272727273,
+          "map_mass": 0.5383104779062822
+        },
+        "D396": {
+          "BASE": 0.9172727272727272,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03090909090909091,
+          "map_top": 1,
+          "map_mass": 0.6154279437120632
+        },
+        "D792": {
+          "BASE": 0.9954545454545455,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.05,
+          "map_top": 1,
+          "map_mass": 0.6422271368118095
+        }
+      }
+    },
+    {
+      "seed": 108002,
+      "arm": "NATIVE_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7445454545454545,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.01818181818181818,
+          "map_top": 0.7727272727272727,
+          "map_mass": 0.5105444502532878
+        },
+        "D396": {
+          "BASE": 0.8318181818181818,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.0036363636363636364,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.6029988984599643
+        },
+        "D792": {
+          "BASE": 0.8818181818181818,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.015454545454545455,
+          "map_top": 1,
+          "map_mass": 0.6139635680775933
+        }
+      }
+    },
+    {
+      "seed": 108002,
+      "arm": "NATIVE_020",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.8336363636363636,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.02727272727272727,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.6215799644365004
+        },
+        "D396": {
+          "BASE": 0.9263636363636364,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.023636363636363636,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.7040587707964713
+        },
+        "D792": {
+          "BASE": 0.93,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.014545454545454545,
+          "map_top": 1,
+          "map_mass": 0.6681527889945464
+        }
+      }
+    },
+    {
+      "seed": 108003,
+      "arm": "EXACT_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7754545454545455,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0,
+          "map_top": 0.8636363636363636,
+          "map_mass": 0.5469732241119398
+        },
+        "D396": {
+          "BASE": 0.9,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.013636363636363636,
+          "map_top": 1,
+          "map_mass": 0.624287226930588
+        },
+        "D792": {
+          "BASE": 0.9681818181818181,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.014545454545454545,
+          "map_top": 1,
+          "map_mass": 0.6446137631116076
+        }
+      }
+    },
+    {
+      "seed": 108003,
+      "arm": "NATIVE_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7363636363636363,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.012727272727272728,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.47758749935131106
+        },
+        "D396": {
+          "BASE": 0.8390909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.01,
+          "map_top": 0.8636363636363636,
+          "map_mass": 0.6155928992188443
+        },
+        "D792": {
+          "BASE": 0.9154545454545454,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.006363636363636364,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.6262989177124332
+        }
+      }
+    },
+    {
+      "seed": 108003,
+      "arm": "NATIVE_020",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7763636363636364,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.0018181818181818182,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.5956883834995883
+        },
+        "D396": {
+          "BASE": 0.860909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.005454545454545455,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.6501629613634159
+        },
+        "D792": {
+          "BASE": 0.9227272727272727,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.0036363636363636364,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.7141493924460339
+        }
+      }
+    },
+    {
+      "seed": 108004,
+      "arm": "EXACT_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7090909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03272727272727273,
+          "map_top": 0.7727272727272727,
+          "map_mass": 0.5403021838507713
+        },
+        "D396": {
+          "BASE": 0.9290909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03363636363636364,
+          "map_top": 1,
+          "map_mass": 0.6188413059642758
+        },
+        "D792": {
+          "BASE": 0.9618181818181818,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03,
+          "map_top": 1,
+          "map_mass": 0.6404036441739898
+        }
+      }
+    },
+    {
+      "seed": 108004,
+      "arm": "NATIVE_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7336363636363636,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.005454545454545455,
+          "map_top": 0.7272727272727273,
+          "map_mass": 0.4986677688952397
+        },
+        "D396": {
+          "BASE": 0.8754545454545455,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.008181818181818182,
+          "map_top": 0.8636363636363636,
+          "map_mass": 0.623189387058906
+        },
+        "D792": {
+          "BASE": 0.9072727272727272,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.02181818181818182,
+          "map_top": 0.9545454545454546,
+          "map_mass": 0.6261429798779341
+        }
+      }
+    },
+    {
+      "seed": 108004,
+      "arm": "NATIVE_020",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.8336363636363636,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.019090909090909092,
+          "map_top": 0.7727272727272727,
+          "map_mass": 0.6220955467938274
+        },
+        "D396": {
+          "BASE": 0.8854545454545455,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.025454545454545455,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.7105784547347583
+        },
+        "D792": {
+          "BASE": 0.9845454545454545,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.025454545454545455,
+          "map_top": 1,
+          "map_mass": 0.6697944954502525
+        }
+      }
+    },
+    {
+      "seed": 108005,
+      "arm": "EXACT_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7745454545454545,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03636363636363636,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.5501656614327286
+        },
+        "D396": {
+          "BASE": 0.9009090909090909,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.02090909090909091,
+          "map_top": 1,
+          "map_mass": 0.6189142312964654
+        },
+        "D792": {
+          "BASE": 0.9718181818181818,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03727272727272727,
+          "map_top": 1,
+          "map_mass": 0.6429929883205951
+        }
+      }
+    },
+    {
+      "seed": 108005,
+      "arm": "NATIVE_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.8009090909090909,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.035454545454545454,
+          "map_top": 0.7272727272727273,
+          "map_mass": 0.5179791509182784
+        },
+        "D396": {
+          "BASE": 0.8618181818181818,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.017272727272727273,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.5958425044538619
+        },
+        "D792": {
+          "BASE": 0.8809090909090909,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.034545454545454546,
+          "map_top": 0.8636363636363636,
+          "map_mass": 0.6131524560861934
+        }
+      }
+    },
+    {
+      "seed": 108005,
+      "arm": "NATIVE_020",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.82,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.04454545454545455,
+          "map_top": 0.7727272727272727,
+          "map_mass": 0.6213566767286378
+        },
+        "D396": {
+          "BASE": 0.9263636363636364,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03272727272727273,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.6791560982061866
+        },
+        "D792": {
+          "BASE": 0.9118181818181819,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.025454545454545455,
+          "map_top": 1,
+          "map_mass": 0.6549235778676252
+        }
+      }
+    },
+    {
+      "seed": 108006,
+      "arm": "EXACT_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.8245454545454546,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03090909090909091,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.5468236472939378
+        },
+        "D396": {
+          "BASE": 0.8490909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03272727272727273,
+          "map_top": 0.9545454545454546,
+          "map_mass": 0.6074392349420893
+        },
+        "D792": {
+          "BASE": 0.9927272727272727,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03909090909090909,
+          "map_top": 1,
+          "map_mass": 0.634633906542122
+        }
+      }
+    },
+    {
+      "seed": 108006,
+      "arm": "NATIVE_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7972727272727272,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.06363636363636363,
+          "map_top": 0.7727272727272727,
+          "map_mass": 0.5020495994837941
+        },
+        "D396": {
+          "BASE": 0.8390909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.04818181818181818,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.5829179452801652
+        },
+        "D792": {
+          "BASE": 0.9009090909090909,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03090909090909091,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.6322410949772661
+        }
+      }
+    },
+    {
+      "seed": 108006,
+      "arm": "NATIVE_020",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.860909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.04363636363636364,
+          "map_top": 0.7727272727272727,
+          "map_mass": 0.5975676232847164
+        },
+        "D396": {
+          "BASE": 0.89,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.05,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.6772965775071796
+        },
+        "D792": {
+          "BASE": 0.9672727272727273,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.03727272727272727,
+          "map_top": 1,
+          "map_mass": 0.6485434391294941
+        }
+      }
+    },
+    {
+      "seed": 108007,
+      "arm": "EXACT_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.81,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.05181818181818182,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.5506551775407258
+        },
+        "D396": {
+          "BASE": 0.9309090909090909,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.042727272727272725,
+          "map_top": 1,
+          "map_mass": 0.6185075657310818
+        },
+        "D792": {
+          "BASE": 0.9672727272727273,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.045454545454545456,
+          "map_top": 1,
+          "map_mass": 0.6434516451007647
+        }
+      }
+    },
+    {
+      "seed": 108007,
+      "arm": "NATIVE_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7445454545454545,
+          "FORCE_PREDECESSOR": 0.9981818181818182,
+          "FORCE_TARGET": 0.025454545454545455,
+          "map_top": 0.6818181818181818,
+          "map_mass": 0.5250543358542316
+        },
+        "D396": {
+          "BASE": 0.8290909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.053636363636363635,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.5943632852912047
+        },
+        "D792": {
+          "BASE": 0.9127272727272727,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.024545454545454544,
+          "map_top": 0.8636363636363636,
+          "map_mass": 0.6645499605044825
+        }
+      }
+    },
+    {
+      "seed": 108007,
+      "arm": "NATIVE_020",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.8272727272727273,
+          "FORCE_PREDECESSOR": 0.9972727272727273,
+          "FORCE_TARGET": 0.03,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.6184263956243811
+        },
+        "D396": {
+          "BASE": 0.889090909090909,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.024545454545454544,
+          "map_top": 0.8636363636363636,
+          "map_mass": 0.6962643086085792
+        },
+        "D792": {
+          "BASE": 0.95,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.031818181818181815,
+          "map_top": 1,
+          "map_mass": 0.6646628001305281
+        }
+      }
+    },
+    {
+      "seed": 108008,
+      "arm": "EXACT_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.8018181818181818,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.007272727272727273,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.5523310166745339
+        },
+        "D396": {
+          "BASE": 0.9290909090909091,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.0027272727272727275,
+          "map_top": 1,
+          "map_mass": 0.6270877577178912
+        },
+        "D792": {
+          "BASE": 0.99,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.011818181818181818,
+          "map_top": 1,
+          "map_mass": 0.6481445418357221
+        }
+      }
+    },
+    {
+      "seed": 108008,
+      "arm": "NATIVE_010",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.7718181818181818,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.008181818181818182,
+          "map_top": 0.7727272727272727,
+          "map_mass": 0.4872778941485408
+        },
+        "D396": {
+          "BASE": 0.8318181818181818,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0,
+          "map_top": 0.7727272727272727,
+          "map_mass": 0.6093401539119635
+        },
+        "D792": {
+          "BASE": 0.8963636363636364,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.0036363636363636364,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.6211996181412722
+        }
+      }
+    },
+    {
+      "seed": 108008,
+      "arm": "NATIVE_020",
+      "checkpoints": {
+        "D198": {
+          "BASE": 0.8636363636363636,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.004545454545454545,
+          "map_top": 0.8181818181818182,
+          "map_mass": 0.6233959721188217
+        },
+        "D396": {
+          "BASE": 0.9236363636363636,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0,
+          "map_top": 0.9090909090909091,
+          "map_mass": 0.6883538547550191
+        },
+        "D792": {
+          "BASE": 0.8945454545454545,
+          "FORCE_PREDECESSOR": 1,
+          "FORCE_TARGET": 0.007272727272727273,
+          "map_top": 0.8636363636363636,
+          "map_mass": 0.6843098308605473
+        }
+      }
+    }
+  ],
+  "paired": [
+    {
+      "seed": 108001,
+      "D198": {
+        "base_gain": 0.08454545454545459,
+        "map_top_gain": 0.09090909090909094
+      },
+      "D396": {
+        "base_gain": 0.06727272727272726,
+        "map_top_gain": 0.09090909090909083
+      },
+      "D792": {
+        "base_gain": 0.08454545454545459,
+        "map_top_gain": 0.09090909090909094
+      }
+    },
+    {
+      "seed": 108002,
+      "D198": {
+        "base_gain": 0.08909090909090911,
+        "map_top_gain": 0.045454545454545525
+      },
+      "D396": {
+        "base_gain": 0.0945454545454546,
+        "map_top_gain": 0.09090909090909083
+      },
+      "D792": {
+        "base_gain": 0.048181818181818215,
+        "map_top_gain": 0
+      }
+    },
+    {
+      "seed": 108003,
+      "D198": {
+        "base_gain": 0.040000000000000036,
+        "map_top_gain": 0.0
+      },
+      "D396": {
+        "base_gain": 0.021818181818181848,
+        "map_top_gain": -0.045454545454545414
+      },
+      "D792": {
+        "base_gain": 0.0072727272727273196,
+        "map_top_gain": 0.0
+      }
+    },
+    {
+      "seed": 108004,
+      "D198": {
+        "base_gain": 0.09999999999999998,
+        "map_top_gain": 0.045454545454545414
+      },
+      "D396": {
+        "base_gain": 0.010000000000000009,
+        "map_top_gain": -0.045454545454545414
+      },
+      "D792": {
+        "base_gain": 0.07727272727272727,
+        "map_top_gain": 0.045454545454545414
+      }
+    },
+    {
+      "seed": 108005,
+      "D198": {
+        "base_gain": 0.019090909090909047,
+        "map_top_gain": 0.045454545454545414
+      },
+      "D396": {
+        "base_gain": 0.06454545454545457,
+        "map_top_gain": 0.09090909090909083
+      },
+      "D792": {
+        "base_gain": 0.030909090909090997,
+        "map_top_gain": 0.13636363636363635
+      }
+    },
+    {
+      "seed": 108006,
+      "D198": {
+        "base_gain": 0.06363636363636371,
+        "map_top_gain": 0.0
+      },
+      "D396": {
+        "base_gain": 0.050909090909090904,
+        "map_top_gain": 0.09090909090909083
+      },
+      "D792": {
+        "base_gain": 0.0663636363636364,
+        "map_top_gain": 0.09090909090909094
+      }
+    },
+    {
+      "seed": 108007,
+      "D198": {
+        "base_gain": 0.08272727272727276,
+        "map_top_gain": 0.13636363636363646
+      },
+      "D396": {
+        "base_gain": 0.05999999999999994,
+        "map_top_gain": 0.045454545454545414
+      },
+      "D792": {
+        "base_gain": 0.037272727272727235,
+        "map_top_gain": 0.13636363636363635
+      }
+    },
+    {
+      "seed": 108008,
+      "D198": {
+        "base_gain": 0.0918181818181818,
+        "map_top_gain": 0.045454545454545525
+      },
+      "D396": {
+        "base_gain": 0.0918181818181818,
+        "map_top_gain": 0.13636363636363635
+      },
+      "D792": {
+        "base_gain": -0.0018181818181818299,
+        "map_top_gain": -0.045454545454545414
+      }
+    }
+  ],
+  "sha256": {
+    "founder_108001_EXACT_010.json": "cb0231dba4bcf3fb0f71a5298a0f746551d07eb4f1b72fbe72f7dee1d851a50e",
+    "founder_108001_NATIVE_010.json": "b39159a4d49d3581df8abf806131016ca0b0a1220e230a62a0739cb7cf2b3af4",
+    "founder_108001_NATIVE_020.json": "bdeec63a43f87e38f7f886a5f01023478793548cde52d9ecfc06b954e61296b0",
+    "founder_108002_EXACT_010.json": "c0fe37fdd67c078c82b9f6ae946d08d12b92f62d608071b91beaa39984288500",
+    "founder_108002_NATIVE_010.json": "3a9d0ff160c8fbffaf5db99f3283f99b5cf4622f6f1de8b2081b163062f05fd0",
+    "founder_108002_NATIVE_020.json": "731e1865802eb82287eacf681254f666bcd0addfb493cbff6d9644b0b0250657",
+    "founder_108003_EXACT_010.json": "7f033392d1e472eef20806f518716b7a7ec17a603c5036bd8220a9463b136bd7",
+    "founder_108003_NATIVE_010.json": "aa9920c8a651e7ef9789c0b748fe625536d7b4d940c3c8ef741db325468a1f1e",
+    "founder_108003_NATIVE_020.json": "5f51a679ca3248255d4ac748622e8f8e0c4ee5e39ecd767f14b9842fbb0b17d4",
+    "founder_108004_EXACT_010.json": "f0c132c0940a75a52da10034e1302795627ffb3c97e1cd4c5e3dd177cbebe9c7",
+    "founder_108004_NATIVE_010.json": "615f540fc01ccb17080145301fce332f2edca0463e04c16eb67e2cb771fc9d44",
+    "founder_108004_NATIVE_020.json": "aef5db42162926546b59448f1b13ad104eba6347015143040881b76c385d313f",
+    "founder_108005_EXACT_010.json": "1fc729fb024c95a8e76a5db5b3d6b87111483fa0a0e3f517720c9073906244dc",
+    "founder_108005_NATIVE_010.json": "56c5998b5a65ed63d8f4fcb67a2d07d7ecd081197ea1a13113415ae880115b10",
+    "founder_108005_NATIVE_020.json": "85abe5d1fb7af88bc389039d2d34a0c99b9687f014233ffff1f844540d44f725",
+    "founder_108006_EXACT_010.json": "b704fdef63d76faae1cdbe392a4168d4e8d383cc743ec356cd566e65288388d5",
+    "founder_108006_NATIVE_010.json": "5642155ab56c37ec632935e7e230406394eb3063c4137920f72b45ebcf05df33",
+    "founder_108006_NATIVE_020.json": "8c4abdd24e2c49bd31b384611d40d92a1507416c848dcde6af470f1bc4e10622",
+    "founder_108007_EXACT_010.json": "af72417b67552dbe99cc1dd31a0cf6d6a9e10ec14c8dd2fd9cf65b248ae0c180",
+    "founder_108007_NATIVE_010.json": "ec4aa1e85bb5defbdc28683839b4cad238cf3ec7db96558ab08dbc6aff51782d",
+    "founder_108007_NATIVE_020.json": "9124b4fde52098aa92026e0cccd50e5cb0ae74962c2a000bbeb768d70cec4757",
+    "founder_108008_EXACT_010.json": "8013d6c46f03bf62a383305ccc15a64e8f66a8b73542bede84b2eb3d1d619978",
+    "founder_108008_NATIVE_010.json": "a06b72e93ea12def284037ef4aea85bce0ab6ad7d4404f6d6a8a6086630c3a77",
+    "founder_108008_NATIVE_020.json": "ae35f8272fee551bf85a209a342479e15f5f12f2f7bcc8a9d22be05aa5beb11d"
+  }
+}
+
